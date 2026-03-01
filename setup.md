@@ -50,13 +50,10 @@ nav_order: 2
 1. **Thonny** 실행 후 상단 메뉴에서 **[Tools] → [Manage Packages]**를 클릭합니다.
 2. 검색창에 아래 라이브러리 이름을 하나씩 검색하여 설치(Install) 버튼을 누릅니다.
 
-- numpy: 수치 계산의 기초가 되는 도구
-
-- scipy: 과학 기술 계산용 라이브러리
-
-- matplotlib: 데이터를 그래프로 그려주는 도구
-
-- pandas: 데이터 분석과 표(Table) 처리에 특화된 도구
+* `numpy`: 수치 계산의 기초가 되는 도구
+* `scipy`: 과학 기술 계산용 라이브러리
+* `matplotlib`: 데이터를 그래프로 그려주는 도구
+* `pandas`: 데이터 분석과 표(Table) 처리에 특화된 도구
 
 ###💡 설치 확인하기 (중요!)
 
@@ -71,5 +68,5 @@ import pandas as pd
 print("모든 라이브러리가 성공적으로 설치되었습니다!")
 print(f"Numpy 버전: {np.__version__}")
 print(f"Pandas 버전: {pd.__version__}")
-
+```
 {: .copyable }
