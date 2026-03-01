@@ -4,5 +4,7 @@ theme: just-the-docs
 
 url: https://bgjang-khu.github.io/MSE201/
 
+search_enabled: true
+
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  "GitHub Repository": "https://github.com/bgjang-KHU/MSE201"
