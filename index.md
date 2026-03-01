@@ -4,14 +4,14 @@ layout: home
 nav_order: 1
 ---
 
-# 공학 프로그래밍 입문 (MSE201)
+# 공학프로그래밍 입문 (MSE201)
 
 ---
 
 ## 참고 도서 
 1. [Python Programming And Numerical Methods: A Guide For Engineers And Scientists](https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html)
 
-2.  [Do it! 점프 투 파이썬이썬](https://wikidocs.net/book/1)
+2.  [Do it! 점프 투 파이썬](https://wikidocs.net/book/1)
 
 --- 
 
