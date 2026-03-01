@@ -1,7 +1,7 @@
 title: KHU MSE201
 description: 경희대학교 신소재공학과 공학프로그래밍 입문
-#theme: just-the-docs
-remote_theme: just-the-docs/just-the-docs
+theme: just-the-docs
+#remote_theme: just-the-docs/just-the-docs
 
 url: "https://bgjang-khu.github.io"
 baseurl: "/MSE201"
