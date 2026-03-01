@@ -1,10 +1,12 @@
 title: KHU MSE201
-description: A starter template for a Jeykll site using the Just the Docs theme!
-theme: just-the-docs
+description: 경희대학교 신소재공학과 공학프로그래밍 입문
+remote_theme: just-the-docs/just-the-docs
 
 url: "https://bgjang-khu.github.io"
 baseurl: "/MSE201"
 
-search_enabled: true
+plugins:
+  - jekyll-remote-theme
 
+search_enabled: true
 math: mathjax

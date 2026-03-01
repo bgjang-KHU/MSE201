@@ -1,19 +1,14 @@
 ---
 ---
+// 1. 테마의 기본 변수들을 먼저 불러옵니다.
 @import "support/support";
 
-// 1. 전체 본문 글자 크기 대폭 확대 (1.5rem은 상당히 큽니다)
-body, p, li, table {
-  font-size: 1.3rem !important; 
+// 2. 테마가 사용하는 변수 자체를 큰 값으로 덮어씁니다.
+$body-font-size: 1.3rem;
+$nav-list-font-size: 1.1rem;
+
+// 3. 혹시 모르니 강제 적용(Important)도 유지합니다.
+body {
+  font-size: $body-font-size !important;
   line-height: 1.8 !important;
-  color: #333 !important; // 글자색도 좀 더 진하게
 }
-
-// 2. 왼쪽 사이드바 메뉴 글자 크기 확대
-.nav-list-item {
-  font-size: 1.1rem !important;
-}
-
-// 3. 제목(H1, H2) 크기도 함께 조정
-h1 { font-size: 2.5rem !important; }
-h2 { font-size: 2rem !important; }
