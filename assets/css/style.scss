@@ -1,3 +1,8 @@
+---
+---
+// 반드시 아래 줄이 테마의 기본 설정을 불러오는 역할을 합니다.
+@import "just-the-docs";
+
 // 1. 전체적인 가독성 설정 (교수님께서 작성하신 코드)
 body, p, li, table {
   font-size: 1.3rem !important; 
@@ -12,13 +17,13 @@ body, p, li, table {
 h1 { font-size: 2.5rem !important; }
 h2 { font-size: 2rem !important; }
 
-// 2. 코드 블록 스타일 (사진처럼 연한 회색 배경)
+// 1. 코드 블록 배경색과 테두리 제거 (원하시는 회색 느낌)
 .highlighter-rouge, .highlight {
-  background-color: #f6f8fa !important; 
-  border: none !important;              
-  border-radius: 8px !important;        
-  padding: 1.5rem !important;           
-  margin: 1.5rem 0 !important;          
+  background-color: #f6f8fa !important; // 연한 회색 배경
+  border: none !important;              // 검정 테두리 제거
+  border-radius: 8px !important;        // 모서리 곡선
+  padding: 1.2rem !important;           // 안쪽 여백
+  margin: 1.5rem 0 !important;          // 위아래 간격
 }
 
 // 3. 코드 내부 폰트 및 복사 버튼 최적화
