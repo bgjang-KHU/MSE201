@@ -70,7 +70,7 @@ print("모든 라이브러리가 성공적으로 설치되었습니다!")
 print(f"Numpy 버전: {np.__version__}")
 print(f"Pandas 버전: {pd.__version__}")
 ```
-{: .copyable }
+
 
 * 2D Countour plot
 ```python
@@ -97,7 +97,7 @@ CS = plt.contour(xi,yi,zi,15,linewidths=0.5,colors='k')
 CS = plt.contourf(xi,yi,zi,15,cmap=plt.cm.jet)
 plt.show()
 ```
-{: .copyable }
+
 
 ```python
 import numpy as np
