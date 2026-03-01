@@ -57,3 +57,19 @@ nav_order: 2
 - matplotlib: 데이터를 그래프로 그려주는 도구
 
 - pandas: 데이터 분석과 표(Table) 처리에 특화된 도구
+
+###💡 설치 확인하기 (중요!)
+
+모든 설치가 끝났다면, 아래 코드를 Thonny 편집기 창에 복사해서 붙여넣고 [F5] 키를 눌러 실행해 보세요. 에러 없이 메시지가 출력된다면 준비는 모두 끝났습니다!
+
+```python
+import numpy as np
+import scipy
+import matplotlib
+import pandas as pd
+
+print("모든 라이브러리가 성공적으로 설치되었습니다!")
+print(f"Numpy 버전: {np.__version__}")
+print(f"Pandas 버전: {pd.__version__}")
+
+{: .copyable }
