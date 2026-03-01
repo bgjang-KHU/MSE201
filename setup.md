@@ -61,8 +61,7 @@ nav_order: 2
 
 모든 설치가 끝났다면, 아래 코드를 Thonny 편집기 창에 복사해서 붙여넣고 [F5] 키를 눌러 실행해 보세요. 에러 없이 메시지가 출력된다면 준비는 모두 끝났습니다!
 
-- 라이브러리 버전 확인
-
+라이브러리 버전 확인
 ```python
 import numpy as np
 import scipy
@@ -75,8 +74,7 @@ print(f"Pandas 버전: {pd.__version__}")
 ```
 
 
-- 2D Countour plot
-
+2D Countour plot
 ```python
 import numpy as np
 from scipy.interpolate import griddata
