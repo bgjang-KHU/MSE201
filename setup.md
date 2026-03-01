@@ -59,7 +59,7 @@ nav_order: 2
 
 모든 설치가 끝났다면, 아래 코드를 Thonny 편집기 창에 복사해서 붙여넣고 [F5] 키를 눌러 실행해 보세요. 에러 없이 메시지가 출력된다면 준비는 모두 끝났습니다!
 
-
+*라이브러리 버전 확인
 ```python
 import numpy as np
 import scipy
@@ -72,6 +72,7 @@ print(f"Pandas 버전: {pd.__version__}")
 ```
 
 
+* 2D Countour plot
 ```python
 import numpy as np
 from scipy.interpolate import griddata
@@ -97,19 +98,18 @@ CS = plt.contourf(xi,yi,zi,15,cmap=plt.cm.jet)
 plt.show()
 ```
 
-
+* 함수 fitting
 ```python
 import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 def func(x, a0, b0, c0, a1, b1, c1):
-    return a0 * np.exp(-((x - b0) ** 2) / (2 * c0**2)) + a1 * np.exp(-((x - b1) ** 2) / (2 * c1**2))
+    return a0 * np.exp(-((x - b0) ** 2) / (2 * c0**2)) + a1 * np.exp(-((x - b1) ** 2) / (2 * c1**2))
 
 x = np.linspace(0, 20, 200)
 y = func(x, 1, 3, 1, -2, 15, 0.5)
 yn = y + 0.1 * np.random.normal(size=len(x))
 
-#Initial Guess
 initial_guess = [1, 2, 1, -1, 14, 1]
 popt, pcov = curve_fit(func, x, yn, p0=initial_guess)
 plt.figure(figsize=(8,8))
