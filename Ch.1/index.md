@@ -5,3 +5,6 @@ nav_order: 3
 ---
 
 # Chapter 1. Variables and Basic Data Structures
+
+---
+
