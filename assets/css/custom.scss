@@ -1,14 +1,19 @@
 ---
 ---
-@import "./support/support";
+@import "support/support";
 
-// 전체 본문 글자 크기와 줄 간격 조절
-body {
-  font-size: 1.15rem;   // 기본보다 약 15% 키움
-  line-height: 1.7;     // 줄 사이 간격을 넓혀서 읽기 편하게
+// 1. 전체 본문 글자 크기 대폭 확대 (1.5rem은 상당히 큽니다)
+body, p, li, table {
+  font-size: 1.3rem !important; 
+  line-height: 1.8 !important;
+  color: #333 !important; // 글자색도 좀 더 진하게
 }
 
-// 왼쪽 사이드바 메뉴 글자 크기도 키우고 싶다면 추가
+// 2. 왼쪽 사이드바 메뉴 글자 크기 확대
 .nav-list-item {
-  font-size: 1rem;
+  font-size: 1.1rem !important;
 }
+
+// 3. 제목(H1, H2) 크기도 함께 조정
+h1 { font-size: 2.5rem !important; }
+h2 { font-size: 2rem !important; }
