@@ -1,0 +1,14 @@
+---
+---
+@import "./support/support";
+
+// 전체 본문 글자 크기와 줄 간격 조절
+body {
+  font-size: 1.15rem;   // 기본보다 약 15% 키움
+  line-height: 1.7;     // 줄 사이 간격을 넓혀서 읽기 편하게
+}
+
+// 왼쪽 사이드바 메뉴 글자 크기도 키우고 싶다면 추가
+.nav-list-item {
+  font-size: 1rem;
+}

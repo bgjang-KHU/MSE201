@@ -1,7 +1,5 @@
 ---
+title: Home
+layout: home
+nav_order: 1
 ---
-@import "./support/support";
-
-body {
-  font-size: 1.5rem !important; 
-}
