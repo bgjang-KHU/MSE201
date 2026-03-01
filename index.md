@@ -9,15 +9,13 @@ nav_order: 1
 ## 참고 도서 
 1. [Python Programming And Numerical Methods: A Guide For Engineers And Scientists](https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html)
 
-    
-
 2.  [Do it! 점프 투 파이썬이썬](https://wikidocs.net/book/1)
 
-    
-
+--- 
 
 ## 들어가기 전에
-우리는 한 학기 동안 "Python" 이라는 프로그래밍 언어를 배우게 됩니다. 프로그래밍 "언어" (Programming "Language") 라고 하는 데서 알 수 있듯이, 기계와 의사소통을 하기 위한 새로운 "언어"를 배우는 것입니다. 
+
+우리는 한 학기 동안 **'Python'**이라는 프로그래밍 언어를 배우게 됩니다. 프로그래밍 "언어" (Programming "Language") 라고 하는 데서 알 수 있듯이, 기계와 의사소통을 하기 위한 새로운 "언어"를 배우는 것입니다. 
 
 영어를 배우는 것과 다를 바가 없습니다. 여러분들이 영어를 처음 배울 때를 생각해보세요. 알파벳을 몰랐을 때는 간단한 단어조차 읽지 못했습니다.
 하지만 알파벳을 익히고, 문법을 익히고, 많이 읽고 쓰고 연습하다 보면 어느 순간 영어로 소통을 할 수 있게 됩니다. 프로그래밍 언어도 마찬가지 입니다.
