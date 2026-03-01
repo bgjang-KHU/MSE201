@@ -2,7 +2,8 @@ title: KHU MSE201
 description: A starter template for a Jeykll site using the Just the Docs theme!
 theme: just-the-docs
 
-url: "https://bgjang-khu.github.io/MSE201/"
+url: "https://bgjang-khu.github.io"
+baseurl: "/MSE201"
 
 plugins:
   - jekyll-remote-theme
