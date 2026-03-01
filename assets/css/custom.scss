@@ -3,12 +3,5 @@
 @import "./support/support";
 
 body {
-  // 기본 글자 크기 (기본값은 보통 0.875rem~1rem 사이입니다)
-  font-size: 1.15rem; 
-  // 줄 간격 (가독성을 위해 조금 넓게)
-  line-height: 1.7;
-}
-
-// 제목 크기들도 조금씩 키우고 싶다면 추가
-h1 { font-size: 2.2rem; }
-h2 { font-size: 1.8rem; }
+  font-size: 1.5rem !important; 
+}s
