@@ -26,7 +26,7 @@ nav_order: 2
 
 ## 2. 왜 **Thonny**인가요?
 
-시중에는 `Jupyter Notebook`, `VS Code`, `PyCharm` 등 강력한 기능을 가진 편집기들이 많습니다. 하지만 초보자들에게는 너무 많은 기능이 오히려 큰 벽으로 느껴질 수 있습니다.
+시중에는 'Jupyter Notebook', 'VS Code', 'PyCharm' 등 강력한 기능을 가진 편집기들이 많습니다. 하지만 초보자들에게는 너무 많은 기능이 오히려 큰 벽으로 느껴질 수 있습니다.
 
 그래서 우리 수업에서는 **Thonny**라는 편집기를 사용합니다.
 * **가볍고 단순합니다**: 복잡한 설정 없이 바로 코딩에 집중할 수 있습니다.
@@ -59,6 +59,7 @@ nav_order: 2
 
 모든 설치가 끝났다면, 아래 코드를 Thonny 편집기 창에 복사해서 붙여넣고 [F5] 키를 눌러 실행해 보세요. 에러 없이 메시지가 출력된다면 준비는 모두 끝났습니다!
 
+* 라이브러리 버전 확인
 ```python
 import numpy as np
 import scipy
@@ -71,6 +72,7 @@ print(f"Pandas 버전: {pd.__version__}")
 ```
 {: .copyable }
 
+* 2D Countour plot
 ```python
 import numpy as np
 from scipy.interpolate import griddata
@@ -96,3 +98,25 @@ CS = plt.contourf(xi,yi,zi,15,cmap=plt.cm.jet)
 plt.show()
 ```
 {: .copyable }
+
+```python
+import numpy as np
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+def func(x, a0, b0, c0, a1, b1, c1):
+    return a0 * np.exp(-((x - b0) ** 2) / (2 * c0**2)) + a1 * np.exp(-((x - b1) ** 2) / (2 * c1**2))
+
+x = np.linspace(0, 20, 200)
+y = func(x, 1, 3, 1, -2, 15, 0.5)
+yn = y + 0.1 * np.random.normal(size=len(x))
+
+#Initial Guess
+initial_guess = [1, 2, 1, -1, 14, 1]
+popt, pcov = curve_fit(func, x, yn, p0=initial_guess)
+plt.figure(figsize=(8,8))
+plt.scatter(x, yn, marker="o")
+plt.plot(x, y, linewidth=2, color="blue")
+plt.plot(x, func(x, *popt), color="red", linewidth=2)
+plt.legend(['Data', 'Original', 'Fitting'], loc=0)
+plt.show()
+```
