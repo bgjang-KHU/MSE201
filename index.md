@@ -1,6 +1,7 @@
 ---
-title: Home
-layout: home
 ---
+@import "./support/support";
 
-경희대학교 신소재공학과 
+body {
+  font-size: 1.5rem !important; 
+}
