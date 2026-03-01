@@ -102,7 +102,7 @@ CS = plt.contourf(xi,yi,zi,15,cmap=plt.cm.jet)
 plt.show()
 ```
 
-- 함수 fitting
+함수 fitting
 ```python
 import numpy as np
 from scipy.optimize import curve_fit
