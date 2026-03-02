@@ -24,8 +24,8 @@ print(x)
 
 > {: .result }
 > **\>>>** 
-> {: .text-purple-100 .fw-700}
-> 1
+{: .text-purple-100 .fw-700}
+> 11
 
 
 
