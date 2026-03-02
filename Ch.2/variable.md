@@ -23,7 +23,7 @@ print(x)
 
 > {: .result }
 > **\>>>** 
-> 
+>
 > 1 
 {: .text-purple-100 }
 
@@ -42,5 +42,6 @@ print(y*3)
 > {: .result }
 > **\>>>** 
 > 2
+>
 > 6 
 {: .text-purple-100 }
