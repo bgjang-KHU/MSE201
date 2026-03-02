@@ -9,3 +9,5 @@ baseurl: "/MSE201"
 search_enabled: true
 math: mathjax
 enable_copy_code_button: true
+kramdown:
+  parse_block_html: true
