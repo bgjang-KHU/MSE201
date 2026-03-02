@@ -18,7 +18,7 @@ nav_order: 2
 
 ### **정수형**
 
-정수형(integer)은 말 그대로 정수를 뜻하는 자료형이다. 
+정수형(integer)은 말 그대로 정수를 뜻하는 자료형입니다.
 
 ```python
 a=123
@@ -38,7 +38,7 @@ print(type(a))
 
 ### **실수형**
 
-실수형(floating-point)은 소수점이 포함된 숫자를 말한다.
+실수형(floating-point)은 소수점이 포함된 숫자를 말합니다.
 
 ```python
 b=3.4e10
@@ -54,7 +54,7 @@ print(type(b))
 
 ### **복소수형**
 
-복소수형(complex)은 실수부와 허수부로 구성된 숫자를 말하며, 파이썬에서는 허수 단위로 $j$를 사용한다.
+복소수형(complex)은 실수부와 허수부로 구성된 숫자를 말하며, 파이썬에서는 허수 단위로 **j**를 사용합니다.
 
 ```python
 c=1+2j
@@ -71,8 +71,8 @@ print(type(c))
 ### 데이터 유형 바꾸기
 
 
-`1`은 정수형(int)이고, `1.0`은 실수형(float)이다.
-이들의 유형을 바꾸는 것도 가능하다.
+`1`은 정수형(int)이고, `1.0`은 실수형(float)입니다.
+데이터의 유형을 바꾸는 것도 가능합니다.
 
 ### **TRY IT!**
 {: .text-red-200 }
@@ -112,7 +112,7 @@ print(type(b))
 
 ---
 
-그렇다면 복소수를 정수형이나 실수형으로 바꾸는 것도 가능할까?
+그렇다면 복소수를 정수형이나 실수형으로 바꾸는 것도 가능할까요?
 
 ### **TRY IT!**
 {: .text-red-200 }
@@ -125,3 +125,23 @@ print(b)
 print(type(b))
 ```
 
+---
+
+### **복소수형 응용**
+
+- complex.**real** : 복소수의 실수부를 반환합니다. (속성/Attribute)
+- complex.**imag** : 복소수의 허수부를 반환합니다. (속성/Attribute)
+- complex.**conjugate()** : 켤레복소수를 계산하여 반환합니다. (메서드/Method)
+- **abs**(complex) : 복소수의 **크기(절댓값)**를 계산하여 반환합니다. (내장 함수/Built-in Function)
+
+### **TRY IT!**
+{: .text-red-200 }
+
+```python
+a=1+2j
+
+print(a.real)
+print(a.imag)
+print(a.conjugate())
+print(abs(a))
+```
