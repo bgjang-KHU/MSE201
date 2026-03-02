@@ -24,10 +24,8 @@ print(x)
 
 > {: .result }
 **\>>>** 1 
-{: .text-purple-100 .fw-700}
+{: .text-purple-100 }
 
-> {: .result }
-**<span style="color: #7253ed;">>>></span>** 1
 
 
 위 코드는 "x는 1과 같다"는 수학적 의미가 아니라, **숫자 1을 x라는 이름의 메모리 공간에 저장**하겠다는 의미입니다.
