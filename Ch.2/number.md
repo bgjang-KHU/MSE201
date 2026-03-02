@@ -67,3 +67,29 @@ print(type(c))
 > > <class 'complex'>
 
 ---
+
+`1`은 정수형(int)이고, `1.0`은 실수형(float)이다.
+이들의 유형을 바꾸는 것도 가능하다.
+
+### **TRY IT!**
+{: .text-red-200 }
+
+```python
+a=1
+print(a)
+print(type(a))
+
+b=float(a)
+print(b)
+print(type(b))
+```
+
+
+> {: .result }
+> > 1
+> > 
+> > <class 'int'>
+> >
+> > 1.0
+> >
+> > <class 'float'>
