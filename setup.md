@@ -67,8 +67,12 @@ import matplotlib
 import pandas as pd
 
 print("모든 라이브러리가 성공적으로 설치되었습니다!")
-print(f"Numpy 버전: {np.__version__}")
-print(f"Pandas 버전: {pd.__version__}")
+print("-" * 40)
+print(f"1. Numpy 버전:      {np.__version__}")
+print(f"2. Scipy 버전:      {scipy.__version__}")
+print(f"3. Matplotlib 버전: {matplotlib.__version__}")
+print(f"4. Pandas 버전:     {pd.__version__}")
+print("-" * 40)
 ```
 
 

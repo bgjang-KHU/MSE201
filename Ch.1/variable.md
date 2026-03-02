@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Variables and Assignment
-parent: Ch1. Basic Data Structures
+title: 변수와 할당
+parent: Ch1. 변수와 기본 자료구조
 nav_order: 1
 ---
