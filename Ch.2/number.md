@@ -30,7 +30,7 @@ print(type(a))
 > > 
 > > <class 'int'>
 
-{: .note }
+{: .tip }
 내장 함수 `type`을 사용하여 자료의 유형을 확인할 수 있다.
 
 

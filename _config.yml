@@ -21,10 +21,13 @@ callouts:
     color: green
   note:
     title: Note
-    color: red
+    color:  purple
   warning:
     title: Warning
     color: red
   result: 
     title: \>>>
     color: blue
+  tip:
+    title: Tip!
+    color: red
