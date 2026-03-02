@@ -26,5 +26,5 @@ callouts:
     title: Warning
     color: red
   result: 
-    title: 실행 결과
+    title: >>>
     color: blue
