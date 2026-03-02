@@ -25,7 +25,7 @@ a=123
 print(a)
 print(type(a))
 ```
-> {: .result .fs-4 }
+> {: .result .fs-3 }
 > > 123
 > > 
 > > <class 'int'>
@@ -61,7 +61,7 @@ c=1+2j
 print(c)
 print(type(c))
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > (1+2j)
 > > 
 > > <class 'complex'>
@@ -85,7 +85,7 @@ print(type(b))
 ```
 
 
-> {: .result .fs-4 }
+> {: .result .fs-3 }
 > > 1
 > > 
 > > <class 'int'>
@@ -93,3 +93,25 @@ print(type(b))
 > > 1.0
 > >
 > > <class 'float'>
+
+### **TRY IT!**
+{: .text-red-200 }
+
+```python
+a=1.0
+print(a)
+print(type(a))
+
+b=int(a)
+print(b)
+print(type(b))
+```
+
+> {: .result .fs-3 }
+> > 1.0
+> >
+> > <class 'float'>
+> >
+> > 1
+> > 
+> > <class 'int'>
