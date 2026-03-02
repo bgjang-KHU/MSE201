@@ -113,7 +113,7 @@ print(type(b))
 ---
 
 ❓ 잠깐! 그렇다면 복소수를 정수형이나 실수형으로 바꾸는 것도 가능할까요?
-{: .fs-6 .text-blue-200 }
+{: .fs-5 .text-blue-200 }
 
 ### **TRY IT!**
 {: .text-red-200 }
@@ -145,4 +145,15 @@ print(a.real)
 print(a.imag)
 print(a.conjugate())
 print(abs(a))
+```
+
+직접 `3 + 4j`라고 입력하는 방법 외에도, `complex(실수부, 허수부)` 함수를 사용하여 복소수를 만들 수 있습니다.
+
+```python
+a = 3+4j
+b = 3
+c = 4
+z = complex(b, c)  # 3 + 4j 생성
+print(a)
+print(z)
 ```
