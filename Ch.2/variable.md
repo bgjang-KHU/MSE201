@@ -35,6 +35,7 @@ y=2
 print(y)
 print(y*3)
 ```
+{: .fs-5 }
 
 {: .result }
 > 2
