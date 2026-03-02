@@ -25,7 +25,7 @@ a=123
 print(a)
 print(type(a))
 ```
-> {: .result .fs-5 }
+> {: .result .fs-4 }
 > > 123
 > > 
 > > <class 'int'>
@@ -45,7 +45,7 @@ b=3.4e10
 print(b)
 print(type(b))
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > 34000000000.0
 > > 
 > > <class 'float'>
@@ -85,7 +85,7 @@ print(type(b))
 ```
 
 
-> {: .result }
+> {: .result .fs-4 }
 > > 1
 > > 
 > > <class 'int'>
