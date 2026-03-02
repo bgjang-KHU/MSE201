@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Environment Setup
+title: Ch1. 환경 설정
 nav_order: 2
 ---
 
