@@ -23,9 +23,9 @@ print(x)
 {: .fs-6 }
 
 > {: .result }
-**\>>>** 1
-{: .text-purple-100 }
-
+>**\>>>** 
+>{: .text-purple-100 .fw-700}
+>1
 
 
 
