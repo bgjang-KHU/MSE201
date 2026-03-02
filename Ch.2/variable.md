@@ -21,7 +21,7 @@ x=1
 print(x)
 ```
 
-{: .highlight }
+{: .result }
 A paragraph
 
 

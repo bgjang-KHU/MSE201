@@ -25,3 +25,6 @@ callouts:
   warning:
     title: Warning
     color: red
+  result: 
+    title: 실행 결과
+    color: grey
