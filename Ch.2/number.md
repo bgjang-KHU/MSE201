@@ -159,8 +159,8 @@ print(z)
 ```
 
 ---
-## math 모듈 
-
+## **math** 모듈 
+<br>
 파이썬은 `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log`, `sqrt`와 같은 다양한 기본 수학 함수들을 제공하며, 이들은 **math**라는 이름의 모듈에 저장되어 있습니다.
 
 이 함수들을 사용하려면 반드시 해당 모듈을 **import**해야 합니다!
@@ -187,3 +187,16 @@ print(e)
 {: .warning }
 `sin`, `cos` 등의 삼각함수는 '도(degree)'가 아닌 '라디안(radian)' 값을 인자로 받습니다.
 내장 함수 math.radians()을 사용하면 '도'를 '라디안'으로 변환할 수 있습니다.
+
+---
+## 산술 연산자 (Arithmetic Operators)
+
+|**연산자**|**이름**|**예시**|**설명**|
+|:-------|:-------|:-------|:-------|
+|+|더하기 (Addition) |x + y||
+|-|빼기 (Subtraction)|x - y||
+|*|곱하기 (Multiplication)| x * y ||
+|/|나누기 (Division)|x / y |결과는 항상 실수|
+|%|나머지 (Modulus)|x % y |나눗셈 후의 나머지를 반환|
+|//|몫 (Floor division)|x // y|나눗셈 결과에서 소수점 이하를 버린 몫을 반환|
+|**|거듭제곱 (Exponentiation)|x ** y|x의 y승을 계산|
