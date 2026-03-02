@@ -30,7 +30,7 @@ print(type(a))
 > > 
 > > <class 'int'>
 
-{: .highlight }
+{: .note }
 내장 함수 `type`을 사용하여 자료의 유형을 확인할 수 있다.
 
 
@@ -65,3 +65,5 @@ print(type(c))
 > > (1+2j)
 > > 
 > > <class 'complex'>
+
+---
