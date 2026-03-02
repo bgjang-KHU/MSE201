@@ -74,9 +74,6 @@ print(type(c))
 `1`은 정수형(int)이고, `1.0`은 실수형(float)입니다.
 데이터의 유형을 바꾸는 것도 가능합니다.
 
-### **TRY IT!**
-{: .text-red-200 }
-
 ```python
 a=1
 print(a)
@@ -149,6 +146,9 @@ print(abs(a))
 
 직접 `3 + 4j`라고 입력하는 방법 외에도, `complex(실수부, 허수부)` 함수를 사용하여 복소수를 만들 수 있습니다.
 
+### **TRY IT!**
+{: .text-red-200 }
+
 ```python
 a = 3+4j
 b = 3
@@ -157,3 +157,33 @@ z = complex(b, c)  # 3 + 4j 생성
 print(a)
 print(z)
 ```
+
+---
+## math 모듈 
+
+파이썬은 `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log`, `sqrt`와 같은 다양한 기본 수학 함수들을 제공하며, 이들은 **math**라는 이름의 모듈에 저장되어 있습니다.
+
+이 함수들을 사용하려면 반드시 해당 모듈을 **import**해야 합니다!
+
+{: highlight}
+`math` 모듈의 함수를 사용할 때는 반드시 앞에 `math.`을 붙여주어야 합니다.
+
+```python
+import math
+
+a=math.sqrt(2)
+b=math.sin(math.pi/2)
+c=math.exp(3/4)
+d=math.log(10)
+e=math.log10(10)
+
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
+```
+
+{: .warning }
+`sin`, `cos` 등의 삼각함수는 '도(degree)'가 아닌 '라디안(radian)' 값을 인자로 받습니다.
+내장 함수 math.radians()을 사용하면 '도'를 '라디안'으로 변환할 수 있습니다.
