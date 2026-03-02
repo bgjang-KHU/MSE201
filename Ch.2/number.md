@@ -25,7 +25,7 @@ a=123
 print(a)
 print(type(a))
 ```
-> {: .result }
+> {: .result .fs-5 }
 > > 123
 > > 
 > > <class 'int'>
