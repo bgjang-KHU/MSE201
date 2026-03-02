@@ -20,10 +20,12 @@ nav_order: 1
 x=1
 print(x)
 ```
-{: .fs-5 }
+{: .fs-10 }
 
 > {: .result }
-**\>>>** 1
+**\>>>** 
+{: .text-purple-100 }
+1
 
 
 
