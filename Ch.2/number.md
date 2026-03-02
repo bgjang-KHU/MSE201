@@ -14,7 +14,9 @@ nav_order: 2
 |Floating-point (float, 실수)     | 123.45, 1.0, 3.4e10 |
 |Complex number (complex, 복소수) | 1+2j, -3J            |
 
-### 정수형
+---
+
+### **정수형**
 
 정수형(integer)은 말 그대로 정수를 뜻하는 자료형이다. 
 
@@ -25,4 +27,41 @@ print(type(a))
 ```
 > {: .result }
 > > 123
+> > 
 > > <class 'int'>
+
+{: .highlight }
+내장 함수 `type`을 사용하여 자료의 유형을 확인할 수 있다.
+
+
+---
+
+### **실수형**
+
+실수형(floating-point)은 소수점이 포함된 숫자를 말한다.
+
+```python
+b=3.4e10
+print(b)
+print(type(b))
+```
+> {: .result }
+> > 34000000000.0
+> > 
+> > <class 'float'>
+
+---
+
+### **복소수형**
+
+복소수형(complex)은 실수부와 허수부로 구성된 숫자를 말하며, 파이썬에서는 허수 단위로 $j$를 사용한다.
+
+```python
+c=1+2j
+print(c)
+print(type(c))
+```
+> {: .result }
+> > (1+2j)
+> > 
+> > <class 'complex'>
