@@ -9,5 +9,19 @@ baseurl: "/MSE201"
 search_enabled: true
 math: mathjax
 enable_copy_code_button: true
-kramdown:
-  parse_block_html: true
+
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
