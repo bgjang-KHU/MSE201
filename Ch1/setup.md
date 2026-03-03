@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Ch1. 환경 설정
-nav_order: 2
+title: 환경 설정 및 확인
+parent: Ch1. 환경 설정
+nav_order: 1
 ---
 
 # 프로그래밍 환경설정 
