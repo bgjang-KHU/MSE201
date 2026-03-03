@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 환경 설정 및 확인
-parent: Ch1. 환경 설정
+title: 환경 설정
+parent: Ch1. Python 기초
 nav_order: 1
 ---
 
