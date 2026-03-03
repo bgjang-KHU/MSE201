@@ -28,6 +28,8 @@ Python은 논리 표현식의 결과로 `True`와 `False`라는 값을 내놓습
 
 Python 내부적으로 `True`는 1, `False`는 0의 성질을 갖지만, 입문 단계에서는 논리적 상태를 나타내는 고유한 값으로 이해하는 것이 좋습니다.
 
+---
+
 ## 비교 연산자 (Comparison Operators)
 
 비교 연산자는 두 값을 비교하여 논리 표현식을 만드는데 사용됩니다. Python에서 사용하는 기호는 다음과 같습니다.
@@ -53,6 +55,8 @@ print(2 < 3)
 > >
 > > True
 
+---
+
 ## 논리 연산자 (Logical Operator)
 
 논리 연산자는 두 개의 논리 표현식 (편의상 $P$와 $Q$라고 부릅니다) 사이의 관계를 정의하는 연산입니다. 주로 다룰 핵심 논리 연산자는 **and**, **or**, **not**입니다.
@@ -62,3 +66,22 @@ print(2 < 3)
 |and     | 논리곱 (Both True) | P and Q | P와 Q가 모두 참일 때만 True, 아니면 False |
 |or      | 논리합 (Either True) | P or Q | P와 Q 중 하나라도 참이면 True, 둘 다 거짓이면 False |
 |not     | 논리 부정 (Reverse)  | not P  | P의 상태를 반대로 뒤집음 (True ↔ False) |
+
+### **TRY IT!**
+{: .text-blue-200 }
+
+```python
+print(True and 1)
+print(1 and True)
+print(True or 1)
+print(1 or True)
+```
+
+> {: .result }
+> > 1
+> >
+> > True
+> >
+> > True
+> >
+> > 1
