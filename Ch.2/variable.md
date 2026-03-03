@@ -28,7 +28,7 @@ print(x)
 
 ---
 ### **TRY IT!**
-{: .text-red-200 }
+{: .text-blue-100 }
 
 ```python
 y=2
