@@ -113,6 +113,7 @@ print(type(b))
 > > <class 'int'>  
 > > <class 'bool'>
 
+<Br>
 
 {: .tip }
 내장 함수 `type()`을 사용하면 자료의 유형을 확인할 수 있습니다.
