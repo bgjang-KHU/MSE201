@@ -45,11 +45,11 @@ print('Hello World!')
 {: .text-blue-200 }
 
 ```python
-name = input("당신의 이름을 입력하세요: ")
+name = input("Enter your name: ")
 print("Hello, ", name)
 ```
 > {: .result }
-> > 당신의 이름을 입력하세요: **KHU MSE**  
+> > Enter your name: **KHU MSE**  
 > > Hello, KHU MSE
 
 ### **🤔 Wait and Think!**
