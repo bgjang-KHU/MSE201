@@ -135,7 +135,7 @@ b = (1 and not 0) or (1 and 0)
 
 ---
 
-논리값의 산술 연산 (Abuse of Logic)
+## 논리값의 산술 연산 (Abuse of Logic)
 
 
 ### **🚀 TRY IT!**
