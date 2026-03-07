@@ -51,8 +51,7 @@ print(5 == 4)
 print(2 < 3)
 ```
 > {: .result }
-> > False
-> >
+> > False  
 > > True
 
 {: .warning }
@@ -85,12 +84,9 @@ print(1 or True)
 ```
 
 > {: .result }
-> > 1
-> >
-> > True
-> >
-> > True
-> >
+> > 1  
+> > True  
+> > True  
 > > 1
 
 위 예시에서 두 가지 중요한 사실을 알 수 있습니다.
@@ -114,8 +110,7 @@ print(type(a))
 print(type(b))
 ```
 > {: .result }
-> > <class 'int'>
-> >
+> > <class 'int'>  
 > > <class 'bool'>
 
 {: .tip }
@@ -132,15 +127,29 @@ print(type(b))
 {: .text-red-200 }
 a 와 b 는 각각 어떤 값은 할당 받게 될까요?
 ```python
-a=(1 and not 1) or (1 and 1)
-b=(1 and not 0) or (1 and 0)
+a = (1 and not 1) or (1 and 1)
+b = (1 and not 0) or (1 and 0)
 ```
 
-### **🤔 Wait and Think!**
-{: .text-red-200 }
-a 와 b 는 각각 어떤 값은 할당 받게 될까요?
+---
+
+논리값의 산술 연산 (Abuse of Logic)
+
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
 ```python
-a=(3 > 2)
-b=(5 > 4)
-c=a+b
+a = (3 > 2)  # 할당: "3 > 2"의 결과를 "a"에 저장 
+b = (5 > 4)  # 할당: "5 > 4"의 결과를 "b"에 저장
+c = a + b      # 할당: "a + b"의 결과를 "c"에 저장
+
+print(a)
+print(b)
+print(c)
 ```
+
+> {: .result }
+> > True  
+> > True      
+> > 2
