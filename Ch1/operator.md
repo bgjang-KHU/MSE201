@@ -135,3 +135,12 @@ a 와 b 는 각각 어떤 값은 할당 받게 될까요?
 a=(1 and not 1) or (1 and 1)
 b=(1 and not 0) or (1 and 0)
 ```
+
+### **🤔 Wait and Think!**
+{: .text-red-200 }
+a 와 b 는 각각 어떤 값은 할당 받게 될까요?
+```python
+a=(3 > 2)
+b=(5 > 4)
+c=a+b
+```
