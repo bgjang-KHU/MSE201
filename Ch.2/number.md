@@ -94,8 +94,8 @@ print(type(b))
 > >
 > > <class 'float'>
 
-### **TRY IT!**
-{: .text-red-200 }
+### **🚀 TRY IT!**
+{: .text-blue-200 }
 
 ```python
 a=1.0
@@ -109,11 +109,8 @@ print(type(b))
 
 ---
 
+### **🤔 Wait and Think!**
 ❓ 잠깐! 그렇다면 복소수를 정수형이나 실수형으로 바꾸는 것도 가능할까요?
-{: .text-blue-200 }
-
-### **TRY IT!**
-{: .text-red-200 }
 
 ```python
 a=1+2j
@@ -132,8 +129,8 @@ print(type(b))
 - complex.**conjugate()** : 켤레복소수를 계산하여 반환합니다. (메서드/Method)
 - **abs**(complex) : 복소수의 **크기(절댓값)**를 계산하여 반환합니다. (내장 함수/Built-in Function)
 
-### **TRY IT!**
-{: .text-red-200 }
+### **🚀 TRY IT!**
+{: .text-blue-200 }
 
 ```python
 a=1+2j
@@ -146,8 +143,8 @@ print(abs(a))
 
 직접 `3 + 4j`라고 입력하는 방법 외에도, `complex(실수부, 허수부)` 함수를 사용하여 복소수를 만들 수 있습니다.
 
-### **TRY IT!**
-{: .text-red-200 }
+### **🚀 TRY IT!**
+{: .text-blue-200 }
 
 ```python
 a = 3+4j
