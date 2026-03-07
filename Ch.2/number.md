@@ -291,3 +291,33 @@ seconds =
 
 print(f"{total_seconds}초는 {hours}시간 {minutes}분 {seconds}초입니다.")
 ```
+
+### **4. 더치페이 계산기**
+
+전체 음식값과 인원수를 입력받아, 한 사람당 얼마씩 내야 하는지 계산하는 코드를 완성하세요. 이때, **10원 단위 미만은 버림** 처리를 해봅시다.
+
+```python
+total_price = int(input("총 결제 금액을 입력하세요: "))
+people = int(input("인원수를 입력하세요: "))
+
+per_person = 
+
+print(f"한 사람당 {per_person}원씩 내면 됩니다. (10원 미만 절사)")
+
+```
+
+### **5. 성적 합계 구하기**
+
+세 과목의 점수를 입력받아 합계를 구하고, 평균을 내는 코드를 완성하세요.
+
+```python
+total_score = 0
+
+# 과목 점수를 하나씩 입력받아 누적합니다.
+total_score +=
+
+
+average = total_score / 3
+
+print(f"세 과목의 총점은 {total_score}점, 평균은 {average:.2f}점입니다.")
+```
