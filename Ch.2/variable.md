@@ -97,7 +97,8 @@ print(x)
 
 ---
 
-### **Example**
+### **Wait and Think**
+{: .text-red-200 }
 다음 코드를 실행한 후, y는 어떤 값을 갖게 될까요?
 
 ```python
