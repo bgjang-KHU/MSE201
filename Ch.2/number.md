@@ -26,8 +26,7 @@ print(a)
 print(type(a))
 ```
 > {: .result .fs-3 }
-> > 123
-> > 
+> > 123  
 > > <class 'int'>
 
 {: .tip }
@@ -46,8 +45,7 @@ print(b)
 print(type(b))
 ```
 > {: .result .fs-3 }
-> > 34000000000.0
-> > 
+> > 34000000000.0  
 > > <class 'float'>
 
 ---
@@ -62,8 +60,7 @@ print(c)
 print(type(c))
 ```
 > {: .result .fs-3 }
-> > (1+2j)
-> > 
+> > (1+2j)  
 > > <class 'complex'>
 
 ---
@@ -86,12 +83,9 @@ print(type(b))
 
 
 > {: .result .fs-3 }
-> > 1
-> > 
-> > <class 'int'>
-> >
-> > 1.0
-> >
+> > 1   
+> > <class 'int'>  
+> > 1.0  
 > > <class 'float'>
 
 ### **🚀 TRY IT!**
@@ -239,3 +233,7 @@ print(e)
 # 에러 발생 예시
 y += 5  # y가 정의되지 않았으므로 NameError 발생
 ```
+
+---
+
+## **✍️ 연습 문제 **
