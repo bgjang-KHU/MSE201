@@ -237,3 +237,57 @@ y += 5  # y가 정의되지 않았으므로 NameError 발생
 ---
 
 ## **✍️ 연습 문제**
+
+### **1. 각도를 라디안으로 변환하여 sin 값 구하기**
+
+사용자로부터 도 (degree) 단위의 각도를 입력받아, 이를 라디안 (radian)으로 변환한 뒤 그 값의 사인 (sin) 값을 출력하는 코드를 완성하세요.
+
+```python
+import math
+
+# 1. 도(degree) 입력 받기 (실수형으로 변환 필수!)
+degree = float(input("각도(degree)를 입력하세요: "))
+
+# 2. 라디안으로 변환
+radian = 
+
+# 3. sin 값 계산 및 출력
+result = 
+print(f"입력하신 {degree}도의 sin 값은 {result}입니다.")
+```
+
+### **2. 3의 배수 판별기**
+
+숫자를 하나 입력받아, 그 숫자가 3의 배수인지 아닌지를 판별하여 알려주는 프로그램을 완성하세요.  
+
+
+```python
+# 1. 숫자 입력 받기
+number = int(input("정수를 입력하세요: "))
+
+# 2. 3의 배수인지 판단하기
+Logic = 
+
+# 3. 판단된 결과에 따라 출력하기
+if Logic:
+    print(f"{number}(은)는 3의 배수입니다!")
+else:
+    print(f"{number}(은)는 3의 배수가 아닙니다.")
+```
+
+### **3. 초를 시간/분/초로 나누기**
+
+사용자로부터 '초' 단위의 큰 숫자를 입력받아, 이를 몇 시간, 몇 분, 몇 초인지 계산하여 출력하는 코드를 완성하세요.  
+힌트: 몫 (`//`) 연산자와 나머지 (`%`) 연산자를 적절히 사용하세요.
+
+```python
+total_seconds = int(input("변환할 총 초(sec)를 입력하세요: "))
+
+hours =                             # 전체 초를 3600으로 나눈 '몫'이 시간
+remaining_seconds = 
+
+minutes =      
+seconds =      
+
+print(f"{total_seconds}초는 {hours}시간 {minutes}분 {seconds}초입니다.")
+```
