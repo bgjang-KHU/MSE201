@@ -107,3 +107,29 @@ print("The sum of two numbers: ", sum)
 {: .text-red-200 }
 1.2 와 3.4 의 합도 위의 계산기 코드로 계산이 되나요?
 실수들의 합을 계산하려면 어떻게 수정을 해야할까요?
+
+### **숫자 맞추기 게임** 
+
+컴퓨터가 임의로 만들어낸 숫자를 맞춰봅시다! 여기서는 임의의 숫자를 만들기 위해 random 이라는 모듈에서 함수를 사용합니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+```python
+import random # random 모듈 불러오기
+
+# 1부터 10 사이의 비밀 숫자 생성
+secret_number = random.randint(1, 10)
+
+guess = int(input("1부터 10 사이의 숫자 중 하나를 맞춰보세요: "))
+
+if guess == secret_number:
+    print("정답입니다! 🎉")
+else:
+    print(f"아쉬워요! 정답은 {secret_number}였습니다.")
+```
+
+{: .highlight }
+>💡 **`=` vs `==`**   
+>`=` (할당) : **오른쪽 값**을 **왼쪽 변수**에 저장할 때 사용합니다.  
+>`==` (비교) : 양쪽의 값이 같은지 확인할 때 사용합니다.
