@@ -43,7 +43,7 @@ Python 내부적으로 `True`는 1, `False`는 0의 성질을 갖지만, 입문 
 |>=       |Greater than or equal to   |x >= y  |
 |<=       |Less than or equal to      |x <=> y  |
 
-### **TRY IT!**
+### **🚀 TRY IT!**
 {: .text-blue-200 }
 
 ```python
@@ -57,6 +57,7 @@ print(2 < 3)
 
 {: .warning }
 >`=` 와 `==` 을 헷갈리지 마세요!!!  
+>
 >`=` (할당) : **오른쪽 값**을 **왼쪽 변수**에 저장할 때 사용합니다.  
 >`==` (비교) : 양쪽의 값이 같은지 확인할 때 사용합니다.
 
@@ -73,7 +74,7 @@ print(2 < 3)
 |or      | 논리합 (Either True) | P or Q | P와 Q 중 하나라도 참이면 True, 둘 다 거짓이면 False |
 |not     | 논리 부정 (Reverse)  | not P  | P의 상태를 반대로 뒤집음 (True ↔ False) |
 
-### **TRY IT!**
+### **🚀 TRY IT!**
 {: .text-blue-200 }
 
 ```python
@@ -103,7 +104,7 @@ print(1 or True)
 
 이는 Python이 논리 연산을 수행할 때 최종적으로 결과를 결정지은 **값의 원래 데이터 타입(bool 혹은 int)**을 그대로 유지하여 반환하기 때문입니다.
 
-### **TRY IT!**
+### **🚀 TRY IT!**
 {: .text-blue-200 }
 
 ```python
@@ -127,7 +128,7 @@ print(type(b))
 
 ---
 
-### **Wait and Think**
+### **🤔 Wait and Think!**
 {: .text-red-200 }
 a 와 b 는 각각 어떤 값은 할당 받게 될까요?
 ```python
