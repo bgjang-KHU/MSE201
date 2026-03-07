@@ -2,7 +2,7 @@
 layout: default
 title: 논리 표현식과 연산자
 parent: Ch1. Python 기초
-nav_order: 3
+nav_order: 4
 ---
 
 # 논리 표현식과 연산자
