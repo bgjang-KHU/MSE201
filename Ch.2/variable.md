@@ -43,14 +43,14 @@ print(y*3)
 > > 6 
 
 ---
+
+### **🤔 Wait and Think!**
 ❓ 잠깐! 그렇다면 다음과 같은 할당도 가능할까요?
-{: .text-blue-200 }
 
 ```python
 2=y
 print(y)
 ```
-
 
 ---
 
@@ -97,8 +97,7 @@ print(x)
 
 ---
 
-### **🚀 TRY IT!**
-{: .text-blue-200 }
+### **🤔 Wait and Think!**
 다음 코드를 실행한 후, y는 어떤 값을 갖게 될까요?
 
 ```python
