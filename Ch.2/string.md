@@ -121,3 +121,23 @@ print(a+b)
 > {: .result .fs-3 }
 Hello, MSE!
 
+### 문자열 곱하기
+
+```python
+a = "Hello "
+print(5*a)
+```
+> {: .result .fs-3 }
+Hello Hello Hello Hello Hello
+
+---
+
+## 문자열 길이 구하기
+
+---
+
+## 문자열 인덱싱과 슬라이싱
+
+---
+
+## 문자열 포매팅 
