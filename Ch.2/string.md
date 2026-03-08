@@ -44,7 +44,6 @@ d = '''I love Python!'''
 `c`의 출력값은 어떤가요? 데이터의 유형은요?  
 우리 눈에 보이지 않는다고 해서 데이터가 없는 것은 아닙니다. 따옴표에 둘러쌓인 공백도 문자열 (string)으로 취급됩니다.
 
-<br>
 
 ### **🤔 Wait and Think!**
 
@@ -94,10 +93,13 @@ print(quote)
 ```python
 print('Python\'s favorite food is perl')
 print('\\ is slash')
-print('Change line\nwith "\n"')
-print('Tab\twith \\t")
+print('Change line\nwith "\\n"')
+print('Tab\twith "\\t"')
 ```
 
 > {: .result .fs-3 }
-> > (1+2j)  
-> > <class 'complex'>
+> > Python's favorite food is perl  
+> > \ is slash  
+> > Change line  
+> > with "\n"  
+> > Tab    with "\t"

@@ -50,7 +50,7 @@ Python 내부적으로 `True`는 1, `False`는 0의 성질을 갖지만, 입문 
 print(5 == 4)
 print(2 < 3)
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > False  
 > > True
 
@@ -82,7 +82,7 @@ print(True or 1)
 print(1 or True)
 ```
 
-> {: .result }
+> {: .result .fs-3 }
 > > 1  
 > > True  
 > > True  
@@ -103,7 +103,7 @@ b=1 and True # 할당: 오른쪽 "1 and True"의 결과를 왼쪽 "b"에 저장
 print(type(a))
 print(type(b))
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > <class 'int'>  
 > > <class 'bool'>
 

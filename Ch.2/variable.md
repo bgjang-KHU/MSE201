@@ -20,7 +20,7 @@ x=1
 print(x)
 ```
 
-> {: .result }
+> {: .result .fs-3 }
 1 
 
 
@@ -36,7 +36,7 @@ print(y)
 print(y*3)
 ```
 
-> {: .result }
+> {: .result .fs-3 }
 > > 2  
 > > 6 
 
@@ -79,7 +79,7 @@ print(x)
 x=x+1
 print(x)
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > 1  
 > > 2 
 

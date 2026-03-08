@@ -22,7 +22,7 @@ nav_order: 3
 'Hello World!'
 print('Hello World!')
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > Hello World!
 
 ### **🤔 Wait and Think!**
@@ -50,7 +50,7 @@ print('Hello World!')
 name = input("Enter your name: ")
 print("Hello, ", name)
 ```
-> {: .result }
+> {: .result .fs-3 }
 > > Enter your name: **KHU MSE**  
 > > Hello, KHU MSE
 
