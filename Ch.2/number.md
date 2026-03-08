@@ -316,7 +316,6 @@ total_score = 0
 # 과목 점수를 하나씩 입력받아 누적합니다.
 total_score +=
 
-
 average = total_score / 3
 
 print(f"세 과목의 총점은 {total_score}점, 평균은 {average:.2f}점입니다.")
