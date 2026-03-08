@@ -51,8 +51,7 @@ print(5 == 4)
 print(2 < 3)
 ```
 > {: .result }
-> > False
-> >
+> > False  
 > > True
 
 {: .warning }
@@ -84,12 +83,9 @@ print(1 or True)
 ```
 
 > {: .result }
-> > 1
-> >
-> > True
-> >
-> > True
-> >
+> > 1  
+> > True  
+> > True  
 > > 1
 
 위 예시에서 볼 수 있듯이 어떤 경우에는 True를 반환하고, 어떤 경우에는 1을 반환합니다. 결과를 통해 우리는 파이썬에서 True와 1이 논리적으로 같은 값으로 취급되고, False와 0이 같은 값으로 취급된다는 것을 알 수 있습니다.
@@ -108,8 +104,7 @@ print(type(a))
 print(type(b))
 ```
 > {: .result }
-> > <class 'int'>
-> >
+> > <class 'int'>  
 > > <class 'bool'>
 
 {: .tip }
