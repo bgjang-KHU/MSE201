@@ -103,3 +103,21 @@ print('Tab\twith "\\t"')
 > > Change line  
 > > with "\n"  
 > > Tab    with "\t"
+
+---
+
+
+## 문자열 연산
+
+Python에서는 문자열을 더하거나 곱할 수 있습니다. 다른 언어에서는 찾아보기 어려운 기능입니다.
+
+### 문자열 더하기
+
+```python
+a = "Hello,"
+b = " MSE!"
+print(a+b)
+```
+> {: .result .fs-3 }
+Hello, MSE!
+
