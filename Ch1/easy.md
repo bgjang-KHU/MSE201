@@ -123,12 +123,12 @@ print("The sum of two numbers: ", sum)
 ```python
 import random # random 모듈 불러오기
 
-# 1부터 10 사이의 임의의 정수 생성
+# 1부터 10 사이의 임의의 정수 생성합니다.
 secret_number = random.randint(1, 10)
 
 guess = int(input("1부터 10 사이의 숫자 중 하나를 맞춰보세요: "))
 
-#생성된 임의의 숫자와 내가 추측한 숫자를 비교
+#생성된 임의의 숫자와 내가 추측한 숫자를 비교합니다.
 if guess == secret_number:
     print("정답입니다! 🎉")
 else:
