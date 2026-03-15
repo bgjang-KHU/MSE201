@@ -134,10 +134,259 @@ Hello Hello Hello Hello Hello
 
 ## 문자열 길이 구하기
 
+`len()` 함수는 문자열의 길이(문자 개수)를 반환하는 내장 함수입니다.
+```python
+a = "Hello World"
+l = len(a)
+print(l)
+```
+> {: .result .fs-3 }
+11
+
+`"Hello World"`는 공백 포함 총 11개의 문자로 이루어져 있습니다.
+
+{: .highlight }
+공백(space)도 하나의 문자로 취급됩니다.
+
 ---
 
 ## 문자열 인덱싱과 슬라이싱
 
+### 인덱싱 (Indexing)
+
+문자열의 각 문자에는 **인덱스(index)**라는 위치 번호가 부여됩니다. 대괄호 `[ ]`와 인덱스를 사용하면 특정 위치의 문자에 접근할 수 있습니다.
+
+{: .warning }
+**인덱스는 0부터 시작합니다!** 첫 번째 문자의 인덱스는 `1`이 아닌 `0`입니다.
+
+`"Hello World"`의 인덱스 구조는 다음과 같습니다.
+
+|   | H | e | l | l | o |   | W | o | r | l | d |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **Index** | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+| **Index** |   |   |   |   |   |   | -5 | -4 | -3 | -2 | -1 |
+
+음수 인덱스를 사용하면 문자열의 **뒤에서부터** 접근할 수 있습니다. `-1`은 마지막 문자, `-2`는 끝에서 두 번째 문자를 의미합니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+a = "Hello World"
+print(a[5])
+print(a[6])
+print(a[-1])
+```
+
+> {: .result .fs-3 }
+> > &nbsp;  
+> > W  
+> > d
+
+{: .highlight }
+`a[5]`의 출력값은 공백(` `)입니다. 공백도 인덱스를 가진 문자입니다.
+
 ---
 
-## 문자열 포매팅 
+### 슬라이싱 (Slicing)
+
+슬라이싱을 사용하면 문자열의 **일부분**을 잘라낼 수 있습니다. 형식은 `[start:end:step]`이며, `end` 인덱스의 문자는 **포함되지 않습니다**.
+
+| 요소 | 의미 | 기본값 |
+|:-----|:-----|:------|
+| `start` | 시작 인덱스 | 0 (생략 시 처음부터) |
+| `end` | 끝 인덱스 (미포함) | 끝 (생략 시 끝까지) |
+| `step` | 몇 칸씩 건너뛸지 | 1 (생략 가능) |
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+a = "Hello World"
+
+print(a[6:11])  # 인덱스 6~10
+print(a[6:])    # 인덱스 6부터 끝까지
+print(a[:5])    # 처음부터 인덱스 4까지
+print(a[6:-2])  # 인덱스 6부터 끝에서 두 번째 전까지
+print(a[::2])   # 한 칸씩 건너뛰며 전체 슬라이싱
+```
+
+> {: .result .fs-3 }
+> > World  
+> > World  
+> > Hello  
+> > Wor  
+> > HloWrd
+
+### **🤔 Wait and Think!**
+
+슬라이싱을 활용하면 문자열 안에 포함된 정보를 손쉽게 추출할 수 있습니다.
+```python
+a = "20240312Rainy"
+year    = a[:4]
+day     = a[4:8]
+weather = a[8:]
+print('Year=', year, 'Date=', day, 'Weather=', weather)
+```
+
+> {: .result .fs-3 }
+Year= 2024 Date= 0312 Weather= Rainy
+
+{: .highlight }
+날짜, 코드번호, 센서 데이터처럼 **규칙적인 형식**으로 저장된 문자열에서 슬라이싱은 매우 유용합니다.
+
+---
+
+## 문자열 포매팅
+
+포매팅(Formatting)은 **변수 값을 문자열 안에 삽입**하는 방법입니다. Python에는 4가지 포매팅 방식이 있습니다.
+
+### 1. 문자열 연결 (`+` 연산자)
+
+`+` 연산자로 문자열을 이어 붙여 포매팅할 수 있습니다. 단, 숫자형 변수는 `str()`로 먼저 변환해야 합니다.
+```python
+name = "John"
+age = 30
+formatted_string = "My name is " + name + " and I am " + str(age) + " years old."
+print(formatted_string)
+```
+
+> {: .result .fs-3 }
+My name is John and I am 30 years old.
+
+{: .warning }
+변수가 많아질수록 코드가 복잡해지고 실수하기 쉽습니다. 변수가 여러 개일 때는 아래 방식을 사용하는 것이 좋습니다.
+
+---
+
+### 2. `%` 포매팅
+
+문자열 안에 `%s`, `%d` 등의 **자리표시자(placeholder)**를 넣고, `%` 연산자로 값을 채워 넣는 방식입니다.
+
+| 코드 | 설명 |
+|:-----|:-----|
+| `%s` | 문자열 (String) |
+| `%c` | 문자 하나 (Character) |
+| `%d` | 정수 (Integer) |
+| `%f` | 실수 (Float) |
+```python
+name = "John"
+age = 30
+formatted_string = "My name is %s and I am %d years old." % (name, age)
+print(formatted_string)
+```
+
+> {: .result .fs-3 }
+My name is John and I am 30 years old.
+
+---
+
+### 3. `str.format()` 메서드
+
+중괄호 `{}`를 자리표시자로 사용하고 `.format()`에 값을 전달합니다. `{}`안에 숫자를 넣어 순서를 지정할 수도 있습니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+name = "John"
+age = 30
+
+# 순서대로 채우기
+formatted_string = "My name is {} and I am {} years old.".format(name, age)
+print(formatted_string)
+
+# 인덱스로 순서 지정
+fstring2 = "My name is {1} and I am {0} years old.".format(name, age)
+print(fstring2)
+```
+
+> {: .result .fs-3 }
+> > My name is John and I am 30 years old.  
+> > My name is 30 and I am John years old.
+
+{: .highlight }
+`{0}`, `{1}` 같은 인덱스를 사용하면 값을 원하는 순서로 배치하거나 같은 값을 여러 번 재사용할 수 있습니다.
+
+---
+
+### 4. f-string (Python 3.6+)
+
+문자열 앞에 `f`를 붙이고, 중괄호 `{}` 안에 **변수나 식을 직접** 넣는 방식입니다. 가장 간결하고 직관적이어서 현재 가장 널리 사용됩니다.
+```python
+name = "John"
+age = 30
+formatted_string = f"My name is {name} and I am {age} years old."
+print(formatted_string)
+```
+
+> {: .result .fs-3 }
+My name is John and I am 30 years old.
+
+---
+
+### 숫자 포매팅 (Format code with number)
+
+포매팅 방식에 숫자 옵션을 추가하면 **정렬, 자릿수, 소수점 자리** 등을 세밀하게 제어할 수 있습니다.
+
+#### 정렬과 공백
+
+| 지정자 | 의미 |
+|:-------|:-----|
+| `%10s` / `{:>10}` | 오른쪽 정렬, 전체 너비 10 |
+| `%-10s` / `{:<10}` | 왼쪽 정렬, 전체 너비 10 |
+| `{:^20}` | 가운데 정렬, 전체 너비 20 |
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+print("'%10s'" % 'hi')          # 오른쪽 정렬
+print("'%-10s'" % 'AMIE')       # 왼쪽 정렬
+
+print("'{:<20}'".format('Hi'))       # 왼쪽 정렬
+print("'{:>20}'".format('AMIE'))     # 오른쪽 정렬
+print("'{:^20}'".format('Friends'))  # 가운데 정렬
+
+name = "John"
+print(f"My name is '{name:^20}'.")
+```
+
+> {: .result .fs-3 }
+> > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hi'  
+> > 'AMIE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'  
+> > 'Hi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'  
+> > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AMIE'  
+> > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Friends&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'  
+> > My name is '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;John&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.
+
+#### 실수 소수점 자리 지정
+
+`%전체너비.소수점자리f` 또는 `{:전체너비.소수점자리f}` 형식으로 실수의 출력 형태를 지정합니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+import math
+pi = math.pi
+
+print("'%15.2f'" % pi)              # 전체 15자리, 소수점 2자리
+print("'{:15.6f}'".format(pi))      # 전체 15자리, 소수점 6자리
+print(f"'{pi:15.4f}'")              # 전체 15자리, 소수점 4자리
+```
+
+> {: .result .fs-3 }
+> > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.14'  
+> > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.141593'  
+> > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1416'
+
+#### 공백을 다른 문자로 채우기
+
+`{:채울문자<너비}` 형식으로 공백 대신 원하는 문자를 채울 수 있습니다.
+```python
+import math
+pi = math.pi
+
+print("'{:=<15.6f}'".format(pi))   # 오른쪽 공백을 '='로 채움
+print(f"'{pi:a>15.4f}'")           # 왼쪽 공백을 'a'로 채움
+```
+
+> {: .result .fs-3 }
+> > '3.141593======='  
+> > 'aaaaaaaaa3.1416'
