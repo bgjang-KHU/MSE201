@@ -161,7 +161,7 @@ print(l)
 
 `"Hello World"`의 인덱스 구조는 다음과 같습니다.
 
-![]({{ "/assets/images/hello_world_index.png" | relative_url }})
+![](https://bgjang-khu.github.io/MSE201/assets/images/index.png)
 
 |   | H | e | l | l | o |   | W | o | r | l | d |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
