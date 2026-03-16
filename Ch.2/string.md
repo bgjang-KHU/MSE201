@@ -195,6 +195,7 @@ print(a[-1])
 | `end` | 끝 인덱스 (미포함) | 끝 (생략 시 끝까지) |
 | `step` | 몇 칸씩 건너뛸지 | 1 (생략 가능) |
 
+
 ### **🚀 TRY IT!**
 {: .text-blue-200 }
 ```python
@@ -265,6 +266,7 @@ My name is John and I am 30 years old.
 | `%c` | 문자 하나 (Character) |
 | `%d` | 정수 (Integer) |
 | `%f` | 실수 (Float) |
+
 ```python
 name = "John"
 age = 30
