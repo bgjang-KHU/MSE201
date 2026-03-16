@@ -161,60 +161,11 @@ print(l)
 
 `"Hello World"`의 인덱스 구조는 다음과 같습니다.
 
+<div style="font-size: 11px;">
 |   | H | e | l | l | o |   | W | o | r | l | d |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | **Index** | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 | **Index** |   |   |   |   |   |   | -5 | -4 | -3 | -2 | -1 |
-
-<div style="width:100vw; position:relative; left:50%; transform:translateX(-50%); overflow-x:auto; text-align:center; margin: 1rem 0;">
-<table style="border-collapse:collapse; font-size:11px; white-space:nowrap; margin:0 auto;">
-  <thead>
-    <tr>
-      <th style="border:1px solid #ccc; padding:3px 8px; background:#f5f5f5;"></th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">H</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">e</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">l</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">l</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">o</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">&nbsp;</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">W</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">o</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">r</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">l</th>
-      <th style="border:1px solid #ccc; padding:3px 8px;">d</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid #ccc; padding:3px 8px; background:#f5f5f5;"><strong>Index</strong></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">0</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">1</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">2</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">3</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">4</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">5</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">6</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">7</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">8</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">9</td>
-      <td style="border:1px solid #ccc; padding:3px 8px;">10</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid #ccc; padding:3px 8px; background:#f5f5f5;"><strong>Index</strong></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;"></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;"></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;"></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;"></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;"></td>
-      <td style="border:1px solid #ccc; padding:3px 8px;"></td>
-      <td style="border:1px solid #ccc; padding:3px 8px; color:#888; font-style:italic;">-5</td>
-      <td style="border:1px solid #ccc; padding:3px 8px; color:#888; font-style:italic;">-4</td>
-      <td style="border:1px solid #ccc; padding:3px 8px; color:#888; font-style:italic;">-3</td>
-      <td style="border:1px solid #ccc; padding:3px 8px; color:#888; font-style:italic;">-2</td>
-      <td style="border:1px solid #ccc; padding:3px 8px; color:#888; font-style:italic;">-1</td>
-    </tr>
-  </tbody>
-</table>
 </div>
 
 음수 인덱스를 사용하면 문자열의 **뒤에서부터** 접근할 수 있습니다. `-1`은 마지막 문자, `-2`는 끝에서 두 번째 문자를 의미합니다.
