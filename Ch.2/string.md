@@ -162,9 +162,71 @@ print(l)
 `"Hello World"`의 인덱스 구조는 다음과 같습니다.
 
 |   | H | e | l | l | o |   | W | o | r | l | d |
-|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | **Index** | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 | **Index** |   |   |   |   |   |   | -5 | -4 | -3 | -2 | -1 |
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>String Index Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 4px 10px;
+      text-align: center;
+    }
+    th:first-child,
+    td:first-child {
+      text-align: left;
+      font-weight: bold;
+      background: #f5f5f5;
+    }
+    thead th {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+    .neg {
+      color: #888;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+ 
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>H</th><th>e</th><th>l</th><th>l</th><th>o</th>
+      <th>&nbsp;</th>
+      <th>W</th><th>o</th><th>r</th><th>l</th><th>d</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Index</strong></td>
+      <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td>
+      <td>5</td>
+      <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+    </tr>
+    <tr>
+      <td><strong>Index</strong></td>
+      <td></td><td></td><td></td><td></td><td></td>
+      <td></td>
+      <td class="neg">-5</td><td class="neg">-4</td><td class="neg">-3</td><td class="neg">-2</td><td class="neg">-1</td>
+    </tr>
+  </tbody>
+</table>
+ 
+</body>
+</html>
 
 음수 인덱스를 사용하면 문자열의 **뒤에서부터** 접근할 수 있습니다. `-1`은 마지막 문자, `-2`는 끝에서 두 번째 문자를 의미합니다.
 
