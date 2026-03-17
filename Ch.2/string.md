@@ -337,11 +337,11 @@ My name is John and I am 30 years old.
 ### **🚀 TRY IT!**
 {: .text-blue-200 }
 ```python
-print("'%10s'" % 'hi')          # 오른쪽 정렬
-print("'%-10s'" % 'AMIE')       # 왼쪽 정렬
+print("'%10s'" % 'Hi')          # 오른쪽 정렬
+print("'%-10s'" % 'MSE201')       # 왼쪽 정렬
 
 print("'{:<20}'".format('Hi'))       # 왼쪽 정렬
-print("'{:>20}'".format('AMIE'))     # 오른쪽 정렬
+print("'{:>20}'".format('MSE'))     # 오른쪽 정렬
 print("'{:^20}'".format('Friends'))  # 가운데 정렬
 
 name = "John"
@@ -355,6 +355,15 @@ print(f"My name is '{name:^20}'.")
 > > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AMIE'  
 > > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Friends&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'  
 > > My name is '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;John&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.
+
+> {: .result .fs-3 }
+> > '        Hi'  
+> > 'MSE201    '  
+> > 'Hi                  '  
+> > '                 MSE'  
+> > '      Friends       '  
+> > My name is '        John        '.
+
 
 #### 실수 소수점 자리 지정
 
