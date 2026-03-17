@@ -322,11 +322,11 @@ My name is John and I am 30 years old.
 
 ---
 
-### 숫자 포매팅 (Format code with number)
+## 숫자 포매팅 (Format code with number)
 
 포매팅 방식에 숫자 옵션을 추가하면 **정렬, 자릿수, 소수점 자리** 등을 세밀하게 제어할 수 있습니다.
 
-#### 정렬과 공백
+### 정렬과 공백
 
 | 지정자 | 의미 |
 |:-------|:-----|
@@ -356,17 +356,11 @@ print(f"My name is '{name:^20}'.")
 > > '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Friends&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'  
 > > My name is '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;John&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.
 
-> {: .result .fs-3 }
-> > '        Hi'  
-> > 'MSE201    '  
-> > 'Hi                  '  
-> > '                 MSE'  
-> > '      Friends       '  
-> > My name is '        John        '.
 
 
-#### 실수 소수점 자리 지정
+### 실수 소수점 자리 지정
 
+{: .highlight }
 `%전체너비.소수점자리f` 또는 `{:전체너비.소수점자리f}` 형식으로 실수의 출력 형태를 지정합니다.
 
 ### **🚀 TRY IT!**
