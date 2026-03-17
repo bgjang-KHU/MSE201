@@ -215,11 +215,11 @@ print(a[::2])   # 한 칸씩 건너뛰며 전체 슬라이싱
 > > Wor  
 > > HloWrd
 
-### **🤔 Wait and Think!**
+### 슬라이싱으로 문자열 나누기
 
 슬라이싱을 활용하면 문자열 안에 포함된 정보를 손쉽게 추출할 수 있습니다.
 ```python
-a = "20240312Rainy"
+a = "20260317Rainy"
 year    = a[:4]
 day     = a[4:8]
 weather = a[8:]
@@ -227,7 +227,7 @@ print('Year=', year, 'Date=', day, 'Weather=', weather)
 ```
 
 > {: .result .fs-3 }
-Year= 2024 Date= 0312 Weather= Rainy
+> > Year= 2024 Date= 0312 Weather= Rainy
 
 {: .highlight }
 날짜, 코드번호, 센서 데이터처럼 **규칙적인 형식**으로 저장된 문자열에서 슬라이싱은 매우 유용합니다.
