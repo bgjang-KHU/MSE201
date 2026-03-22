@@ -19,3 +19,22 @@ nav_order: 4
 문자열들만 담기: `["Apple", "Banana", "Cherry"]`
 
 섞어서 담기: `[10, "Python", 3.14, True]`
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+다양한 형태의 리스트를 만들어보고, type() 함수로 자료형을 확인해 보세요.
+
+```python
+# 1. 비어있는 리스트 (나중에 데이터를 채울 때 사용합니다)
+empty_list = []
+
+# 2. 숫자와 문자열이 섞인 리스트
+mixed_list = [1, "Hello", 3.14, False]
+
+# 3. 리스트 안에 또 다른 리스트 넣기 (중첩 리스트)
+nested_list = [1, 2, ["a", "b", "c"]]
+
+print(type(mixed_list))
+print(nested_list)
+```
