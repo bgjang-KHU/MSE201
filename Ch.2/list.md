@@ -236,7 +236,7 @@ l[0] = "K"
 print(l)      # ['K', 'B', 'C']
 ```
 
-{: .important }
-> **Mutable(가변) vs Immutable(불변)**  
-> **리스트**는 내용을 바꿀 수 있는 **가변(Mutable) 자료형**입니다.
+{: .highlight }
+> 💡 **Mutable(가변) vs Immutable(불변)**  
+> **리스트**는 내용을 바꿀 수 있는 **가변(Mutable) 자료형**입니다.  
 > **문자열**, **튜플**은 내용을 바꿀 수 없는 **불변(Immutable) 자료형**입니다.
