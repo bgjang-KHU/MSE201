@@ -63,7 +63,7 @@ print(dict2)
 
 - `.keys()`: 딕셔너리의 모든 Key만 모아서 보여줌
 - `.values()`: 딕셔너리의 모든 Value만 모아서 보여줌
-- `.items()`: Key와 Value의 쌍을 튜플 형태로 모두 보여줌
+- `.items()`: Key와 Value의 쌍을 **튜플** 형태로 모두 보여줌
 - `.get(key)`: Key에 해당하는 값을 가져옴 (없는 Key일 때 에러 대신 None 반환)
 - `in`: 특정 Key가 딕셔너리 안에 있는지 확인 (`True/False`)
 
@@ -126,6 +126,17 @@ print("--- [금속별 융점 보고서] ---")
 for metal, mp in metal_melting_points.items():
     print(f"{metal}의 융점은 {mp}°C 입니다.")
 ```
+
+### **🤔 Wait and Think!**
+`.items()`으로 받아온 정보를 언패킹을 통해 metal 과 mp 라는 변수에 할당하고 있는 것을 확인했나요?
+
+한번 다음의 경우 어떻게 출력되는지 확인해볼까요?
+
+ ```python
+for item in metal_melting_points.items():
+    print(item)  # ('Iron', 1538) <- 튜플이 통째로 출력됨
+```
+
 
 ### **2. 특정 데이터 안전하게 찾기 (`.get()`)**
 특정 재료의 물성치를 검색할 때 사용합니다. 만약 데이터베이스에 없는 금속을 검색하더라도 프로그램이 "에러"를 내며 꺼지지 않게 하는 것이 포인트입니다.
