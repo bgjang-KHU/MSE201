@@ -128,9 +128,8 @@ for metal, mp in metal_melting_points.items():
 ```
 
 ### **🤔 Wait and Think!**
-`.items()`으로 받아온 정보를 언패킹을 통해 metal 과 mp 라는 변수에 할당하고 있는 것을 확인했나요?
-
-한번 다음의 경우 어떻게 출력되는지 확인해볼까요?
+`.items()`으로 받아온 정보를 언패킹을 통해 `metal` 과 `mp` 라는 변수에 할당하고 있는 것을 확인했나요?  
+다음의 경우 어떻게 출력되는지 확인해볼까요?
 
  ```python
 for item in metal_melting_points.items():
