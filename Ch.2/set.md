@@ -86,3 +86,12 @@ print(s1.difference(s2))
 - `remove(x)`: 특정 값 제거 (값이 없으면 에러 발생)
 - `discard(x)`: 특정 값 제거 (값이 없어도 에러가 나지 않음!)
 
+### **🤔 Wait and Think!**
+**"리스트에서 중복된 데이터를 한 번에 지우고 싶을 때 어떻게 할까요?"**  
+가장 빠른 방법은 리스트를 set()으로 바꿨다가 다시 list()로 되돌리는 것입니다.
+
+```python
+my_list = [1, 2, 2, 3, 3, 3]
+unique_list = list(set(my_list))
+print(unique_list)  # [1, 2, 3]
+```
