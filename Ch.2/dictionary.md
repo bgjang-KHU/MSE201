@@ -66,6 +66,8 @@ print(dict2)
 - `.items()`: Key와 Value의 쌍을 **튜플** 형태로 모두 보여줌
 - `.get(key)`: Key에 해당하는 값을 가져옴 (없는 Key일 때 에러 대신 None 반환)
 - `in`: 특정 Key가 딕셔너리 안에 있는지 확인 (`True/False`)
+-`.clear()`: 딕셔너리 내부의 모든 요소를 삭제하여 빈 딕셔너리({}) 상태로 만듦
+- `.pop(key)`: 특정 Key에 해당하는 요소를 삭제하고, 해당 요소의 **Value(값)**를 반환함
 
 ### **🚀 TRY IT!**
 {: .text-blue-200 }
@@ -137,7 +139,7 @@ for item in metal_melting_points.items():
 ```
 
 
-### **2. 특정 데이터 안전하게 찾기 (`.get()`)**
+### **2. 특정 데이터 안전하게 찾기 (`.get(key)`)**
 특정 재료의 물성치를 검색할 때 사용합니다. 만약 데이터베이스에 없는 금속을 검색하더라도 프로그램이 "에러"를 내며 꺼지지 않게 하는 것이 포인트입니다.
 
  ```python
@@ -146,8 +148,8 @@ for item in metal_melting_points.items():
 temp = metal_melting_points.get("Iron")
 print(f"철(Iron)의 융점: {temp}°C")
 
-# 존재하지 않는 금속 검색 (에러 대신 "데이터 없음" 출력)
-temp_unknown = metal_melting_points.get("Silver", "데이터 없음")
+# 존재하지 않는 금속 검색 
+temp_unknown = metal_melting_points.get("Silver")
 print(f"은(Silver)의 융점: {temp_unknown}")
 ```
 
@@ -165,7 +167,7 @@ else:
     print(f"❌ {target_metal}에 대한 정보가 없습니다.")
 ```
 
-### **4. 불필요한 데이터 제거 (`.pop()`)**
+### **4. 불필요한 데이터 제거 및 모든 요소 삭제 (`.pop(key)`, `.clear()`)**
 
  ```python
 # (6) .pop() : 특정 항목 삭제 및 값 반환
@@ -174,4 +176,11 @@ removed_mp = metal_melting_points.pop("Copper")
 
 print(f"🗑️ 삭제된 항목(Copper)의 융점: {removed_mp}°C")
 print(f"📋 업데이트된 데이터베이스: {metal_melting_points}")
+
+# (7) .clear() : 모든 요소 한꺼번에 삭제하기
+# 실험 데이터베이스를 완전히 초기화할 때 사용합니다.
+metal_melting_points.clear()
+
+print(f"🧹 데이터 초기화 완료: {metal_melting_points}") 
+# 결과: {} (빈 딕셔너리가 됩니다)
 ```
