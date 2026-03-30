@@ -89,7 +89,7 @@ print(bool(3.14))     # True
 data = ["Ti", "Fe", "Cu", "Al", "Au"]
 
 # 리스트 data가 '참'인 동안(요소가 남아있는 동안) 반복
-while data:
+while     :
 
 print(f"리스트의 총 길이는 {count}입니다.")
 ```
