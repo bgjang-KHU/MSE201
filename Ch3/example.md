@@ -33,8 +33,8 @@ print(f"섭씨 {c_temp}도는 화씨로 {result}도입니다.")
 import math
 
 def circle_info(radius):
-    area = math.pi * (radius ** 2)
-    circumference = 2 * math.pi * radius
+    area =                         # 넓이 구하기
+    circumference =                # 둘레 구하기
     # 1. 두 값을 한 번에 반환하기
     return 
 
