@@ -84,7 +84,7 @@ print_greeting(day='Friday', name='Timmy') # Greetings, Timmy, today is Friday
 
 {: .warning }
 **주의: 매개변수의 배치 순서**  
-초깃값이 설정된 매개변수는 반드시 초깃값이 없는 매개변수보다 뒤쪽에 배치해야 합니다. 만약 def func(name='User', age):와 같이 작성하면, 호출 시 입력된 값이 어느 변수에 대입될지 판단할 수 없어 SyntaxError가 발생합니다.
+초깃값이 설정된 매개변수는 반드시 초깃값이 없는 매개변수보다 뒤쪽에 배치해야 합니다. 만약 `def func(name='User', age):`와 같이 작성하면, 호출 시 입력된 값이 어느 변수에 대입될지 판단할 수 없어 SyntaxError가 발생합니다.
 
 ---
 
