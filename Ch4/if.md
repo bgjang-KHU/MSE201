@@ -227,9 +227,9 @@ phy_chem = float(input("물리화학 점수: "))
 
 
 # 조건문을 이용한 합격 판별
-if              :
+if             
     print(f"합격입니다! (모든 과목 20점 초과, 총점: {total})")
-elif            :
+elif           
     print(f"합격입니다! (과락이 있으나 총점 {total}점으로 기준 통과)")
 else:
     print(f"불합격입니다. (총점: {total})")
