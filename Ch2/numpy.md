@@ -254,6 +254,7 @@ print(a1+a1)
 
 ```python
 x = [[1, 4, 3], [9, 2, 7]]
+x = np.array(x)
 y = x.T
 z = x.transpose()
 ```
