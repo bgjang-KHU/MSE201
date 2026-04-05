@@ -131,6 +131,7 @@ else:
 # 출력 결과: 2의 배수입니다.
 ```
 
+<br>
 
 {: .highlight }  
 > **💡들여쓰기 (Indentation)**  
