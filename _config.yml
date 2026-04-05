@@ -7,7 +7,7 @@ url: "https://bgjang-khu.github.io"
 baseurl: "/MSE201"
 
 search_enabled: true
-math: mathjax
+maths: true
 enable_copy_code_button: true
 
 callouts:
