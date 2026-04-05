@@ -9,6 +9,8 @@ nav_order: 1
 <br>
 조건문 (Branching statements, If-Else statements, or If statements)은 **논리 표현식(Logical Expression)**의 결과가 참(`True`)인 경우에만 특정 코드 블록을 실행하는 구문입니다. 프로그램이 모든 코드를 순차적으로 실행하는 대신, 상황에 따라 실행 경로를 선택하도록 만드는 분기(Branching) 기능을 수행합니다.
 
+---
+
 ### **🛠️ 기본 문법 (Simple if)**
 
 Python은 `if` 키워드 뒤의 논리  표현식을 평가합니다.
@@ -50,5 +52,5 @@ else:
 - `else`는 마지막에 단 한 번만 올 수 있으며, 생략 가능합니다.
 
 {: .important }
-**들여쓰기(Indentation)의 중요성**
+**들여쓰기(Indentation)의 중요성**  
 파이썬은 들여쓰기를 통해 어떤 코드가 조건문에 포함되는지를 판단합니다. 동일한 조건 아래 실행될 문장들은 반드시 동일한 깊이로 들여쓰기 되어야 함을 유의해야 합니다.
