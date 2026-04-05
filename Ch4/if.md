@@ -3,6 +3,7 @@ layout: default
 title: 조건문
 parent: Ch4. 제어문
 nav_order: 1
+math: mathjax
 ---
 
 # 조건문 (If-Else Statements)
