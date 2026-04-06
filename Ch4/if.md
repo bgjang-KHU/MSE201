@@ -172,6 +172,7 @@ rrn =
 gender_digit = 
 # 3. 성별 판별하기
 if                                                                
+
 else:
     
 ```
