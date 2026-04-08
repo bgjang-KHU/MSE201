@@ -53,7 +53,7 @@ for x in fruits:
 for char in "PYTHON":
     print(char)
 ```
-> {: .result .fs-3 }
+> {: .result .fs-3 }  
 > 내가 좋아하는 과일은 apple입니다.  
 > 내가 좋아하는 과일은 banana입니다.  
 > 내가 좋아하는 과일은 cherry입니다.  
