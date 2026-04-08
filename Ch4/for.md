@@ -353,7 +353,7 @@ end_dan = int(input("종료할 단을 입력하세요: "))
 
 # 2. 중첩 루프 설계
 for i in                        
-    print(f"--- {dan}단 시작 ---")
+    print(f"--- {i}단 시작 ---")
 
     for j in 
     
