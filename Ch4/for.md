@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 반복문1
+title: 반복문1 (For 문)
 parent: Ch4. 제어문
 nav_order: 2
 math: mathjax
@@ -95,7 +95,7 @@ for i in range(0,5):
 ### **🚀 TRY IT!**
 {: .text-blue-200 }
 
-간단한 반복문을 사용해 1에서 3까지의 모든 정수의 합을 구해보자.
+간단한 반복문을 사용해 1에서 3까지의 모든 정수의 합을 구해봅시다.
 
 ```python
 sum=0
@@ -154,7 +154,7 @@ print(sum)
 ### **🚀 TRY IT!**
 {: .text-blue-200 }
 
-리스트의 요솟값이 튜플인 경우는 다음과 같이 변수값에 받아올 수 있다.
+리스트의 요솟값이 튜플인 경우는 다음과 같이 변수값에 받아올 수 있습니다.
 
 ```python
 a=[(1,2), (3,4), (5,6)]
@@ -176,3 +176,44 @@ for (x,y) in a:
 > 신소재의 학번은 20250001입니다.  
 > 소재과의 학번은 20250100입니다.  
 > 공과대의 학번은 20250234입니다.
+
+---
+
+---
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+딕셔너리 자료형에서는 다음과 같이 `for` 문을 사용할 수 있습니다.
+
+```python
+dict_a = {"One":1, "Two":2, "Three":3}
+
+for key in dict_a.keys():
+    print(key, dict_a[key])
+```
+> {: .result .fs-3 }  
+> One 1  
+> Two 2  
+> Three 3
+
+위 예시에서는 우선 `key()` 메서드를 사용해 키 (key)들을 얻어오고, 키 (key)를 사용해서 해당하는 값 (value)에 접근했습니다.
+하지만 아래와 같이 한번에 key와 value를 얻는 것도 가능합니다.
+
+```python
+dict_a = {"One":1, "Two":2, "Three":3}
+
+for key, value in dict_a.items():
+    print(key, value)
+```
+
+위 예시에서는 서로 다른 두 개의 루프 변수를 동시에 할당한 것입니다. 비슷한 방식으로 만약 두 개의 같은 길이를 갖는 리스트 (list)가 있다면 다음과 같이 `zip` 함수를 사용할 수 있습니다.
+
+```python
+a = ["One", "Two", "Three"]
+b = [1, 2, 3]
+
+for i, j in zip(a, b):
+    print(i, j)
+```
+
