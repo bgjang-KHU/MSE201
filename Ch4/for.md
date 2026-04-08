@@ -62,15 +62,14 @@ for char in "PYTHON":
 > O  
 > N
 
-### **🛠️ 연속된 숫자 생성기: `range()` 함수**
+## **🛠️ 연속된 숫자 생성기: `range()` 함수**
 
-특정 횟수만큼 반복하거나 일정한 규칙의 숫자 리스트가 필요할 때 사용합니다. Python의 `range()`는 메모리를 효율적으로 쓰기 위해 숫자를 미리 다 만들어두지 않고, 필요할 때마다 하나씩 꺼내주는 함수입니다.
+특정 횟수만큼 반복하거나 일정한 규칙의 숫자 리스트가 필요할 때 사용합니다. Python의 `range()`는 메모리를 효율적으로 쓰기 위해 숫자를 미리 다 만들어두지 않고, 필요할 때마다 하나씩 꺼내주는 함수이며, `for` 문에서 정해진 시퀀스를 정해줄 때 가장 흔하게 사용됩니다.
 
-{: .highlight }  
-> **기본 문법** 
-> - `range(stop)` : 0부터 stop 미만까지 1씩 증가
-> - `range(start, stop)` : start부터 stop 미만까지 1씩 증가
-> - `range(start, stop, step)` : start부터 stop 미만까지 step만큼 증가
+
+- `range(stop)` : 0부터 stop 미만까지 1씩 증가
+- `range(start, stop)` : start부터 stop 미만까지 1씩 증가
+- `range(start, stop, step)` : start부터 stop 미만까지 step만큼 증가
 
 ```python
 for i in range(0,5):
@@ -83,7 +82,7 @@ for i in range(0,5):
 > 3  
 > 4
 
-**💡range vs. arange vs. linspace**
+### **💡range vs. arange vs. linspace**
 
 |**구분**|**`range()`**|**`np.arange()`**|**`np.arange()`**|
 |:-------|:-------|:-------|:-------|
