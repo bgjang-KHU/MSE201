@@ -104,7 +104,6 @@ for i in range(0,5):
 sum=0
 for i in range(1,4):
     sum+=i
-
 print(f'총합은 {sum}입니다')
 ```
 > {: .result .fs-3 }
@@ -127,3 +126,26 @@ print(f'총합은 {sum}입니다')
     - n=n+i 계산이 수행됩니다 (3+3=6)
     - 여기에서 n의 값은 6입니다.
 5. 리스트에 더 이상 할당할 값이 없으므로, `for`문이 종료됩니다. 최종적인 `n`의 값은 6이 됩니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+반복문을 사용해서 리스트 안에 있는 숫자의 합을 구해봅시다.
+
+```python
+sum = 0
+a = [2, 3, 1, 3, 3]
+for i in a:
+    sum += i 
+print(sum)
+```
+
+`range()`함수와 `len()`함수를 사용하여 같은 동작을 하는 코드를 작성해봅시다.
+
+```python
+sum = 0
+a = [2, 3, 1, 3, 3]
+for i in range(0, len(a)):
+    sum += a[i] 
+print(sum)
+```
