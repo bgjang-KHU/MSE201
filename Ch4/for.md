@@ -316,7 +316,7 @@ for i in                    :
 
 # 4. 결과 출력
 print("-" * 30)
-print(f"최종 추출 리스트: {even_indexed_data}")
+print(f"최종 추출 리스트: {new_data}")
 ```
 
 ### **3. 원하는 범위의 구구단 출력하기 (Nested for loop)**
