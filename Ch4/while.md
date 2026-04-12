@@ -173,3 +173,30 @@ while index < len(sensor_data) - 1:
 
 {: .warning }
 > 중첩된 while 문에서 break나 continue를 사용하면 가장 가까운 while 문에만 영향을 줍니다.
+
+---
+
+## **✍️ 연습 문제**
+
+### **1. for 문을 while 문으로 바꾸기**
+
+아래는 `for` 문을 사용하여 1부터 5까지의 합을 구하는 코드입니다. 이와 동일한 결과가 나오도록 `while` 문을 사용해 코드를 재작성하세요.
+
+**for문 예시**
+```python
+total = 0
+for i in range(1, 6):
+    total += i
+print(f"1부터 5까지의 합은 {total}입니다.")
+```
+
+**while문 사용**
+```python
+total = 0
+i = 1  # 초기값 설정 후 더해주고 난 뒤 변경 필요
+
+while   
+
+
+print(f"while 문 결과: {total}")
+```
