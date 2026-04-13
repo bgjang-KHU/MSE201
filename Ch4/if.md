@@ -178,7 +178,7 @@ else:
     
 ```
 
-<details>
+<details markdown="1">
 <summary>예시 풀이</summary>
 
 ```python
