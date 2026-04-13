@@ -229,6 +229,26 @@ else:
     print("점은 경계에 위치합니다.")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+x = float(input("x 좌표: "))
+y = float(input("y 좌표: "))
+
+distance_sq = x**2 + y**2
+
+if distance_sq < 25:
+    print("점은 원의 내부에 있습니다.")
+elif distance_sq > 25:
+    print("점은 원의 외부에 있습니다.")
+else:
+    print("점은 원의 경계(On the boundary)에 위치합니다.")
+```
+
+</details>
+
+
 ### **3. 졸업 시험 합격 판별기**
 전공 세 과목(재료과학, 유기화학, 물리화학)의 점수를 입력받아 합격 여부를 판별하는 프로그램을 작성하세요.
 
@@ -252,6 +272,26 @@ else:
     print(f"불합격입니다. (총점: {total})")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+mat_sci = float(input("재료과학 점수: "))
+org_chem = float(input("유기화학 점수: "))
+phy_chem = float(input("물리화학 점수: "))
+
+total = mat_sci + org_chem + phy_chem
+
+if mat_sci > 20 and org_chem > 20 and phy_chem > 20:
+    print(f"합격입니다! (모든 과목 20점 초과, 총점: {total})")
+elif total >= 70:
+    print(f"합격입니다! (과락이 있으나 총점 {total}점으로 기준 통과)")
+else:
+    print(f"불합격입니다. (총점: {total})")
+```
+
+</details>
+
 ### **4. 유해 물질 검출 알림판 (`in` 연산자)**
 실험 데이터 리스트에 관리 대상인 유해 물질이 포함되어 있는지 확인하고, 발견 시 경고 메시지를 띄우는 프로그램을 작성해 봅시다.
 
@@ -271,6 +311,22 @@ if
 else:
 
 ```
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+toxic_substances = ['Mercury', 'Benzene', 'Cadmium']
+
+target = input("검출된 물질의 이름을 입력하세요: ")
+
+if target in toxic_substances:
+    print(f"⚠️ 경고: {target}은(는) 유해 물질입니다! 즉시 격리 조치하세요.")
+else:
+    print(f"✅ 확인: {target}은(는) 안전한 물질 리스트에 있습니다.")
+```
+
+</details>
 
 ### **5. 실험 장비 제어 (Nested if-else)**
 실험 장비의 전원 상태를 먼저 확인하고, 전원이 켜져 있을 때만 내부 압력을 점검하여 동작 가능 여부를 판단하는 프로그램을 작성하세요.
@@ -316,3 +372,25 @@ if
 else:
 
 ```
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+power = input("장비 전원 상태를 입력하세요 (on/off): ")
+
+if power == 'on':
+    # 전원이 켜진 경우에만 실행되는 내부 조건문
+    pressure = float(input("현재 내부 압력을 입력하세요: "))
+    
+    if pressure < 2.0:
+        print("✅ 시스템이 정상 범위에서 가동 중입니다.")
+    else:
+        print("❌ 경고: 압력이 너무 높습니다! 비상 정지하세요.")
+
+else:
+    # 전원이 꺼진 경우
+    print("시스템이 대기 모드입니다. 전원을 먼저 켜주세요.")
+```
+
+</details>
