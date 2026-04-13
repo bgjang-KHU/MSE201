@@ -293,6 +293,28 @@ for i in
     print(f"                    ")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+layers = int(input("피라미드를 몇 층으로 쌓을까요? "))
+
+# 2. 피라미드의 최대 너비 계산 (가장 아래층의 별 개수)
+# 이를 사용하여 어떠한 layers 입력 값이 들어와도 형식 지정을 통해 피라미드를 그릴 수 있게 됨.
+max_width = 2 * layers - 1
+
+# 3. for 문을 이용한 출력
+for i in range(1, layers + 1):
+    # 별의 개수 계산 (1, 3, 5...)
+    stars = "*" * (2 * i - 1)
+    
+    # f-string의 가운데 정렬 기능을 활용하여 출력
+    # {변수:^너비} 형식을 사용합니다.
+    print(f"{stars:^{max_width}}")
+```
+
+</details>
+
 ### **2. 짝수 번째 데이터만 모으기**
 기존 리스트에서 **짝수 번째(인덱스 0, 2, 4...)**에 위치한 데이터만 골라내어 새로운 리스트를 만드는 프로그램을 작성해 봅시다.
 
@@ -318,6 +340,29 @@ for i in                    :
 print("-" * 30)
 print(f"최종 추출 리스트: {new_data}")
 ```
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+data = [1.2, 3.5, 2.0, 4.8, 7.1, 0.5, 9.3, 2.2]
+
+new_data = []
+
+# 3. range(start, stop, step)을 활용한 인덱스 생성
+# 리스트의 길이(len)만큼, 2씩 건너뛰며 반복합니다.
+for i in range(0, len(data), 2):
+    # 생성된 인덱스 i를 사용하여 데이터 추출
+    value = data[i]
+    new_data.append(value)
+    print(f"인덱스 {i}번의 데이터 {value}를 추출했습니다.")
+
+# 4. 결과 출력
+print("-" * 30)
+print(f"최종 추출 리스트: {new_data}")
+```
+
+</details>
 
 ### **3. 원하는 범위의 구구단 출력하기 (Nested for loop)**
 사용자로부터 시작 단과 종료 단을 입력받아, 그 사이의 모든 구구단을 출력하는 프로그램을 작성하세요.
@@ -360,6 +405,26 @@ for i in
     print() # 한 단이 끝나면 한 줄을 띄워 가독성을 높입니다.
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+# 1. 시작 단과 종료 단 입력 받기
+start_dan = int(input("시작할 단을 입력하세요: "))
+end_dan = int(input("종료할 단을 입력하세요: "))
+
+# 2. 중첩 루프 설계
+# end_dan까지 포함하기 위해 range의 두 번째 인자에 +1을 해줍니다.
+for dan in range(start_dan, end_dan + 1):
+    print(f"--- {dan}단 시작 ---")
+    
+    for i in range(1, 10):
+        print(f"{dan} x {i} = {dan * i}")
+    
+    print() # 한 단이 끝나면 한 줄을 띄워 가독성을 높입니다.
+```
+
+</details>
 
 ### **4. 실험 데이터 필터링 및 합계 구하기 (Loop + If)**
 실험을 통해 얻은 데이터 리스트에서 양수(+)인 정상 데이터만 골라내어 합계를 구하고, 그 개수가 몇 개인지 판별하는 프로그램을 작성하세요. (음수 데이터는 노이즈라고 가정합니다.)
@@ -386,6 +451,30 @@ print(f"분석 결과: 총 {count}개의 유효 데이터를 발견했습니다.
 print(f"유효 데이터의 총합: {total:.2f}")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+data_list = [10.2, -5.5, 15.3, 20.0, -1.2, 7.8, 9.4, -0.8, 12.5, 15.3, 2.4, 5.6]
+
+total = 0   # 합계를 저장할 변수
+count = 0   # 데이터 개수를 저장할 변수
+
+for x in data_list:
+    # 1. 음수 데이터(노이즈) 처리
+    if x < 0:
+        continue  # 아래 코드를 실행하지 않고 다음 데이터로 점프!
+    
+    # 2. 양수 데이터인 경우에만 실행
+    total += x  # 양수 데이터 확인 시 total에 더하기
+    count += 1  # 양수 데이터 확인 시 count 업데이트 > 갯수 세기
+
+print(f"분석 결과: 총 {count}개의 유효 데이터를 발견했습니다.")
+print(f"유효 데이터의 총합: {total:.2f}")
+```
+
+</details>
+
 ### **5. 합격 판별 (Loop + If)**
 학생 점수가 담긴 리스트를 순차적으로 검사하여, 각 학생의 번호와 합격/불합격 여부를 출력하는 프로그램을 작성하세요.
 
@@ -410,3 +499,24 @@ for
     else:
         print(f"{num}번 학생은 불합격입니다.")
 ```
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+marks = [90, 25, 67, 45, 80, 100, 10, 33, 56, 62, 73, 45]
+
+# 2. 학생 번호를 부여하기 위한 변수 초기화
+number = 0
+
+# 3. for 문을 이용한 점수 검사
+for mark in marks:
+    number = number + 1  # 반복될 때마다 번호를 1씩 증가시킵니다.
+    
+    if mark >= 60:
+        print(f"{number}번 학생은 합격입니다.")
+    else:
+        print(f"{number}번 학생은 불합격입니다.")
+```
+
+</details>
