@@ -201,6 +201,22 @@ while
 print(f"while 문 결과: {total}")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+total = 0
+i = 1  # 초기값 설정
+
+while i <= 5:  # 조건 설정
+    total += i
+    i += 1     # 증감식 필수! 더하는 숫자 업데이트
+
+print(f"while 문 결과: {total}")
+```
+
+</details>
+
 ### **2. "exit"이라고 할 때까지 입력받기 (무한 루프)**
 
 사용자가 'exit'를 입력하기 전까지 사용자가 입력한 단어를 그대로 출력하는 프로그램을 만드세요.
@@ -228,6 +244,22 @@ while True:
 
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+while True:
+    word = input("단어를 입력하세요 (종료하려면 exit 입력): ")
+    
+    if word == "exit":
+        print("프로그램을 종료합니다.")
+        break
+        
+    print(f"입력하신 단어: {word}")
+```
+
+</details>
+
 ### **3. 카운트다운: 발사 10초 전!**
 
 숫자 10부터 1까지 거꾸로 출력하고, 마지막에 "발사!"를 출력하는 프로그램을 작성하세요.
@@ -244,6 +276,21 @@ while
 print("🚀 발사!!")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+count = 5
+
+while count > 0:
+    print(f"발사 {count}초 전...")
+    count -= 1
+
+print("🚀 발사!!")
+```
+
+</details>
+
 ### **4. 짝수만 출력하기 (continue 활용)**
 1부터 20까지의 숫자 중 짝수만 출력하세요. 단, `if` 문과 `continue`를 사용하여 홀수인 경우 출력을 건너뛰도록 만드세요.
 
@@ -259,6 +306,23 @@ while
         
     print(f"찾은 짝수: {n}")
 ```
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+n = 0
+
+while n < 10:
+    n += 1
+    
+    if n % 2 != 0: # 홀수라면
+        continue   # 아래 print를 무시하고 위로 점프!
+        
+    print(f"찾은 짝수: {n}")
+```
+
+</details>
 
 ### **5. 값이 작아질 때까지 나누기**
 
@@ -277,3 +341,20 @@ print("-" * 30)
 print(f"최종 결과: {value}, 총 나눈 횟수: {count}")
 ```
 
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+value = 100
+count = 0
+
+while value >= 10:
+    value /= 2  # value 값 업데이트 
+    count += 1  # 나누기 횟수 카운트
+    print(f"{count}회 나눔: 현재 값 = {value}")
+
+print("-" * 30)
+print(f"최종 결과: {value}, 총 나눈 횟수: {count}")
+```
+
+</details>
