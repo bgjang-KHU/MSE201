@@ -179,9 +179,18 @@ else:
 ```
 
 <details>
-<summary>여기를 클릭하면 펼쳐집니다</summary>
+<summary>예시 풀이</summary>
 
-여기에 내용을 씁니다. Markdown도 작동합니다.
+```python
+rrn = input("주민등록번호를 입력하세요: ")
+
+gender_digit = rrn[7]
+
+if gender_digit == '1' or gender_digit == '3':
+    print("성별: 남자")
+else:
+    print("성별: 여자")
+```
 
 </details>
 
