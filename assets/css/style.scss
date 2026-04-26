@@ -27,3 +27,10 @@ code {
   font-size: 0.9em !important;
   line-height: 1.6 !important;
 }
+
+/* 이미지 가운데 정렬을 위한 클래스 */
+.center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
