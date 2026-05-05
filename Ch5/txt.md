@@ -98,3 +98,68 @@ for i in range(5):
     f.write(f"This is line {i}") 
 f.close()
 ```
+
+> {: .file }
+> This is line 0This is line 1This is line 2This is line 3This is line 4
+
+### **파일 내용 추가하기**
+
+쓰기 모드(`w`)로 파일을 열면 기존에 있던 내용이 모두 사라지고 새로 작성됩니다. 만약 기존 내용을 유지하면서 뒤에 새로운 내용을 덧붙이고 싶다면 추가 모드(`a`)를 사용해야 합니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+기존 test.txt 파일 뒤에 5번부터 9번 줄까지 내용을 추가해 봅시다.
+
+```python
+f = open('test.txt', 'a') # 추가 모드('a')로 열기
+for i in range(5, 10):
+    f.write(f"This is line {i}\n")
+f.close()
+```
+
+프로그램을 실행한 뒤 test.txt 파일을 열어보면, 기존의 0~4번 줄 뒤에 5~9번 줄이 이어서 저장된 것을 확인할 수 있습니다.
+
+### **⚠️ 중요: 파일을 반드시 닫아야 하는 이유 (f.close)**
+
+파일 작업이 끝나면 항상 `f.close()`를 사용하여 파일을 직접 닫아주는 것이 좋습니다.
+
+- **데이터 손실 방지**: 파일을 쓰기 모드로 열었을 때, 데이터를 기록하더라도 `close()`를 하기 전까지는 실제 디스크에 저장되지 않고 메모리에 머물러 있을 수 있습니다.
+- **리소스 해제**: 파일을 열어둔 채로 방치하면 시스템의 자원을 계속 차지하게 되며, 때로는 다른 프로그램에서 해당 파일을 사용하지 못하게 막는 원인이 됩니다.
+
+---
+
+## **파일 읽기**
+
+Python에서는 용도에 따라 파일을 읽는 여러 가지 함수를 제공합니다. 하나씩 살펴봅시다.
+
+### **1. read()**
+`f.read()`는 파일의 내용 전체를 하나의 커다란 문자열로 반환합니다. 파일의 내용이 아주 크지 않을 때 한꺼번에 가져오기 편리합니다.
+
+```python
+f = open('test.txt', 'r')
+content = f.read() # 전체를 하나의 string으로 읽음
+print(content)
+f.close()
+```
+
+이때 content의 type도 확인해봅시다! `read()`를 통해 읽어온 정보는 문자열로 저장됩니다.
+
+```python
+print(type(content))
+```
+> {: .result .fs-3 }
+> > <class 'str'> 
+
+
+### **2. readlines()**
+`f.readlines()`는 파일의 모든 줄을 읽어서 각각의 줄을 요소로 가지는 리스트(List)를 반환합니다.
+
+```python
+f = open('test.txt', 'r')
+content = f.readlines() # 전체를 하나의 string으로 읽음
+print(content)
+f.close()
+```
+
+> {: .result .fs-3 }
+> ['This is line 0\n', 'This is line 1\n', 'This is line 2\n', 'This is line 3\n', 'This is line 4\n']
