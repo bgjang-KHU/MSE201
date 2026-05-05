@@ -196,3 +196,17 @@ f.close()
 
 
 ### **💡 줄 바꿈(\n) 문자 제거하기 (strip)**
+위의 `readlines()` 예제를 실행해 보면 줄 사이에 빈 줄이 하나씩 더 생기는 것을 볼 수 있습니다. 이는 파일의 각 줄 끝에 붙어 있는 줄 바꿈 문자(`\n`)와 `print()` 함수의 줄 바꿈 기능이 중복되기 때문입니다.
+이때 `strip()` 함수를 사용하면 줄 끝의 줄 바꿈 문자를 깔끔하게 제거할 수 있습니다.
+
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+```python
+f = open('test.txt', 'r')
+lines = f.readlines() # ["1st line\n", "2nd line\n", ...]
+for line in lines:
+    print(line)
+f.close()
+```
