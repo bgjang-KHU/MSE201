@@ -132,7 +132,7 @@ f.close()
 
 Python에서는 용도에 따라 파일을 읽는 여러 가지 함수를 제공합니다. 하나씩 살펴봅시다.
 
-### **1. read()**
+### **1. read(): 파일 전체를 하나의 문자열로 읽기**
 `f.read()`는 파일의 내용 전체를 하나의 커다란 문자열로 반환합니다. 파일의 내용이 아주 크지 않을 때 한꺼번에 가져오기 편리합니다.
 
 ```python
@@ -159,7 +159,7 @@ print(type(content))
 
 <br>
 
-### **2. readlines()**
+### **2. readlines(): 모든 줄을 리스트에 담기**
 `f.readlines()`는 파일의 모든 줄을 읽어서 각각의 줄을 요소로 가지는 리스트(List)를 반환합니다.
 
 ```python
@@ -205,8 +205,59 @@ f.close()
 
 ```python
 f = open('test.txt', 'r')
-lines = f.readlines() # ["1st line\n", "2nd line\n", ...]
-for line in lines:
-    print(line)
+while True:
+    line = f.readline()
+    if not line: break # 더 이상 읽을 줄이 없으면(빈 문자열) 반복 종료
+    print(line.strip())
 f.close()
 ```
+
+파일에서 읽어온 데이터는 우리가 원하는 값 외에도 눈에 보이지 않는 공백이나 기호들이 섞여 있는 경우가 많습니다. 이때 `strip()`을 사용하면 데이터를 깨끗하게 다듬을 수 있습니다.
+
+ **🛠️ 모든 공백 문자 제거하기**
+
+인자 없이 `strip()`을 쓰면 문자열 앞뒤의 공백(Space), 탭(\t), 줄 바꿈(\n)을 한 번에 날려줍니다.
+
+```python
+line = " \t 22.5 \n"
+print(f"'{line.strip()}'")  # 출력: '22.5'
+```
+
+ **🛠️ 특정 문자 제거하기**
+
+데이터 끝에 불필요한 기호(예: 콤마, 마침표)가 붙어 있을 때, 괄호 안에 해당 문자를 넣어 제거할 수 있습니다.
+
+```python
+# 센서 데이터 끝에 콤마가 붙어 있는 경우
+data = "12.5, 30.2, 15.8,"
+clean_data = data.strip(",") # 마지막 콤마 제거
+print(clean_data)  # 출력: 12.5, 30.2, 15.8
+```
+
+### **3. readline(): 한 줄씩 순차적으로 읽기**
+
+`f.readline()`은 파일의 첫 번째 줄부터 한 줄씩 읽어옵니다. 만약 모든 줄을 읽고 싶다면 다음과 같이 `while` 문을 사용하여 무한 루프를 돌리다가, 더 이상 읽을 줄이 없을 때(`break`) 멈추게 작성합니다.
+
+```python
+f = open('test.txt', 'r')
+while True:
+    line = f.readline()
+    if not line: break # 더 이상 읽을 줄이 없으면(빈 문자열) 반복 종료
+    print(line.strip())
+f.close()
+```
+
+### **4. 파일 객체를 for 문과 함께 사용하기**
+
+파일 객체(`f`) 그 자체를 `for` 문에 넣으면, 파이썬이 알아서 파일을 줄 단위로 읽어줍니다. 코드가 가장 간결하고 가독성이 좋아 실무에서 가장 권장되는 방법입니다.
+
+```python
+# read_for.py
+f = open('test.txt', 'r')
+for line in f: # 파일 객체를 직접 반복문에 사용
+    print(line.strip())
+f.close()
+```
+
+> {: .highlight }
+이 방법은 `readlines()`처럼 모든 데이터를 미리 메모리에 다 올리지 않고 한 줄씩 처리하기 때문에, 거대한 데이터를 다룰 때 메모리를 효율적으로 사용할 수 있다는 장점도 있습니다.
