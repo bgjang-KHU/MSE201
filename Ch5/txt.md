@@ -142,6 +142,13 @@ print(content)
 f.close()
 ```
 
+> {: .result .fs-3 }
+> This is line 0
+> This is line 1
+> This is line 2
+> This is line 3
+> This is line 4
+
 이때 content의 type도 확인해봅시다! `read()`를 통해 읽어온 정보는 문자열로 저장됩니다.
 
 ```python
@@ -150,6 +157,7 @@ print(type(content))
 > {: .result .fs-3 }
 > > <class 'str'> 
 
+<br>
 
 ### **2. readlines()**
 `f.readlines()`는 파일의 모든 줄을 읽어서 각각의 줄을 요소로 가지는 리스트(List)를 반환합니다.
@@ -163,3 +171,28 @@ f.close()
 
 > {: .result .fs-3 }
 > ['This is line 0\n', 'This is line 1\n', 'This is line 2\n', 'This is line 3\n', 'This is line 4\n']
+
+다음은 `for`문을 활용하여 `readlines()`로 읽은 정보를 출력해봅시다.
+
+```python
+f = open('test.txt', 'r')
+lines = f.readlines() # ["1st line\n", "2nd line\n", ...]
+for line in lines:
+    print(line)
+f.close()
+```
+
+> {: .result .fs-3 }
+> This is line 0  
+>   
+> This is line 1  
+>    
+> This is line 2  
+>   
+> This is line 3  
+>  
+> This is line 4
+>  
+
+
+### **💡 줄 바꿈(\n) 문자 제거하기 (strip)**
