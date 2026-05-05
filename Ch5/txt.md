@@ -79,7 +79,7 @@ for i in range(5):
 f.close()
 ```
 
-> {: .highlight }
+> {: .file }
 > This is line 0  
 > This is line 1  
 > This is line 2  
