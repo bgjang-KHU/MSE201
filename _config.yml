@@ -28,9 +28,9 @@ callouts:
   result: 
     title: \>>>
     color: blue
-  outfile: 
-    title: File
-    color: blue  
   tip:
     title: Tip!
     color: red
+  file:
+    title: File
+    color: purple
