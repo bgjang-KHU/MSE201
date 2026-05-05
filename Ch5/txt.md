@@ -22,7 +22,7 @@ nav_order: 1
 ## **파일 생성해보기**
 먼저 Python을 통해 실제로 파일을 하나 만들어 봅시다.
 
-🚀 TRY IT!
+### **🚀 TRY IT!**
 {: .text-blue-200 }
 
 ```python
@@ -61,3 +61,40 @@ f = open(filename, mode) # 파일_객체 = open(파일_이름, 파일_열기_모
 
 {: .warning }
 쓰기 모드(`w`)로 파일을 열 때, 만약 같은 이름의 파일이 이미 존재한다면 기존의 내용은 모두 사라지니 주의해야 합니다.
+
+---
+
+## **파일 쓰기**
+
+이제 파일에 실제 내용을 기록해 봅시다. 모니터에 결과를 출력할 때 `print()`를 사용했던 것처럼, 파일에 기록할 때는 파일 객체의 `write()` 함수를 사용합니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+test.txt 파일을 생성하고 0번부터 4번 줄까지 내용을 적어봅시다.
+
+```python
+f = open('test.txt', 'w')
+for i in range(5):
+    f.write(f"This is line {i}\n") # 끝에 \n을 붙여야 다음 줄로 넘어갑니다.
+f.close()
+```
+
+{: .highlight }
+This is line 0  
+This is line 1  
+This is line 2  
+This is line 3  
+This is line 4
+
+
+{: .warning }
+`write()` 함수는 `print()`와 달리 자동으로 줄을 바꿔주지 않습니다. 따라서 줄을 바꾸고 싶다면 반드시 문자열 끝에 줄바꿈 문자(`\n`)를 직접 넣어줘야 합니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+f = open('without_newline.txt', 'w')
+for i in range(5):
+    f.write(f"This is line {i}") 
+f.close()
+```
