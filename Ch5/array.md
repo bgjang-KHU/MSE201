@@ -441,11 +441,9 @@ def calc_sub_avg(in_file, out_file):
     return data3
 
 # --- [메인 실행부] ---
-if __name__ == "__main__":
-    # 단계별 함수 호출
-    s1 = generate_score('score.txt', 20)
-    s2 = calc_std_avg('score.txt', 'score2.txt')
-    s3 = calc_sub_avg('score2.txt', 'score3.csv')
+s1 = generate_score('score.txt', 20)
+s2 = calc_std_avg('score.txt', 'score2.txt')
+s3 = calc_sub_avg('score2.txt', 'score3.csv')
     
     # 출력값(Return)이 정상인지 확인
     print(f"최종 배열 크기: {s3.shape}")
