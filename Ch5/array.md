@@ -51,3 +51,15 @@ f.close()
 
 
 이번에는 행과 열을 바꿔서 파일에 적어봅시다. `i`와 `j`을 적절히 바꿔주면 됩니다.
+
+```python
+row, col = np.shape(data)
+
+f = open("array.txt", 'w')
+
+for j in range(col):
+    for i in range(row):
+        f.write(f'{data[j][i]:6.2f}\t') # \t으로 띄어쓰기
+    f.write('\n') # 한 행이 다 끝나면 줄 바꿈
+f.close()
+```
