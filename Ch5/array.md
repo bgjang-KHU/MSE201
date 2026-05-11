@@ -26,6 +26,22 @@ data = np.array([
     [6, 7, 8, 9 ,10],
 ])
 
-print(np.shape(data))
+print(np.shape(data)) # (2,5) - row 2, column 5 
 ```
 
+이중 for문과 write()을 활용하면 요소 하나하나를 파일에 적을 수 있습니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+```python
+row, col = np.shape(data)
+
+f = open("array.txt", 'w')
+
+for i in range(row):
+    for j in range(col):
+        f.write(f'{data[i][j]:6.2f}\t') # \t으로 띄어쓰기
+    f.write('\n') # 한 행이 다 끝나면 줄 바꿈
+f.close()
+```
