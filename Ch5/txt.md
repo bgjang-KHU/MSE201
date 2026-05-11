@@ -1,11 +1,11 @@
 ---
 layout: default
-title: 파일 입출력
+title: 기본 텍스트 파일
 parent: Ch5. 파일 입출력
 nav_order: 1
 ---
 
-# **파일 입출력 (File I/O)**
+# **기본 텍스트 파일 입출력 (File I/O)**
 
 ---
 
