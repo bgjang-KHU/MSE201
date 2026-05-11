@@ -389,9 +389,9 @@ print("score3.csv 파일이 생성되었습니다. 엑셀에서 확인해 보세
 앞서 작성한 코드들을 재사용 가능한 함수 형태로 재구성해 봅시다. 프로그래밍에서 함수를 설계할 때는 아래 표와 같이 입력값(Parameter)과 출력값(Return)의 형식을 맞추는 것이 매우 중요합니다.
 
 |**함수명**|**역할**|**입력(Input)**|**출력(Return)**|
-|`generate_score`|초기 데이터 생성 및 저장|`filename`(str), `n`(int)|생성된 2차원 배열|
-|`calc_std_avg`**`|학생별 평균 추가 및 저장|`in_file`(str), `out_file`(str)|학생 평균이 추가된 2차원 배열|
-|`calc_sub_avg`**`|과목별 평균 추가 및 CSV 저장|`in_file`(str), `out_file`(str)|최종 2차원 배열|
+|**`generate_score`**|초기 데이터 생성 및 저장|`filename`(str), `n`(int)|생성된 2차원 배열|
+|**`calc_std_avg`**|학생별 평균 추가 및 저장|`in_file`(str), `out_file`(str)|학생 평균이 추가된 2차원 배열|
+|**`calc_sub_avg`**|과목별 평균 추가 및 CSV 저장|`in_file`(str), `out_file`(str)|최종 2차원 배열|
 
 ```python
 import numpy as np
