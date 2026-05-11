@@ -260,3 +260,52 @@ np.savetxt('area3.txt', final_result, fmt='%d', header='Base Height Area')
 final_result = np.column_stack((data, area))
 np.savetxt('area3.txt', final_result, fmt='%d', header='Base Height Area')
 ```
+
+---
+## **✍️ 연습 문제**
+
+신소재공학과 학생들의 전공 과목 성적 데이터를 생성하고, 과목별/학생별 평균을 산출하여 관리하는 프로그램을 작성해 봅시다.
+
+### **1. 성적 데이터 생성 및 저장**
+
+우선 아래 Python 코드를 사용하여 20명의 학생에 대해 4개의 전공 과목(재료과학, 유기화학, 물리화학, 고체물리) 점수를 임의로 생성하여 `score.txt` 파일로 저장해 봅시다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+import numpy as np
+
+# 1. 20행 5열 배열 초기화
+scores = np.zeros((20, 5))
+
+# 2. 데이터 채우기
+scores[:, 0] = np.arange(1, 21) # 학생 ID (1~20)
+scores[:, 1:] = np.random.randint(0, 101, (20, 4)) # 4과목 점수 생성
+
+# 3. 파일 저장
+header = "ID MatSci Organic PhysChem SolidState"
+np.savetxt('score.txt', scores, fmt='%d', header=header)
+
+print("score.txt 파일이 생성되었습니다.")
+```
+
+위와 같이 `np.random.randint`를 사용하면 한번에 원하는 크기의 배열에 random한 숫자를 채워넣을 수 있습니다. 하지만 이중 for문 연습을 위해 직접 요소 하나하나에 접근하면서 요소들에 임의의 숫자를 대입해봅시다.
+
+```python
+import numpy as np
+import random
+
+scores = np.zeros((20, 5))
+
+for i in range(______):
+    for j in range(______):
+        if ______:           # 첫번째 열의 경우 점수가 아닌 학생 index
+            _______________  # random 숫자가 아닌 1부터 20까지를 순서대로 할당
+        else:
+            _______________  # 점수 부분은 random 숫자 할당
+
+header = "ID MatSci Organic PhysChem SolidState"
+np.savetxt('score.txt', scores, fmt='%d', header=header)
+
+print("score.txt 파일이 생성되었습니다.")
+```
