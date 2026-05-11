@@ -67,6 +67,7 @@ for j in range(col):
     f.write('\n') # 한 행이 다 끝나면 줄 바꿈
 f.close()
 ```
+---
 
 ## **`np.savetxt()`를 이용한 저장**
 NumPy의 `np.savetxt()` 함수를 사용하면 반복문을 사용하여 데이터를 하나씩 쓸 필요 없이, 배열 전체를 한 번에 구조화된 파일로 내보낼 수 있습니다.
@@ -102,3 +103,33 @@ np.savetxt('test.csv', data, fmt = '%.2f', delimiter=',', header = 'c1, c2, c3, 
 - `fmt = '%.2f'` (format): 파일에 적히는 숫자 형식을 결정합니다.
 - `delimiter=','` (구분자): 데이터 값 사이를 구분할 문자를 지정합니다. 기본값은 공백이며, 예시처럼 콤마 (`,`)를 사용하면 엑셀에서 바로 열 수 있는 csv 형식으로 저장할 수 있습니다.
 - `header = '...'` (헤더): 파일의 맨 첫 줄에 들어갈 열 이름(제목)을 지정합니다. 데이터가 각각 무엇을 의미하는지 설명할 때 사용합니다. 맨 앞에 **#**이 있으면 컴퓨터는 데이터로 생각하지 않고 주석처리 된 글로 인지합니다.
+
+---
+
+## **CSV 파일로 저장 (엑셀)**
+
+위에서 배운대로 파일 형식 (csv)와 구분자 (delimeter)를 활용하면 쉽게 엑셀에서 열 수 있는 형식으로 데이터를 저장할 수 있습니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+```python
+import numpy as np
+data = np.random.random((100,5))
+np.savetxt('test.csv', data, fmt = '%.2f', delimiter=',', header = 'c1, c2, c3, c4, c5')
+```
+
+`np.savetxt()` 같은 함수가 없더라도, 지난 시간에 배운 `write()` 함수와 `for` 문만으로도 충분히 CSV 파일을 만들 수 있습니다. CSV는 결국 **콤마로 구분된 텍스트**일 뿐이기 때문입니다. 다만 과정이 번거로워질 뿐입니다.
+
+```python
+import numpy as np
+data = np.random.random((100,5))
+with open("test.csv", "w") as f:
+    # 1. 헤더(컬럼 이름) 작성
+    f.write("c1,c2,c3,c4,c5\n")
+    # 2. 데이터 한 줄씩 꺼내오기 (100번 반복)
+    for row in data:
+        line = f"{row[0]:.2f},{row[1]:.2f},{row[2]:.2f},{row[3]:.2f},{row[4]:.2f}\n"
+        
+        f.write(line)
+```
