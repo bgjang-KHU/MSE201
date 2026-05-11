@@ -208,7 +208,7 @@ f = open('test.txt', 'r')
 while True:
     line = f.readline()
     if not line: break # 더 이상 읽을 줄이 없으면(빈 문자열) 반복 종료
-    print(line.strip())
+    print(line.strip()) # strip()을 사용해 줄바꿈 제거
 f.close()
 ```
 
