@@ -84,7 +84,7 @@ dataT=data.transpose()
 np.savetxt('array3.txt', dataT, fmt='%6.2f')
 ```
 
-### **🛠️ `np.savetxt()` 함수의 기본 형식**
+## **🛠️ `np.savetxt()` 함수의 기본 형식**
 
 `np.savetxt()`는 다음과 같은 기본적인 인자들을 활용할 수 있습니다.
 
@@ -136,7 +136,7 @@ with open("test.csv", "w") as f:
 
 ---
 
-## **`np.loadtxt()`를 이용한 데이터 불러오기**
+ **`np.loadtxt()`를 이용한 데이터 불러오기**
 데이터를 저장하는 것만큼 중요한 것이 저장된 데이터를 다시 불러오는 것입니다. NumPy의 `np.loadtxt()` 함수를 사용하면 텍스트 파일이나 CSV 파일에 저장된 수치 데이터를 즉시 NumPy 배열(Array)로 변환할 수 있습니다.
 
 ### **🚀 TRY IT!**
@@ -154,20 +154,109 @@ print(data1)
 print(data2)
 ```
 
-### **🛠️ `np.loadtxt()` 함수의 기본 형식**
+## **🛠️ `np.loadtxt()` 함수의 기본 형식**
 `np.loadtxt()`는 데이터를 읽어올 때 파일의 형식을 맞추기 위해 다음과 같은 인자들을 사용합니다.
 
 ```python
 data = np.loadtxt('filename', delimiter='', skiprows=0, comments='#', dtype=float)
 ```
 
--`'filename'`: 불러오고자 하는 파일의 이름(혹은 경로)입니다.
+- `'filename'`: 불러오고자 하는 파일의 이름(혹은 경로)입니다.
 
--`delimiter`: 데이터가 무엇으로 구분되어 있는지 알려줍니다. 저장할 때 사용한 구분자와 반드시 일치해야 합니다. (예: CSV 파일은 ,)
+- `delimiter`: 데이터가 무엇으로 구분되어 있는지 알려줍니다. 저장할 때 사용한 구분자와 반드시 일치해야 합니다. (예: CSV 파일은 ,)
 
--`skiprows`: 파일의 처음 몇 줄을 제외하고 읽을지 결정합니다. 제목 줄(Header)에 #이 붙어있지 않아 에러가 날 경우, skiprows=1을 사용해 첫 줄을 건너뛸 수 있습니다.
+- `skiprows`: 파일의 처음 몇 줄을 제외하고 읽을지 결정합니다. 제목 줄(Header)에 #이 붙어있지 않아 에러가 날 경우, skiprows=1을 사용해 첫 줄을 건너뛸 수 있습니다.
 
--`comments`: 주석으로 시작하는 기호를 지정합니다. 기본값은 #이며, 이 기호로 시작하는 줄은 데이터로 읽지 않고 자동으로 건너뜁니다. 프로그램에 따라 주석 기호가 다를 수 있습니다. 예를 들어 MATLAB 같은 프로그램은 주석으로 `%`를 사용하곤 합니다. 이럴 때는 comments 인자를 사용해 직접 지정해주면 됩니다.
+- `comments`: 주석으로 시작하는 기호를 지정합니다. 기본값은 #이며, 이 기호로 시작하는 줄은 데이터로 읽지 않고 자동으로 건너뜁니다. 프로그램에 따라 주석 기호가 다를 수 있습니다. 예를 들어 MATLAB 같은 프로그램은 주석으로 `%`를 사용하곤 합니다. 이럴 때는 comments 인자를 사용해 직접 지정해주면 됩니다.
 
--`dtype`: 데이터를 어떤 자료형으로 읽을지 정합니다. 기본값은 실수형(float)입니다.
+- `dtype`: 데이터를 어떤 자료형으로 읽을지 정합니다. 기본값은 실수형(float)입니다.
 
+
+---
+
+## **데이터 가공과 컬럼 추가**
+
+실제 프로젝트에서는 이미 존재하는 데이터 파일을 읽어와 특정 수치를 계산하고, 그 결과를 다시 파일에 합쳐서 저장하는 작업이 빈번하게 일어납니다. 
+
+**밑변(Base)**과 **높이(Height)**가 적힌 파일을 읽어와 **넓이(Area)**를 계산하고, 이를 새로운 열(Column)로 추가하는 과정을 통해 연습해 봅시다.
+
+## **1. 데이터 파일 만들기**
+
+실습을 위해 먼저 20개의 사각형 정보가 담긴 `base_height.txt` 파일을 생성합니다.
+
+```python
+import numpy as np
+
+# 1~10 사이의 정수 난수로 20행 2열 데이터 생성
+initial_data = np.random.randint(1, 11, (20, 2))
+
+# 파일로 저장 (원본 데이터)
+np.savetxt('base_height.txt', initial_data, fmt='%d', header='Base Height')
+```
+
+## **2. 데이터 가공: 파일 읽기와 넓이 계산**
+
+이제 생성된 파일을 다시 읽어와서 넓이를 계산해 봅시다.
+
+```python
+# 1. 파일 읽어오기
+data = np.loadtxt('base_height.txt')
+
+# 2. 각 열을 분리하여 변수에 담기 (슬라이싱)
+base = data[:, 0]    # 모든 행의 0번째 열 (Base)
+height = data[:, 1]  # 모든 행의 1번째 열 (Height)
+
+# 3. 넓이 계산
+area = base * height
+```
+
+## **3. 데이터 컬럼 추가 및 저장: 3가지 전략**
+가공된 area 데이터를 기존 데이터 옆에 붙여서 3열(Base, Height, Area)로 만들어 저장해 봅시다.
+
+### **방법 ①: 반복문 방식 (for loop)**
+파일 시스템이 데이터를 한 줄씩 읽고 쓰는 원리를 이해하기에 좋습니다. 다만 속도는 느립니다.
+
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+with open('area.txt', 'w') as f:
+    f.write("# Base\tHeight\tArea\n") # 헤더 작성
+    for i in range(len(base)):
+        # 계산된 넓이를 포함하여 탭(\t)으로 구분해 기록
+        line = f"{int(base[i])}\t{int(height[i])}\t{int(area[i])}\n"
+        f.write(line)
+```
+
+### **방법 ②: vstack + Transpose 방식**
+데이터를 행으로 층층이 쌓은 뒤 뒤집는 (transpose) 접근 방식입니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+```python
+# 가로로 3줄 쌓은 후 뒤집기 (.T)
+combined = np.vstack((base, height, area)).T
+
+# txt 파일로 저장 (fmt='%d'로 정수 지정)
+np.savetxt('area2.txt', combined, fmt='%d', header='Base Height Area')
+```
+
+### **방법 ③: column_stack 방식 (권장)**
+
+배열들을 바로 '열(Column)' 단위로 묶어주는 가장 직관적인 방법입니다. 상황에 따라 아래 두 가지 방식을 모두 편하게 사용할 수 있습니다.
+
+**A. 1차원 배열들을 각각 조립할 때**
+각각의 데이터가 따로 존재할 때 유용합니다.
+
+```python
+final_result = np.column_stack((base, height, area))
+np.savetxt('area3.txt', final_result, fmt='%d', header='Base Height Area')
+```
+
+**B. 기존 2차원 데이터에 새로운 열만 추가할 때**
+원본 데이터를 유지하면서 추가되는 열만 바로 이어 붙이고 싶을 때 간결하게 사용합니다.
+
+```python
+final_result = np.column_stack((data, area))
+np.savetxt('area3.txt', final_result, fmt='%d', header='Base Height Area')
+```
