@@ -84,7 +84,7 @@ dataT=data.transpose()
 np.savetxt('array3.txt', dataT, fmt='%6.2f')
 ```
 
-## **🛠️ `np.savetxt()` 함수의 기본 형식**
+### **🛠️ `np.savetxt()` 함수의 기본 형식**
 
 `np.savetxt()`는 다음과 같은 기본적인 인자들을 활용할 수 있습니다.
 
@@ -133,3 +133,41 @@ with open("test.csv", "w") as f:
         
         f.write(line)
 ```
+
+---
+
+## **`np.loadtxt()`를 이용한 데이터 불러오기**
+데이터를 저장하는 것만큼 중요한 것이 저장된 데이터를 다시 불러오는 것입니다. NumPy의 `np.loadtxt()` 함수를 사용하면 텍스트 파일이나 CSV 파일에 저장된 수치 데이터를 즉시 NumPy 배열(Array)로 변환할 수 있습니다.
+
+### **🚀 TRY IT!**
+{: .text-blue-200 }
+
+```python
+import numpy as np
+
+# 기본 공백으로 구분된 파일 읽기
+data1 = np.loadtxt('array3.txt')
+# 콤마(,)로 구분된 CSV 파일 읽기
+data2 = np.loadtxt('test.csv', delimiter=',')
+
+print(data1)
+print(data2)
+```
+
+### **🛠️ `np.loadtxt()` 함수의 기본 형식**
+`np.loadtxt()`는 데이터를 읽어올 때 파일의 형식을 맞추기 위해 다음과 같은 인자들을 사용합니다.
+
+```python
+data = np.loadtxt('filename', delimiter='', skiprows=0, comments='#', dtype=float)
+```
+
+-`'filename'`: 불러오고자 하는 파일의 이름(혹은 경로)입니다.
+
+-`delimiter`: 데이터가 무엇으로 구분되어 있는지 알려줍니다. 저장할 때 사용한 구분자와 반드시 일치해야 합니다. (예: CSV 파일은 ,)
+
+-`skiprows`: 파일의 처음 몇 줄을 제외하고 읽을지 결정합니다. 제목 줄(Header)에 #이 붙어있지 않아 에러가 날 경우, skiprows=1을 사용해 첫 줄을 건너뛸 수 있습니다.
+
+-`comments`: 주석으로 시작하는 기호를 지정합니다. 기본값은 #이며, 이 기호로 시작하는 줄은 데이터로 읽지 않고 자동으로 건너뜁니다. 프로그램에 따라 주석 기호가 다를 수 있습니다. 예를 들어 MATLAB 같은 프로그램은 주석으로 `%`를 사용하곤 합니다. 이럴 때는 comments 인자를 사용해 직접 지정해주면 됩니다.
+
+-`dtype`: 데이터를 어떤 자료형으로 읽을지 정합니다. 기본값은 실수형(float)입니다.
+
