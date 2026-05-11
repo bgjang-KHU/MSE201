@@ -309,3 +309,151 @@ np.savetxt('score.txt', scores, fmt='%d', header=header)
 
 print("score.txt 파일이 생성되었습니다.")
 ```
+
+### **2. 학생별 평균 계산 및 컬럼 추가**
+각 학생의 4과목 점수를 합산하여 평균을 구하고, 이를 데이터의 가장 오른쪽에 새로운 열로 붙여봅시다.
+
+- 데이터 로드: `np.loadtxt`로 `score.txt`를 불러옵니다.
+- 학생별 평균 계산: 바깥쪽 `for`문은 학생을, 안쪽 `for`문은 과목을 훓으며 총점을 구합니다.
+- 데이터 결합: `np.column_stack`을 사용하여 계산된 평균 배열을 기존 데이터 옆에 붙입니다.
+- 데이터 저장: 새로운 데이터를 `score2.txt`로 저장합니다.
+
+```python
+import numpy as np
+
+# 1. 데이터 불러오기 (20행 5열)
+data = np.loadtxt('score.txt')
+row, col = data.shape 
+
+# 학생별 평균을 저장할 빈 배열 (20개)
+std_avgs = np.zeros(row)
+
+# 2. 학생별 평균 계산 (행 방향)
+for i in range(_____):
+    total = 0          # total = 0 위치에도 유의하자!
+    # 1번 열부터 4번 열까지(과목 점수)만 더함
+    for j in range(_____): 
+        total += ______________
+    std_avgs[__] = _____________
+
+# 3. 6번째 컬럼으로 평균 추가 (20행 6열이 됨)
+data2 = np.column_stack(_______________)
+
+print(f"학생별 평균이 추가되었습니다. (현재 모양:{data2.shape})")
+
+header = "ID MatSci Organic PhysChem SolidState std_avg"
+np.savetxt('score2.txt', data2, fmt='%10.2f', delimiter='\t', header=header)
+
+print("score2.txt 파일이 생성되었습니다.")
+```
+
+### **3. 과목별 전체 평균 계산 및 행 추가**
+이제 학생별 평균까지 포함된 데이터(`data2`)를 바탕으로, 각 항목의 전체 평균을 구해 맨 아래에 새로운 줄(행)로 추가해 봅시다.
+
+- 데이터 로드: `np.loadtxt`로 `score2.txt`를 불러옵니다.
+- 과목별 평균 계산: 바깥쪽 `for` 문은 열(항목)을, 안쪽 for 문은 행(학생)을 훑으며 수직으로 점수를 더합니다.
+- 데이터 결합: `np.vstack`을 사용하여 계산된 과목별 평균 행을 데이터 맨 아래에 붙입니다.
+- 데이터 저장: 완성된 데이터를 `score3.csv`로 저장합니다.
+
+```python
+import numpy as np
+
+# 1. 데이터 불러오기 (20행 6열)
+data2 = np.loadtxt('score2.txt')
+row2, col2 = data2.shape 
+
+# 과목별 평균을 저장할 빈 배열 
+sub_avgs = np.zeros(______)
+
+# 2. 과목별 평균 계산 (열 방향으로 합산)
+for j in range(_____):
+    total = 0
+    for i in range(_____):
+        total += _______________
+    sub_avgs[__] = _________________
+
+# 3. 맨 아래 행으로 전체 평균 추가 (21행 6열이 됨)
+data3 = np.vstack(_________________)
+
+print(f"과목별 평균이 추가되었습니다. (최종 모양:{data3.shape})")
+
+# 4. CSV 파일로 저장 (엑셀 호환)
+header = "ID,MatSci,Organic,PhysChem,SolidState,std_avg"
+np.savetxt('score3.csv', ________________________________)
+
+print("score3.csv 파일이 생성되었습니다. 엑셀에서 확인해 보세요!")
+```
+
+### **4. 각 기능을 함수화하기**
+
+앞서 작성한 코드들을 재사용 가능한 함수 형태로 재구성해 봅시다. 프로그래밍에서 함수를 설계할 때는 아래 표와 같이 입력값(Parameter)과 출력값(Return)의 형식을 맞추는 것이 매우 중요합니다.
+
+|**함수명**|**역할**|**입력(Input)**|**출력(Return)**|
+|`generate_score`|초기 데이터 생성 및 저장|`filename`(str), `n`(int)|생성된 2차원 배열|
+|`calc_std_avg`**`|학생별 평균 추가 및 저장|`in_file`(str), `out_file`(str)|학생 평균이 추가된 2차원 배열|
+|`calc_sub_avg`**`|과목별 평균 추가 및 CSV 저장|`in_file`(str), `out_file`(str)|최종 2차원 배열|
+
+```python
+import numpy as np
+import random
+
+# --- [함수 1] 데이터 생성 ---
+def generate_score(filename, n=20):
+    """
+    n명의 학생에 대해 ID와 4과목 점수를 생성하여 저장하고 배열을 반환한다.
+    """
+    scores = np.zeros((n, 5))
+    # [코드 작성: 이중 for문을 이용하여 scores 배열 채우기]
+    # ...
+    
+    # score.txt에 저장
+ 
+    return scores
+
+# --- [함수 2] 학생 평균 추가 ---
+def calc_std_avg(in_file, out_file):
+    """
+    in_file을 읽어 학생별 평균을 계산하고 out_file로 저장한 뒤 배열을 반환한다.
+    """
+    data = np.loadtxt(in_file)
+    # [코드 작성: 학생별 평균 계산 및 column_stack 수행]
+    # ...
+    
+    data2 = _______________________ 
+    
+    # score2.txt에 저장
+
+    return data2
+
+# --- [함수 3] 과목 평균 추가 (최종) ---
+def calc_sub_avg(in_file, out_file):
+    """
+    in_file을 읽어 과목별 평균을 계산하고 out_file(CSV)로 저장한 뒤 배열을 반환한다.
+    """
+    data2 = np.loadtxt(in_file)
+    # [코드 작성: 과목별 평균 계산 및 vstack 수행]
+    # ...
+    
+    data3 = _______________________
+    
+    # score3.txt에 저장
+
+    return data3
+
+# --- [메인 실행부] ---
+if __name__ == "__main__":
+    # 단계별 함수 호출
+    s1 = generate_score('score.txt', 20)
+    s2 = calc_std_avg('score.txt', 'score2.txt')
+    s3 = calc_sub_avg('score2.txt', 'score3.csv')
+    
+    # 출력값(Return)이 정상인지 확인
+    print(f"최종 배열 크기: {s3.shape}")
+```
+
+### **🤔 Wait and Think!**
+현재 이 코드의 흐름은 각 함수가 '파일을 읽어서(Load) ➔ 파일로 저장(Save)'하는 구조이기 때문에, 사실 `return` 값은 없어도 프로그램이 돌아가는 데 아무런 지장이 없습니다. 하지만 `return`을 활용하면 매번 파일을 읽고 쓰는 과정을 없애고 효율적으로 중간에 생성된 결과를 다음 함수로 쉽게 넘길 수 있습니다.
+
+예를 들어, `generate_score`가 반환한 배열을 곧바로 다른 분석 함수에 전달하면, 굳이 파일을 다시 읽는 번거로운 과정을 생략하고 메모리에서 바로 처리할 수 있어 효율적입니다. 
+
+지금까지 과정에 익숙해진 학생들은 `calc_std_avg`와 `calc_sub_avg` 함수를  매번 앞의 과정에서 저장된 파일을 여는 것이 아닌 바로 2차원 배열을 전달받아 처리하도록 코드를 작성해봅시다.
