@@ -2,7 +2,7 @@
 layout: default
 title: 파일 입출력 실습 (1)
 parent: Ch5. 파일 입출력
-nav_order: 2
+nav_order: 3
 ---
 
 # **파일 입출력 실습 (1)**
