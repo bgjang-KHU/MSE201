@@ -14,7 +14,7 @@ nav_order: 3
 - [ID.txt 다운로드](./data/ID.txt){:download}
 - [triangle.txt 다운로드](./data/triangle.txt){:download}
 
-{:highlight}
+> {: .highlight }
 링크를 클릭했을 때 파일 내용이 화면에 보인다면, 마우스 오른쪽 버튼을 클릭한 뒤 **다른 이름으로 링크 저장**을 선택하세요!
 
 ---
