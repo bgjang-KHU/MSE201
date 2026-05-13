@@ -138,8 +138,10 @@ with open('ID.txt', 'r') as f, \
 
 ```python
 with open('triangle.txt', 'r') as f, open('area.txt', 'w') as out:
-    # 1. 첫 번째 줄(Base Height) 읽어서 건너뛰기
-    header = f.readline()
+    # 1. 상단 불필요한 정보 읽어서 건너뛰기
+    f.readline()
+    f.readline()
+    f.readline()
     
     # 2. 결과 파일에도 제목 작성
     out.write('Base\tHeight\tArea\n')
