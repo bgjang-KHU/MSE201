@@ -7,8 +7,13 @@ nav_order: 3
 
 # **파일 입출력 실습 (1)**
 
----
+## 📂 실습 데이터 다운로드
+실습을 시작하기 전, 아래 파일들을 다운로드하여 사용하세요
+- [score.txt 다운로드](./data/score.txt){:download}
+- [ID.txt 다운로드](./data/ID.txt){:download}
+- [ID.txt 다운로드](./data/triangle.txt){:download}
 
+---
 
 ## **1. `readline()`과 `while True`를 사용해 한 줄씩 읽기**
 
