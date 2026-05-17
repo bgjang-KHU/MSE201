@@ -315,6 +315,60 @@ save_stats(data, header)
 
 ---
 
+
+## 4-2. 이렇게도 할 수 있어요! — `save_stats_v2`
+
+4번을 다른 방식으로 구현해 봅니다. NumPy 배열 슬라이싱으로 열을 통째로 꺼내 `mean()`과 `std()`를 바로 계산하고, 숫자 데이터는 `np.savetxt()`로 저장한 뒤 `avg`/`std` 행만 append 모드로 뒤에 붙이는 방식입니다.
+
+```python
+def save_stats_v2(data, header, filename='toeic_stats2.txt'):
+    n_std, n_dept = data.shape
+
+    # 1. 각 학과 평균/표준편차를 리스트로 수집
+    avg_list = []
+    std_list = []
+    for j in range(n_dept):
+        col = data[:, j]            # j번째 학과 컬럼 전체를 한번에 가져오기
+        avg_list.append(col.mean())
+        std_list.append(col.std())
+
+    # 2. 인덱스 열 + 데이터 합치기
+    idx = np.arange(1, n_std + 1)
+    data_with_idx = np.column_stack((idx, data))
+
+    # 3. 숫자 부분만 savetxt로 저장
+    np.savetxt(filename, data_with_idx, fmt='%d', delimiter='\t', header=f'index\t{header}')
+
+    # 4. avg/std 행은 append 모드('a')로 뒤에 붙이기
+    with open(filename, 'a', encoding='utf-8') as out:
+        out.write('avg\t' + '\t'.join(f'{x:.1f}' for x in avg_list) + '\n')
+        out.write('std\t' + '\t'.join(f'{x:.1f}' for x in std_list) + '\n')
+
+    print(f'저장 완료: {filename}')
+
+
+#### 실행 부분 ####
+
+save_stats_v2(data, header)
+```
+
+> 💡 **TIP**
+>
+> `'\t'.join(f'{x:.1f}' for x in avg_list)`
+>
+> 이 코드는 `for`문을 한 줄로 압축한 **generator expression**입니다. `avg_list`의 각 요소 `x`를 소수점 1자리 문자열(`f'{x:.1f}'`)로 변환하면서, `join()`이 사이사이에 탭(`\t`)을 끼워 하나의 문자열로 합쳐줍니다. 풀어 쓰면 다음과 같습니다.
+>
+> ```python
+> result = ''
+> for j in range(len(avg_list)):
+>     if j < len(avg_list) - 1:
+>         result += f'{avg_list[j]:.1f}\t'
+>     else:
+>         result += f'{avg_list[j]:.1f}'
+> ```
+
+---
+
 ## 🚀 전체 실행
 
 네 함수를 모두 완성했다면, 아래 코드로 한 번에 실행해 보세요.
