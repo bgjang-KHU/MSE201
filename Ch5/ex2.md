@@ -351,20 +351,12 @@ def save_stats_v2(data, header, filename='toeic_stats2.txt'):
 save_stats_v2(data, header)
 ```
 
-> 💡 **TIP**
->
-> `'\t'.join(f'{x:.1f}' for x in avg_list)`
->
+
+{: .highlight }
+> 💡 **TIP** 
+> `'\t'.join(f'{x:.1f}' for x in avg_list)`    
 > 이 코드는 `for`문을 한 줄로 압축한 **generator expression**입니다. `avg_list`의 각 요소 `x`를 소수점 1자리 문자열(`f'{x:.1f}'`)로 변환하면서, `join()`이 사이사이에 탭(`\t`)을 끼워 하나의 문자열로 합쳐줍니다. 풀어 쓰면 다음과 같습니다.
->
-> ```python
-> result = ''
-> for j in range(len(avg_list)):
->     if j < len(avg_list) - 1:
->         result += f'{avg_list[j]:.1f}\t'
->     else:
->         result += f'{avg_list[j]:.1f}'
-> ```
+
 
 ---
 
