@@ -201,7 +201,8 @@ print(data[:3])     # 처음 3명의 점수 확인
 ...
 ```
 
-### 답안
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def save_by_std(data, dept_names, filename='toeic_by_std.txt'):
@@ -222,6 +223,7 @@ def save_by_std(data, dept_names, filename='toeic_by_std.txt'):
 
 header = save_by_std(data, dept_names)
 ```
+</details>
 
 ---
 
@@ -259,7 +261,8 @@ $$\sigma = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(x_i - \bar{x})^2}$$
 2. **인덱스 열 추가**: `np.arange()`와 `np.column_stack()`으로 학생 번호 열을 붙입니다.
 3. **파일 저장**: 헤더는 3번에서 받아온 문자열을 그대로 사용하고, 학생 데이터와 평균·표준편차 행은 `np.savetxt()`와 `write()`로 작성합니다.
 
-### 답안
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def save_stats(data, header, filename='toeic_stats.txt'):
@@ -321,12 +324,16 @@ def save_stats(data, header, filename='toeic_stats.txt'):
 
 save_stats(data, header)
 ```
+</details>
 
 ---
 
 ## 4-2. 이렇게도 할 수 있어요! — `save_stats_v2`
 
 4번을 다른 방식으로 구현해 봅니다. NumPy 배열 슬라이싱으로 열을 통째로 꺼내 `mean()`과 `std()`를 바로 계산하고, 숫자 데이터는 `np.savetxt()`로 저장한 뒤 `avg`/`std` 행만 append 모드로 뒤에 붙이는 방식입니다.
+
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def save_stats_v2(data, header, filename='toeic_stats2.txt'):
@@ -359,13 +366,12 @@ def save_stats_v2(data, header, filename='toeic_stats2.txt'):
 
 save_stats_v2(data, header)
 ```
-
+</details>
 
 {: .highlight }
 > 💡 **TIP** 
 > `'\t'.join(f'{x:.1f}' for x in avg_list)`    
 > 이 코드는 `for`문을 한 줄로 압축한 **generator expression**입니다. `avg_list`의 각 요소 `x`를 소수점 1자리 문자열(`f'{x:.1f}'`)로 변환하면서, `join()`이 사이사이에 탭(`\t`)을 끼워 하나의 문자열로 합쳐줍니다.
-
 
 ---
 
