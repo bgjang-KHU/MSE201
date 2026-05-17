@@ -82,7 +82,8 @@ nav_order: 4
 경희대학교 공과대학 750점 이상 학생 총 182명
 ```
 
-### 답안
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 import numpy as np
@@ -120,7 +121,7 @@ def count_pass(filename):
 
 dept_names = count_pass('toeic.txt')
 ```
-
+</details>
 ---
 
 ## 2. `load_toeic(filename)` — NumPy 배열로 불러오기
