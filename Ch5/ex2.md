@@ -330,7 +330,7 @@ save_stats(data, header)
 
 ## 4-2. 이렇게도 할 수 있어요! — `save_stats_v2`
 
-4번을 다른 방식으로 구현해 봅니다. NumPy 배열 슬라이싱으로 열을 통째로 꺼내 `mean()`과 `std()`를 바로 계산하고, 숫자 데이터는 `np.savetxt()`로 저장한 뒤 `avg`/`std` 행만 append 모드로 뒤에 붙이는 방식입니다.
+4번의 코드가 너무 긴 것 같다면 다른 방식으로 구현해 봅니다. NumPy 배열 슬라이싱으로 열을 통째로 꺼내 `mean()`과 `std()`를 바로 계산하고, 숫자 데이터는 `np.savetxt()`로 저장한 뒤 `avg`/`std` 행만 append 모드로 뒤에 붙이는 방식입니다.
 
 <details markdown="1">
 <summary>예시 풀이</summary>
