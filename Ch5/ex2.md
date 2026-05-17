@@ -63,9 +63,9 @@ nav_order: 4
 `toeic.txt`를 읽으면서 각 학과별로 **500점 이상**인 학생 수를 세어 출력하는 함수를 작성합니다.
 
 - 파일을 열고, 맨 위 헤더 3줄(주석 2줄 + 빈줄 1줄)을 `readline()`으로 건너뜁니다.
-- 9개 학과를 순서대로 처리합니다. 학과마다 주석 1줄을 건너뛰고, 50개 점수를 읽으며 조건을 확인합니다.
+- 9개 학과를 순서대로 처리합니다. 학과 주석줄을 읽어 학과명을 직접 가져오고, 50개 점수를 읽으며 조건을 확인합니다.
 - 각 학과가 끝나면 빈줄 1줄을 건너뜁니다.
-- 학과별 결과와 전체 합산을 출력합니다. `return`은 없습니다.
+- 학과별 결과와 전체 합산을 출력하고, 읽어온 **학과명 리스트를 반환**합니다. 이 리스트는 이후 3번, 4번 함수에서 헤더로 활용합니다.
 
 ### 출력 예시
 
@@ -96,11 +96,13 @@ def count_pass(filename):
     f.readline()
 
     total = 0
+    dept_names = []   # 학과명을 담을 리스트
 
-    for dept_idx in range(9):
+    for i in range(9):
         dept = f.readline().split()[1]   # '# 기계공학과 50명 ...' → '기계공학과'
+        dept_names.append(dept)          # 리스트에 추가
         count = 0
-        for std_idx in range(50):
+        for j in range(50):
             score = int(f.readline().strip())
             if score >= 500:
                 count += 1
@@ -111,11 +113,12 @@ def count_pass(filename):
 
     f.close()
     print(f'경희대학교 공과대학 500점 이상 학생 총 {total}명')
+    return dept_names
 
 
 #### 실행 부분 ####
 
-count_pass('toeic.txt')
+dept_names = count_pass('toeic.txt')
 ```
 
 ---
@@ -157,6 +160,9 @@ def load_toeic(filename):
     f.close()
     return data
 
+
+#### 실행 부분 ####
+
 data = load_toeic('toeic.txt')
 print(data.shape)   # (50, 9)
 print(data[:3])     # 처음 3명의 점수 확인
@@ -173,13 +179,13 @@ print(data[:3])     # 처음 3명의 점수 확인
 
 ---
 
-## 3. `save_by_std(data, filename)` — 학과별 점수표 저장
+## 3. `save_by_std(data, dept_names, filename)` — 학과별 점수표 저장
 
 ### 목표
 
-2번에서 만든 배열을 받아 `np.savetxt()`로 깔끔하게 저장하는 함수를 작성합니다.
+2번에서 만든 배열과 1번에서 반환된 학과명 리스트를 받아 `np.savetxt()`로 저장하는 함수를 작성합니다.
 
-- 헤더는 9개 학과명을 탭(`\t`)으로 구분한 문자열로 작성합니다.
+- 1번에서 반환된 `dept_names` 리스트를 `for`문으로 순회하며 헤더 문자열을 직접 만듭니다.
 - `np.savetxt()`의 `delimiter`, `fmt`, `header` 인자를 활용합니다.
 
 ### 저장 파일 형식 (`toeic_by_std.txt`)
@@ -194,21 +200,31 @@ print(data[:3])     # 처음 3명의 점수 확인
 ### 답안
 
 ```python
-def save_by_std(data, filename='toeic_by_std.txt'):
-    header = '\t'.join(DEPT_NAMES)   # 학과명을 탭으로 이어 붙여 헤더 생성
+def save_by_std(data, dept_names, filename='toeic_by_std.txt'):
+    # for문으로 헤더 문자열 직접 만들기
+    header = ''
+    for i in range(len(dept_names)):
+        if i < len(dept_names) - 1:
+            header += dept_names[i] + '\t'
+        else:
+            header += dept_names[i]   # 마지막 항목 뒤에는 탭 없이
+
     np.savetxt(filename, data, fmt='%d', delimiter='\t', header=header)
     print(f'저장 완료: {filename}')
 
-save_by_std(data)
+
+#### 실행 부분 ####
+
+save_by_std(data, dept_names)
 ```
 
 ---
 
-## 4. `save_stats(data, filename)` — 인덱스 열 + 평균·표준편차 행 추가하여 저장
+## 4. `save_stats(data, dept_names, filename)` — 인덱스 열 + 평균·표준편차 행 추가하여 저장
 
 ### 목표
 
-2번 배열을 받아 다음 두 가지를 추가하고 저장하는 함수를 작성합니다.
+2번 배열과 1번의 학과명 리스트를 받아 다음 두 가지를 추가하고 저장하는 함수를 작성합니다.
 
 - **맨 앞 열**: 학생 인덱스(1~50)
 - **맨 아래 두 행**: 각 학과의 평균(`avg`)과 표준편차(`std`)
@@ -231,52 +247,74 @@ std	92.1	86.2	...	105.5
 
 1. **평균·표준편차 계산**: 이중 `for`문으로 열(학과) 방향으로 순회하며 계산합니다.
 2. **인덱스 열 추가**: `np.arange()`와 `np.column_stack()`으로 학생 번호 열을 붙입니다.
-3. **파일 저장**: 숫자 행은 `for`문으로, 마지막 두 행(`avg`, `std`)은 따로 `write()`로 작성합니다.
+3. **파일 저장**: 헤더와 학생 데이터, 마지막 두 행(`avg`, `std`) 모두 `for`문으로 직접 작성합니다.
 
 ### 답안
 
 ```python
-def save_stats(data, filename='toeic_stats.txt'):
-    n = data.shape[0]   # 학생 수 = 50
+def save_stats(data, dept_names, filename='toeic_stats.txt'):
+    n_std, n_dept = data.shape   # 학생 수 = 50, 학과 수 = 9
 
     # 1. 학과별 평균과 표준편차 계산 (이중 for문)
-    avg_row = np.zeros(9)
-    std_row = np.zeros(9)
+    avg_row = np.zeros(n_dept)
+    std_row = np.zeros(n_dept)
 
-    for j in range(9):           # 열(학과) 방향
+    for j in range(n_dept):      # 열(학과) 방향
         total = 0
-        for i in range(n):       # 행(학생) 방향
+        for i in range(n_std):   # 행(학생) 방향
             total += data[i][j]
-        avg_row[j] = total / n
+        avg_row[j] = total / n_std
 
         sq_sum = 0
-        for i in range(n):
+        for i in range(n_std):
             sq_sum += (data[i][j] - avg_row[j]) ** 2
-        std_row[j] = (sq_sum / n) ** 0.5
+        std_row[j] = (sq_sum / n_std) ** 0.5
 
     # 2. 학생 인덱스 열(1~50) 붙이기
-    idx = np.arange(1, n + 1).reshape(-1, 1)   # (50, 1) 형태로 변환
-    data_with_idx = np.column_stack((idx, data))  # (50, 10)
+    idx = np.arange(1, n_std + 1)
+    data_with_idx = np.column_stack((idx, data))
 
     # 3. 파일 저장
-    dept_header = '\t'.join(DEPT_NAMES)
     with open(filename, 'w', encoding='utf-8') as out:
-        # 헤더
-        out.write(f'# index\t{dept_header}\n')
+        # 헤더: for문으로 직접 작성
+        out.write('# index\t')
+        for i in range(n_dept):
+            if i < n_dept - 1:
+                out.write(dept_names[i] + '\t')
+            else:
+                out.write(dept_names[i] + '\n')   # 마지막 학과명 뒤에는 줄바꿈
 
         # 학생 데이터 50행
-        for i in range(n):
+        for i in range(n_std):
             row = data_with_idx[i]
-            out.write('\t'.join(str(int(x)) for x in row) + '\n')
+            for k in range(len(row)):
+                if k < len(row) - 1:
+                    out.write(str(int(row[k])) + '\t')
+                else:
+                    out.write(str(int(row[k])) + '\n')
 
         # 평균 행
-        out.write('avg\t' + '\t'.join(f'{x:.1f}' for x in avg_row) + '\n')
+        out.write('avg\t')
+        for j in range(n_dept):
+            if j < n_dept - 1:
+                out.write(f'{avg_row[j]:.1f}\t')
+            else:
+                out.write(f'{avg_row[j]:.1f}\n')
+
         # 표준편차 행
-        out.write('std\t' + '\t'.join(f'{x:.1f}' for x in std_row) + '\n')
+        out.write('std\t')
+        for j in range(n_dept):
+            if j < n_dept - 1:
+                out.write(f'{std_row[j]:.1f}\t')
+            else:
+                out.write(f'{std_row[j]:.1f}\n')
 
     print(f'저장 완료: {filename}')
 
-save_stats(data)
+
+#### 실행 부분 ####
+
+save_stats(data, dept_names)
 ```
 
 ---
@@ -286,10 +324,10 @@ save_stats(data)
 네 함수를 모두 완성했다면, 아래 코드로 한 번에 실행해 보세요.
 
 ```python
-count_pass('toeic.txt')
+dept_names = count_pass('toeic.txt')
 
 data = load_toeic('toeic.txt')
 
-save_by_std(data)
-save_stats(data)
+save_by_std(data, dept_names)
+save_stats(data, dept_names)
 ```
