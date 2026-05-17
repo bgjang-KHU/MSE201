@@ -87,11 +87,6 @@ nav_order: 4
 ```python
 import numpy as np
 
-DEPT_NAMES = [
-    "기계공학과", "산업경영공학과", "원자력공학과", "화학공학과", "신소재공학과",
-    "사회기반시스템공학과", "건축공학과", "환경학및환경공학과", "건축학과"
-]
-
 def count_pass(filename):
     f = open(filename, 'r', encoding='utf-8')
 
@@ -102,10 +97,10 @@ def count_pass(filename):
 
     total = 0
 
-    for dept in DEPT_NAMES:
-        f.readline()   # 학과 주석줄 건너뛰기 (예: # 기계공학과 50명 ...)
+    for dept_idx in range(9):
+        dept = f.readline().split()[1]   # '# 기계공학과 50명 ...' → '기계공학과'
         count = 0
-        for _ in range(50):
+        for std_idx in range(50):
             score = int(f.readline().strip())
             if score >= 500:
                 count += 1
@@ -116,6 +111,9 @@ def count_pass(filename):
 
     f.close()
     print(f'경희대학교 공과대학 500점 이상 학생 총 {total}명')
+
+
+#### 실행 부분 ####
 
 count_pass('toeic.txt')
 ```
