@@ -56,7 +56,7 @@ nav_order: 4
 
 ---
 
-## 1. `count_pass(filename)` — 500점 이상 학생 수 세기
+## 1. `count_pass(filename)` — 750점 이상 학생 수 세기
 
 ### 목표
 
