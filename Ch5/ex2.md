@@ -211,20 +211,21 @@ def save_by_std(data, dept_names, filename='toeic_by_std.txt'):
 
     np.savetxt(filename, data, fmt='%d', delimiter='\t', header=header)
     print(f'저장 완료: {filename}')
+    return header
 
 
 #### 실행 부분 ####
 
-save_by_std(data, dept_names)
+header = save_by_std(data, dept_names)
 ```
 
 ---
 
-## 4. `save_stats(data, dept_names, filename)` — 인덱스 열 + 평균·표준편차 행 추가하여 저장
+## 4. `save_stats(data, header, filename)` — 인덱스 열 + 평균·표준편차 행 추가하여 저장
 
 ### 목표
 
-2번 배열과 1번의 학과명 리스트를 받아 다음 두 가지를 추가하고 저장하는 함수를 작성합니다.
+2번 배열과 3번에서 반환된 헤더 문자열을 받아 다음 두 가지를 추가하고 저장하는 함수를 작성합니다.
 
 - **맨 앞 열**: 학생 인덱스(1~50)
 - **맨 아래 두 행**: 각 학과의 평균(`avg`)과 표준편차(`std`)
@@ -247,12 +248,12 @@ std	92.1	86.2	...	105.5
 
 1. **평균·표준편차 계산**: 이중 `for`문으로 열(학과) 방향으로 순회하며 계산합니다.
 2. **인덱스 열 추가**: `np.arange()`와 `np.column_stack()`으로 학생 번호 열을 붙입니다.
-3. **파일 저장**: 헤더와 학생 데이터, 마지막 두 행(`avg`, `std`) 모두 `for`문으로 직접 작성합니다.
+3. **파일 저장**: 헤더는 3번에서 받아온 문자열을 그대로 사용하고, 학생 데이터와 평균·표준편차 행은 `np.savetxt()`와 `write()`로 작성합니다.
 
 ### 답안
 
 ```python
-def save_stats(data, dept_names, filename='toeic_stats.txt'):
+def save_stats(data, header, filename='toeic_stats.txt'):
     n_std, n_dept = data.shape   # 학생 수 = 50, 학과 수 = 9
 
     # 1. 학과별 평균과 표준편차 계산 (이중 for문)
@@ -276,13 +277,8 @@ def save_stats(data, dept_names, filename='toeic_stats.txt'):
 
     # 3. 파일 저장
     with open(filename, 'w', encoding='utf-8') as out:
-        # 헤더: for문으로 직접 작성
-        out.write('# index\t')
-        for i in range(n_dept):
-            if i < n_dept - 1:
-                out.write(dept_names[i] + '\t')
-            else:
-                out.write(dept_names[i] + '\n')   # 마지막 학과명 뒤에는 줄바꿈
+        # 헤더: 3번에서 받아온 문자열 그대로 사용
+        out.write(f'# index\t{header}\n')
 
         # 학생 데이터 50행
         for i in range(n_std):
@@ -314,7 +310,7 @@ def save_stats(data, dept_names, filename='toeic_stats.txt'):
 
 #### 실행 부분 ####
 
-save_stats(data, dept_names)
+save_stats(data, header)
 ```
 
 ---
@@ -328,6 +324,6 @@ dept_names = count_pass('toeic.txt')
 
 data = load_toeic('toeic.txt')
 
-save_by_std(data, dept_names)
-save_stats(data, dept_names)
+header = save_by_std(data, dept_names)
+save_stats(data, header)
 ```
