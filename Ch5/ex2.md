@@ -289,33 +289,26 @@ def save_stats(data, header, filename='toeic_stats.txt'):
 
     # 3. 파일 저장
     with open(filename, 'w', encoding='utf-8') as out:
-        # 헤더: 3번에서 받아온 문자열 그대로 사용
         out.write(f'# index\t{header}\n')
 
         # 학생 데이터 50행
         for i in range(n_std):
             row = data_with_idx[i]
-            for k in range(len(row)):
-                if k < len(row) - 1:
-                    out.write(str(int(row[k])) + '\t')
-                else:
-                    out.write(str(int(row[k])) + '\n')
+            for k in range(n_dept + 1):
+                out.write(f'{row[k]}\t')
+            out.write('\n')
 
         # 평균 행
         out.write('avg\t')
         for j in range(n_dept):
-            if j < n_dept - 1:
-                out.write(f'{avg_row[j]:.1f}\t')
-            else:
-                out.write(f'{avg_row[j]:.1f}\n')
+            out.write(f'{avg_row[j]:.1f}\t')
+        out.write('\n')
 
         # 표준편차 행
         out.write('std\t')
         for j in range(n_dept):
-            if j < n_dept - 1:
-                out.write(f'{std_row[j]:.1f}\t')
-            else:
-                out.write(f'{std_row[j]:.1f}\n')
+            out.write(f'{std_row[j]:.1f}\t')
+        out.write('\n')
 
     print(f'저장 완료: {filename}')
 
