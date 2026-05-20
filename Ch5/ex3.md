@@ -302,7 +302,7 @@ print_stats(data, dept_names)
 
 ---
 
-### **1-1 `print_monthly_avg(filename)` — 월별 평균 기온 출력 함수 작성**
+### **1-1 월별 평균 기온 출력 함수 작성**
 
 `temp2024.txt`를 읽으면서 월별 평균 기온과 측정 횟수를 출력하는 함수를 작성합니다.
 
@@ -371,7 +371,7 @@ print_monthly_avg('temp2024.txt')
 
 ---
 
-### **1-2 `save_hot_days(filename, outfilename)` — 30도 초과 날짜 저장 함수 작성**
+### **1-2 30도 초과 날짜 저장 함수 작성**
 
 `temp2024.txt`를 읽으면서 기온이 **30도를 초과하는 날짜**만 골라 새로운 파일에 저장하는 함수를 작성합니다.
 
@@ -453,7 +453,7 @@ save_hot_days('temp2024.txt')
 
  ## **연습 문제 2 — 박막 증착 실험 로그 처리 (`sputter_log.txt`)**
 
-경희대학교 신소재공학과 스퍼터 장비에서 기록된 박막 증착 실험 로그입니다. Run마다 측정 횟수가 다르므로 `while`문으로 빈줄이 나올 때까지 읽는 방식으로 처리합니다.
+스퍼터 장비에서 기록된 박막 증착 실험 로그입니다. Run마다 측정 횟수가 다르므로 `while`문으로 빈줄이 나올 때까지 읽는 방식으로 처리합니다.
 
 - [sputter_log.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch5/data/sputter_log.txt)
 
@@ -475,7 +475,7 @@ TIME:00:10  PRESSURE:3.3e-6  POWER:100W  TEMP:44C  STATUS:OK
 
 ---
 
-### **2-1 `print_errors(filename)` — Run별 에러 출력 함수 작성**
+### **2-1 Run별 에러 출력 함수 작성**
 
 `sputter_log.txt`를 읽으면서 각 Run에서 발생한 에러를 출력하는 함수를 작성합니다.
 
@@ -566,7 +566,7 @@ print_errors('sputter_log.txt')
 
 ---
 
-### **2-2 `save_run_summary(filename, outfilename)` — Run별 요약 저장 함수 작성**
+### **2-2 Run별 요약 저장 함수 작성**
 
 `sputter_log.txt`를 읽으면서 각 Run의 총 측정 횟수, 에러 횟수, 에러율을 계산하여 요약 파일로 저장하는 함수를 작성합니다.
 
