@@ -321,6 +321,9 @@ print_stats(data, dept_names)
 
 `temp2024.txt`를 읽으면서 월별 평균 기온과 측정 횟수를 출력하는 함수를 작성합니다.
 
+- 함수: `print_monthly_avg(filename)` - 월별 평균 기온 출력
+    - 입력: `filename` - 읽을 파일 이름
+    - 반환: 없음
 - 헤더 3줄(주석 2줄 + 빈줄 1줄)을 건너뜁니다.
 - 12개월을 `for`문으로 순회하고, 각 월 안에서는 `while`문으로 빈줄이 나올 때까지 읽습니다.
 - `split(':')`으로 온도를 파싱하고, `[:-1]`로 `C`를 제거한 뒤 `float`으로 변환합니다.
@@ -342,7 +345,7 @@ print_stats(data, dept_names)
 11월 평균 기온: 6.2C (19회 측정)
 12월 평균 기온: -0.4C (20회 측정)
 ```
-
+<!-- 
 **답안**
 
 ```python
@@ -371,6 +374,7 @@ def print_monthly_avg(filename):
 
 print_monthly_avg('temp2024.txt')
 ```
+-->
 
 ---
 
@@ -378,9 +382,13 @@ print_monthly_avg('temp2024.txt')
 
 `temp2024.txt`를 읽으면서 기온이 **30도를 초과하는 날짜**만 골라 새로운 파일에 저장하는 함수를 작성합니다.
 
+- - 함수: `save_hot_days(filename, outfilename)` - 30도 초과 날짜 저장
+    - 입력: `filename` — 읽을 파일 이름, `outfilename` — 저장할 파일 이름 (기본값: 'hot_days.txt')
+    - 반환: 없음
 - (1)과 같은 방식으로 파일을 읽습니다.
 - 기온이 30도 초과인 줄만 필터링하여 저장합니다.
 - 저장 형식은 원본과 다르게 **공백으로 구분**하여 저장합니다.
+- 저장된 날짜 수를 count로 세어 마지막에 **출력**합니다.
 
 **저장 파일 형식 (`hot_days.txt`)**
 
@@ -393,7 +401,7 @@ print_monthly_avg('temp2024.txt')
 2024-08-19 30.1C Sunny
 ```
 
-**답안**
+<!-- 
 
 ```python
 def save_hot_days(filename, outfilename='hot_days.txt'):
@@ -431,3 +439,4 @@ def save_hot_days(filename, outfilename='hot_days.txt'):
 
 save_hot_days('temp2024.txt')
 ```
+ --> 
