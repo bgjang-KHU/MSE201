@@ -337,7 +337,8 @@ print_monthly_avg('temp2024.txt')
 
 
 <!-- 
-**답안**
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def print_monthly_avg(filename):
@@ -365,6 +366,7 @@ def print_monthly_avg(filename):
 
 print_monthly_avg('temp2024.txt')
 ```
+</details>
 -->
 
 ---
@@ -373,7 +375,7 @@ print_monthly_avg('temp2024.txt')
 
 `temp2024.txt`를 읽으면서 기온이 **30도를 초과하는 날짜**만 골라 새로운 파일에 저장하는 함수를 작성합니다.
 
-- - 함수: `save_hot_days(filename, outfilename)` - 30도 초과 날짜 저장
+- 함수: `save_hot_days(filename, outfilename)` - 30도 초과 날짜 저장
     - 입력: `filename` — 읽을 파일 이름, `outfilename` — 저장할 파일 이름 (기본값: 'hot_days.txt')
     - 반환: 없음
 - (1)과 같은 방식으로 파일을 읽습니다.
@@ -404,6 +406,8 @@ save_hot_days('temp2024.txt')
 ```
 
 <!-- 
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def save_hot_days(filename, outfilename='hot_days.txt'):
@@ -441,4 +445,207 @@ def save_hot_days(filename, outfilename='hot_days.txt'):
 
 save_hot_days('temp2024.txt')
 ```
+</details>
  --> 
+
+
+ ---
+
+ ## **연습 문제 2 — 박막 증착 실험 로그 처리 (`sputter_log.txt`)**
+
+경희대학교 신소재공학과 스퍼터 장비에서 기록된 박막 증착 실험 로그입니다. Run마다 측정 횟수가 다르므로 `while`문으로 빈줄이 나올 때까지 읽는 방식으로 처리합니다.
+
+- [sputter_log.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch5/data/sputter_log.txt)
+
+각 Run은 다음 구조로 이루어져 있습니다.
+
+```
+# Run_001  Target: ITO (In2O3:SnO2)  - 투명전극 (디스플레이)
+# Date: 2025-03-05  Power: 100W
+TIME:00:00  PRESSURE:3.3e-6  POWER:100W  TEMP:23C  STATUS:OK
+TIME:00:05  PRESSURE:4.9e-5  POWER:100W  TEMP:29C  STATUS:ERROR
+TIME:00:10  PRESSURE:3.3e-6  POWER:100W  TEMP:44C  STATUS:OK
+...
+```
+
+- 각 Run의 주석줄은 **2줄**(`# Run_XXX ...` + `# Date: ...`)입니다.
+- 각 측정 줄은 `split()`으로 필드를 나눌 수 있습니다.
+- `TIME:00:05`에서 시간을 꺼내려면 `fields[0][5:]`를 사용합니다.
+- `PRESSURE:4.9e-5`에서 압력을 꺼내려면 `fields[1][9:]`를 사용합니다.
+
+---
+
+### **2-1 `print_errors(filename)` — Run별 에러 출력 함수 작성**
+
+`sputter_log.txt`를 읽으면서 각 Run에서 발생한 에러를 출력하는 함수를 작성합니다.
+
+- 함수: `print_errors(filename)` — Run별 에러 출력
+    - 입력: `filename` — 읽을 파일 이름
+    - 반환: 없음
+- 헤더 3줄(주석 2줄 + 빈줄 1줄)을 건너뜁니다.
+- 10개의 Run을 `for`문으로 순회하고, 각 Run 안에서는 `while`문으로 빈줄이 나올 때까지 읽습니다.
+- 각 Run의 주석줄은 2줄이므로 두 번째 줄(`# Date: ...`)도 건너뜁니다.
+- `STATUS:ERROR`가 포함된 줄에서 시간과 압력을 출력합니다.
+- 에러가 없는 Run은 `에러 없음`을 출력합니다.
+
+**출력 예시**
+
+```
+Run_001 (Target: ITO)
+  ERROR 발생 - TIME: 00:05  PRESSURE: 4.9e-5 Torr
+  총 에러 횟수: 1회
+Run_002 (Target: IGZO)
+  에러 없음
+Run_003 (Target: AZO)
+  ERROR 발생 - TIME: 00:15  PRESSURE: 6.7e-5 Torr
+  ERROR 발생 - TIME: 01:05  PRESSURE: 5.5e-5 Torr
+  ERROR 발생 - TIME: 01:10  PRESSURE: 6.2e-5 Torr
+  ERROR 발생 - TIME: 01:15  PRESSURE: 7.7e-5 Torr
+  ERROR 발생 - TIME: 01:30  PRESSURE: 7.5e-5 Torr
+  총 에러 횟수: 5회
+...
+Run_010 (Target: SnO2)
+  에러 없음
+```
+
+```python
+def print_errors(filename):
+    f = open(filename, 'r', encoding='utf-8')
+
+    함수를 완성하세요.
+
+#### 실행 부분 ####
+
+print_errors('sputter_log.txt')
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+def print_errors(filename):
+    f = open(filename, 'r', encoding='utf-8')
+    f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
+
+    for run_idx in range(10):
+        line = f.readline()                    # # Run_001  Target: ITO ...
+        parts = line.split()
+        run_id = parts[1]
+        target = parts[3]
+        f.readline()                           # # Date: ... 줄 건너뛰기
+
+        print(f'{run_id} (Target: {target})')
+        error_count = 0
+
+        while True:
+            line = f.readline()
+            if line.strip() == '' or line.strip().startswith('#'):
+                break
+            if 'STATUS:ERROR' in line:
+                fields       = line.split()
+                time_val     = fields[0][5:]   # 'TIME:00:05' → '00:05'
+                pressure_val = fields[1][9:]   # 'PRESSURE:4.9e-5' → '4.9e-5'
+                print(f'  ERROR 발생 - TIME: {time_val}  PRESSURE: {pressure_val} Torr')
+                error_count += 1
+
+        if error_count == 0:
+            print('  에러 없음')
+        else:
+            print(f'  총 에러 횟수: {error_count}회')
+
+    f.close()
+
+
+#### 실행 부분 ####
+
+print_errors('sputter_log.txt')
+```
+</details>
+-->
+
+---
+
+### **2-2 `save_run_summary(filename, outfilename)` — Run별 요약 저장 함수 작성**
+
+`sputter_log.txt`를 읽으면서 각 Run의 총 측정 횟수, 에러 횟수, 에러율을 계산하여 요약 파일로 저장하는 함수를 작성합니다.
+
+- 함수: `save_run_summary(filename, outfilename)` — Run별 요약 저장
+    - 입력: `filename` — 읽을 파일 이름, `outfilename` — 저장할 파일 이름 (기본값: `'sputter_summary.txt'`)
+    - 반환: 없음
+- 2-1과 같은 방식으로 파일을 읽습니다.
+- 각 Run마다 총 측정 횟수(`total`)와 에러 횟수(`errors`)를 세어 에러율을 계산합니다.
+- 결과를 요약 파일에 저장합니다.
+
+**저장 파일 형식 (`sputter_summary.txt`)**
+
+```
+# 박막 증착 실험 Run별 요약
+# Run  Target  총측정횟수  에러횟수  에러율(%)
+Run_001  ITO  30회  1회  3.3%
+Run_002  IGZO  23회  0회  0.0%
+Run_003  AZO  22회  5회  22.7%
+Run_004  TiO2  21회  0회  0.0%
+Run_005  ZnO  29회  2회  6.9%
+Run_006  Al2O3  22회  4회  18.2%
+Run_007  HfO2  28회  0회  0.0%
+Run_008  MoS2  22회  1회  4.5%
+Run_009  NiO  26회  4회  15.4%
+Run_010  SnO2  20회  0회  0.0%
+```
+
+```python
+def save_run_summary(filename, outfilename='sputter_summary.txt'):
+    f = open(filename, 'r', encoding='utf-8')
+
+    함수를 완성하세요.
+
+#### 실행 부분 ####
+
+save_run_summary('sputter_log.txt')
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+def save_run_summary(filename, outfilename='sputter_summary.txt'):
+    f = open(filename, 'r', encoding='utf-8')
+    out = open(outfilename, 'w', encoding='utf-8')
+    f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
+
+    out.write('# 박막 증착 실험 Run별 요약\n')
+    out.write('# Run  Target  총측정횟수  에러횟수  에러율(%)\n')
+
+    for run_idx in range(10):
+        line = f.readline()
+        parts = line.split()
+        run_id = parts[1]
+        target = parts[3]
+        f.readline()                           # # Date: ... 줄 건너뛰기
+
+        total = 0
+        errors = 0
+        while True:
+            line = f.readline()
+            if line.strip() == '' or line.strip().startswith('#'):
+                break
+            total += 1
+            if 'STATUS:ERROR' in line:
+                errors += 1
+
+        rate = errors / total * 100
+        out.write(f'{run_id}  {target}  {total}회  {errors}회  {rate:.1f}%\n')
+
+    f.close()
+    out.close()
+    print(f'저장 완료: {outfilename}')
+
+
+#### 실행 부분 ####
+
+save_run_summary('sputter_log.txt')
+```
+</details>
+-->
