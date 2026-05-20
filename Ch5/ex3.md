@@ -288,3 +288,146 @@ max_n, dept_names = find_max_std('toeic2.txt')
 data = load_toeic2('toeic2.txt', max_n)
 print_stats(data, dept_names)
 ```
+---
+## **✍️ 연습 문제**
+
+## 연습 문제 1 — 기온 데이터 처리 (`temp2024.txt`)
+
+경희대학교 수원캠퍼스 인근에서 2024년 한 해 동안 측정한 기온 데이터입니다. 월마다 측정 횟수가 다르므로, `for`문에 고정된 횟수를 넣을 수 없습니다. `while`문으로 빈줄이 나올 때까지 읽는 방식으로 처리합니다.
+
+- [temp2024.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch5/data/temp2024.txt)
+
+데이터 형식은 다음과 같습니다.
+
+```
+# 경희대학교 수원캠퍼스 2024년 기온 측정 데이터
+# 위치: 경기도 용인시 기흥구
+
+# 1월
+2024-01-03:-1.1C:Sunny
+2024-01-07:0.7C:Cloudy
+...
+
+# 2월
+2024-02-02:2.3C:Sunny
+...
+```
+
+각 데이터 줄은 `날짜:온도:날씨` 형식이며, `split(':')`으로 파싱할 수 있습니다.
+
+---
+
+### (1) `print_monthly_avg(filename)` — 월별 평균 기온 출력
+
+`temp2024.txt`를 읽으면서 월별 평균 기온과 측정 횟수를 출력하는 함수를 작성합니다.
+
+- 헤더 3줄(주석 2줄 + 빈줄 1줄)을 건너뜁니다.
+- 12개월을 `for`문으로 순회하고, 각 월 안에서는 `while`문으로 빈줄이 나올 때까지 읽습니다.
+- `split(':')`으로 온도를 파싱하고, `[:-1]`로 `C`를 제거한 뒤 `float`으로 변환합니다.
+- 측정값들을 리스트에 담아 평균을 계산하고 출력합니다.
+
+**출력 예시**
+
+```
+1월 평균 기온: -2.0C (23회 측정)
+2월 평균 기온: 1.9C (23회 측정)
+3월 평균 기온: 8.4C (25회 측정)
+4월 평균 기온: 13.5C (17회 측정)
+5월 평균 기온: 18.4C (20회 측정)
+6월 평균 기온: 23.4C (18회 측정)
+7월 평균 기온: 27.3C (20회 측정)
+8월 평균 기온: 26.1C (17회 측정)
+9월 평균 기온: 21.2C (25회 측정)
+10월 평균 기온: 14.8C (18회 측정)
+11월 평균 기온: 6.2C (19회 측정)
+12월 평균 기온: -0.4C (20회 측정)
+```
+
+**답안**
+
+```python
+def print_monthly_avg(filename):
+    f = open(filename, 'r', encoding='utf-8')
+    f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
+
+    for month in range(1, 13):
+        f.readline()                           # # N월 건너뛰기
+        temps = []
+
+        while True:
+            line = f.readline()
+            if line.strip() == '' or line.strip().startswith('#'):
+                break                          # 빈줄 또는 다음 월 주석이면 탈출
+            temp = float(line.strip().split(':')[1][:-1])   # '2.3C' → 2.3
+            temps.append(temp)
+
+        avg = sum(temps) / len(temps)
+        print(f'{month}월 평균 기온: {avg:.1f}C ({len(temps)}회 측정)')
+
+    f.close()
+
+
+#### 실행 부분 ####
+
+print_monthly_avg('temp2024.txt')
+```
+
+---
+
+### (2) `save_hot_days(filename, outfilename)` — 30도 초과 날짜 저장
+
+`temp2024.txt`를 읽으면서 기온이 **30도를 초과하는 날짜**만 골라 새로운 파일에 저장하는 함수를 작성합니다.
+
+- (1)과 같은 방식으로 파일을 읽습니다.
+- 기온이 30도 초과인 줄만 필터링하여 저장합니다.
+- 저장 형식은 원본과 다르게 **공백으로 구분**하여 저장합니다.
+
+**저장 파일 형식 (`hot_days.txt`)**
+
+```
+# 30도 초과 측정일 목록
+# date temp weather
+2024-07-05 30.4C Rainy
+2024-07-12 30.9C Overcast
+2024-07-24 31.0C Cloudy
+2024-08-19 30.1C Sunny
+```
+
+**답안**
+
+```python
+def save_hot_days(filename, outfilename='hot_days.txt'):
+    f = open(filename, 'r', encoding='utf-8')
+    out = open(outfilename, 'w', encoding='utf-8')
+
+    f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
+
+    out.write('# 30도 초과 측정일 목록\n')
+    out.write('# date temp weather\n')
+
+    count = 0
+    for month in range(1, 13):
+        f.readline()                           # # N월 건너뛰기
+
+        while True:
+            line = f.readline()
+            if line.strip() == '' or line.strip().startswith('#'):
+                break
+            parts = line.strip().split(':')
+            date    = parts[0]
+            temp    = float(parts[1][:-1])
+            weather = parts[2]
+
+            if temp > 30:
+                out.write(f'{date} {temp}C {weather}\n')
+                count += 1
+
+    f.close()
+    out.close()
+    print(f'저장 완료: {outfilename} ({count}일)')
+
+
+#### 실행 부분 ####
+
+save_hot_days('temp2024.txt')
+```
