@@ -62,7 +62,9 @@ nav_order: 5
 건축학과: 44명  
 최다 인원 학과: 기계공학과 (90명)
 
-### 답안
+<details markdown="1">
+<summary>예시 풀이</summary>
+
 
 ```python
 import numpy as np
@@ -99,12 +101,16 @@ def find_max_std(filename):
 
 max_n, dept_names = find_max_std('toeic2.txt')
 ```
+</details>
 
 ---
 
-## 1-2. 이렇게도 할 수 있어요! — `while`문으로 인원수 직접 세기
+## 1-2. `while`문으로 인원수 직접 세기
 
 주석줄에 인원수 정보가 없어도 동작하는 방식입니다. `while`문으로 다음 빈줄이 나올 때까지 줄을 읽으며 직접 카운트합니다.
+
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def find_max_std_v2(filename):
@@ -141,6 +147,7 @@ def find_max_std_v2(filename):
 
 max_n, dept_names = find_max_std_v2('toeic2.txt')
 ```
+</details>
 
 ---
 
@@ -180,7 +187,8 @@ index  기계공학과  산업경영공학과  ...  건축학과
 > np.full((3, 3), -1)       # 원하는 값으로 채우기
 > ```
 
-### 답안
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def load_toeic2(filename, max_n):
@@ -209,6 +217,7 @@ def load_toeic2(filename, max_n):
 
 data = load_toeic2('toeic2.txt', max_n)
 ```
+</details>
 
 ---
 
@@ -248,7 +257,8 @@ data = load_toeic2('toeic2.txt', max_n)
 > print(np.nanmean(col))   # 775.0
 > ```
 
-### 답안
+<details markdown="1">
+<summary>예시 풀이</summary>
 
 ```python
 def print_stats(data, dept_names):
@@ -268,6 +278,7 @@ def print_stats(data, dept_names):
 
 print_stats(data, dept_names)
 ```
+</details>
 
 ---
 
