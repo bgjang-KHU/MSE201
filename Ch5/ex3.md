@@ -291,33 +291,18 @@ print_stats(data, dept_names)
 ---
 ## **✍️ 연습 문제**
 
-## 연습 문제 1 — 기온 데이터 처리 (`temp2024.txt`)
+## **연습 문제 1 — 기온 데이터 처리 (`temp2024.txt`)**
 
 경희대학교 국제캠퍼스 인근에서 2024년 한 해 동안 측정한 기온 데이터입니다. 월마다 측정 횟수가 다르므로, `for`문에 고정된 횟수를 넣을 수 없습니다. `while`문으로 빈줄이 나올 때까지 읽는 방식으로 처리합니다.
 
 - [temp2024.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch5/data/temp2024.txt)
 
-데이터 형식은 다음과 같습니다.
 
-```
-# 경희대학교 수원캠퍼스 2024년 기온 측정 데이터
-# 위치: 경기도 용인시 기흥구
-
-# 1월
-2024-01-03:-1.1C:Sunny
-2024-01-07:0.7C:Cloudy
-...
-
-# 2월
-2024-02-02:2.3C:Sunny
-...
-```
-
-각 데이터 줄은 `날짜:온도:날씨` 형식이며, `split(':')`으로 파싱할 수 있습니다.
+각 데이터 줄은 `날짜:온도:날씨` 형식입니다.
 
 ---
 
-### (1) `print_monthly_avg(filename)` — 월별 평균 기온 출력
+### **1-1 `print_monthly_avg(filename)` — 월별 평균 기온 출력 함수 작성**
 
 `temp2024.txt`를 읽으면서 월별 평균 기온과 측정 횟수를 출력하는 함수를 작성합니다.
 
@@ -334,17 +319,23 @@ print_stats(data, dept_names)
 ```
 1월 평균 기온: -2.0C (23회 측정)
 2월 평균 기온: 1.9C (23회 측정)
-3월 평균 기온: 8.4C (25회 측정)
-4월 평균 기온: 13.5C (17회 측정)
-5월 평균 기온: 18.4C (20회 측정)
-6월 평균 기온: 23.4C (18회 측정)
-7월 평균 기온: 27.3C (20회 측정)
-8월 평균 기온: 26.1C (17회 측정)
-9월 평균 기온: 21.2C (25회 측정)
-10월 평균 기온: 14.8C (18회 측정)
+...
 11월 평균 기온: 6.2C (19회 측정)
 12월 평균 기온: -0.4C (20회 측정)
 ```
+
+```python
+def print_monthly_avg(filename):
+    f = open(filename, 'r', encoding='utf-8')
+
+    함수를 완성하세요.
+
+#### 실행 부분 ####
+
+print_monthly_avg('temp2024.txt')
+```
+
+
 <!-- 
 **답안**
 
@@ -378,7 +369,7 @@ print_monthly_avg('temp2024.txt')
 
 ---
 
-### (2) `save_hot_days(filename, outfilename)` — 30도 초과 날짜 저장
+### **1-2 `save_hot_days(filename, outfilename)` — 30도 초과 날짜 저장 함수 작성**
 
 `temp2024.txt`를 읽으면서 기온이 **30도를 초과하는 날짜**만 골라 새로운 파일에 저장하는 함수를 작성합니다.
 
@@ -399,6 +390,17 @@ print_monthly_avg('temp2024.txt')
 2024-07-12 30.9C Overcast
 2024-07-24 31.0C Cloudy
 2024-08-19 30.1C Sunny
+```
+
+```python
+def save_hot_days(filename, outfilename='hot_days.txt'):
+    f = open(filename, 'r', encoding='utf-8')
+
+    함수를 완성하세요.
+
+#### 실행 부분 ####
+
+save_hot_days('temp2024.txt')
 ```
 
 <!-- 
