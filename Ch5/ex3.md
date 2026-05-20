@@ -10,8 +10,7 @@ nav_order: 5
 ---
 
 지난 시간과 다르게 이번에는 **학과마다 학생 수가 다른** 데이터를 다룹니다. 구조는 `toeic.txt`와 같지만, 학과 주석줄에 적힌 인원수가 제각각입니다.
-
-학생 수가 다르면 NumPy 배열에 바로 담을 수 없습니다. 이번 실습에서는 **NaN으로 초기화한 배열**을 먼저 만들고 데이터를 채워넣는 방식을 배웁니다.
+학생 수가 정해져 있지 않으므로 for 문에 고정된 횟수를 넣을 수 없습니다. 이번 실습에서는 while문으로 빈줄 또는 다음 구분자가 나올 때까지 읽는 방식을 배웁니다. 데이터를 NumPy 배열에 담아야 할 경우에는 NaN으로 초기화한 배열을 먼저 만들고 채워넣는 방식을 사용합니다.
 
 ---
 
@@ -286,8 +285,6 @@ print_stats(data, dept_names)
 
 ```python
 max_n, dept_names = find_max_std('toeic2.txt')
-
 data = load_toeic2('toeic2.txt', max_n)
-
 print_stats(data, dept_names)
 ```
