@@ -229,3 +229,221 @@ plt.show()
 ### **🚀 TRY IT!**
 
 위에서 만든 $\sin(x)$, $\cos(x)$ 그래프를 `'myplot.png'`로 저장해보세요.
+
+
+# **✍️ 연습 문제**
+
+---
+
+## **연습 문제 1 — Si 상태밀도(DOS) 그리기 (`Si_PDOS.txt`)**
+
+실리콘(Si)의 부분 상태밀도(Partial Density of States, PDOS) 데이터를 읽어 그래프를 그립니다.
+
+- [Si_PDOS.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch6/data/Si_PDOS.txt)
+
+파일은 다음 6개의 컬럼으로 구성되어 있습니다.
+
+```
+#Energy    s       py      pz      px      tot
+-6.705   0.275   0.045   0.060   0.035   0.415
+-6.695   0.283   0.047   0.062   0.036   0.428
+...
+```
+
+`np.loadtxt()`로 읽은 뒤 `.T`로 전치(Transpose)하면 각 컬럼을 행으로 접근할 수 있습니다.
+
+### **목표**
+
+- `s` 오비탈, `p` 오비탈 전체(`px + py + pz`), `Total DOS`를 한 그래프에 그립니다.
+- x축 범위: `-10 ~ 5`, y축 범위: `0 ~ 0.8`
+- 제목, 축 이름, 범례를 추가합니다.
+
+### **출력 예시**
+
+![Si DOS](https://bgjang-khu.github.io/MSE201/Ch6/data/Si_DOS.png)
+
+### **풀이 조건**
+
+- 함수 없이 스크립트로 작성합니다.
+- `fill_between`은 사용하지 않고 `plt.plot()`으로만 그립니다.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt('Si_PDOS.txt', comments='#').T
+
+ene =           # data[0]
+s   =           # data[1]
+py  =           # data[2]
+pz  =           # data[3]
+px  =           # data[4]
+p   =           # px + py + pz
+tot =           # data[5]
+
+# s 오비탈, p 오비탈, Total DOS 그리기
+plt.plot(                               )
+plt.plot(                               )
+plt.plot(                               )
+
+plt.xlim(      )
+plt.ylim(      )
+plt.title(     )
+plt.xlabel(    )
+plt.ylabel(    )
+plt.legend(    )
+plt.show()
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt('Si_PDOS.txt', comments='#').T
+
+ene = data[0]
+s   = data[1]
+py  = data[2]
+pz  = data[3]
+px  = data[4]
+p   = px + py + pz
+tot = data[5]
+
+plt.plot(ene, s,   'r-', label='s orbital')
+plt.plot(ene, p,   'b-', label='p orbital')
+plt.plot(ene, tot, 'k-', label='Total', linewidth=2)
+
+plt.xlim(-10, 5)
+plt.ylim(0, 0.8)
+plt.title('Si Density of States')
+plt.xlabel('Energy (eV)')
+plt.ylabel('DOS (a.u.)')
+plt.legend(loc=0)
+plt.show()
+```
+</details>
+-->
+
+---
+
+## **연습 문제 2 — 월별 평균 기온 그래프 (`temp2024.txt`)`**
+
+파일 입출력 실습에서 다뤘던 `temp2024.txt`를 다시 활용합니다. 파일을 읽어 월별 평균 기온을 계산하고, 그래프로 시각화합니다.
+
+- [temp2024.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch6/data/temp2024.txt)
+
+### **목표**
+
+- 파일을 읽으면서 월별 평균 기온을 계산하여 리스트에 담습니다.
+- 계산된 리스트를 `plt.plot()`으로 시각화합니다.
+- x축은 월(1~12), y축은 온도(°C)로 설정합니다.
+- 제목, 축 이름, 격자를 추가합니다.
+
+### **출력 예시**
+
+```
+1월: -2.0C
+2월: 1.9C
+3월: 8.4C
+4월: 13.5C
+5월: 18.4C
+6월: 23.4C
+7월: 27.3C
+8월: 26.1C
+9월: 21.2C
+10월: 14.8C
+11월: 6.2C
+12월: -0.4C
+```
+
+### **풀이 조건**
+
+- 함수 없이 스크립트로 작성합니다.
+- 월별 평균 기온과 월 번호를 각각 리스트에 담아 `plt.plot()`에 넘깁니다.
+- `plt.xticks(months)`로 x축 눈금을 1~12월로 설정합니다.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+f = open('temp2024.txt', 'r', encoding='utf-8')
+f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
+
+months = []
+avgs   = []
+
+for month in range(1, 13):
+    f.readline()                           # # N월 건너뛰기
+    temps = []
+
+    while True:
+        line = f.readline()
+        if line.strip() == '':
+            break
+        temp =                             # 온도 파싱
+        temps.append(temp)
+
+    avg =                                  # 평균 계산
+    months.append(month)
+    avgs.append(avg)
+    print(f'{month}월: {avg:.1f}C')
+
+f.close()
+
+# 그래프 그리기
+plt.plot(                                  )
+plt.title(     )
+plt.xlabel(    )
+plt.ylabel(    )
+plt.xticks(months)
+plt.grid()
+plt.show()
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+f = open('temp2024.txt', 'r', encoding='utf-8')
+f.readline(); f.readline(); f.readline()
+
+months = []
+avgs   = []
+
+for month in range(1, 13):
+    f.readline()
+    temps = []
+
+    while True:
+        line = f.readline()
+        if line.strip() == '':
+            break
+        temp = float(line.strip().split(':')[1][:-1])
+        temps.append(temp)
+
+    avg = sum(temps) / len(temps)
+    months.append(month)
+    avgs.append(avg)
+    print(f'{month}월: {avg:.1f}C')
+
+f.close()
+
+plt.figure(figsize=(10, 5))
+plt.plot(months, avgs, 'bo-', linewidth=2, markersize=8)
+plt.title('2024 Monthly Average Temperature - KHU International Campus')
+plt.xlabel('Month')
+plt.ylabel('Temperature (C)')
+plt.xticks(months)
+plt.grid()
+plt.show()
+```
+</details>
+-->
