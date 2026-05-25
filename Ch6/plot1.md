@@ -337,6 +337,8 @@ plt.show()
 12월: -0.4C
 ```
 
+![Temp](https://bgjang-khu.github.io/MSE201/Ch6/data/Temp.png)
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
