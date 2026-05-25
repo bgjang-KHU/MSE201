@@ -267,33 +267,6 @@ plt.show()
 - 함수 없이 스크립트로 작성합니다.
 - `fill_between`은 사용하지 않고 `plt.plot()`으로만 그립니다.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-data = np.loadtxt('Si_PDOS.txt', comments='#').T
-
-ene =           # data[0]
-s   =           # data[1]
-py  =           # data[2]
-pz  =           # data[3]
-px  =           # data[4]
-p   =           # px + py + pz
-tot =           # data[5]
-
-# s 오비탈, p 오비탈, Total DOS 그리기
-plt.plot(                               )
-plt.plot(                               )
-plt.plot(                               )
-
-plt.xlim(      )
-plt.ylim(      )
-plt.title(     )
-plt.xlabel(    )
-plt.ylabel(    )
-plt.legend(    )
-plt.show()
-```
 
 <!--
 <details markdown="1">
@@ -371,39 +344,15 @@ import matplotlib.pyplot as plt
 
 def calc_monthly_avg(filename):
     f = open(filename, 'r', encoding='utf-8')
-    f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
 
     months = []
     avgs   = []
 
-    for month in range(1, 13):
-        f.readline()                           # # N월 건너뛰기
-        temps = []
-
-        while True:
-            line = f.readline()
-            if line.strip() == '':
-                break
-            temp =                             # 온도 파싱
-            temps.append(temp)
-
-        avg =                                  # 평균 계산
-        months.append(month)
-        avgs.append(avg)
-        print(f'{month}월: {avg:.1f}C')
-
-    f.close()
     return months, avgs                        # 두 리스트 함께 반환
 
 
 def plot_monthly_avg(months, avgs):
-    plt.plot(                                  )
-    plt.title(     )
-    plt.xlabel(    )
-    plt.ylabel(    )
-    plt.xticks(months)
-    plt.grid()
-    plt.show()
+
 
 
 #### 실행 부분 ####
