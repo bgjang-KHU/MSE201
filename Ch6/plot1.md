@@ -234,9 +234,6 @@ plt.show()
 
 ## **✍️ 연습 문제**
 
-
----
-
 ### **1. Si 상태밀도(DOS) 그리기 (`Si_PDOS.txt`)**
 
 실리콘(Si)의 부분 상태밀도(Partial Density of States, PDOS) 데이터를 읽어 그래프를 그립니다.
@@ -292,8 +289,8 @@ plt.plot(ene, s,   'r-', label='s orbital')
 plt.plot(ene, p,   'b-', label='p orbital')
 plt.plot(ene, tot, 'k-', label='Total', linewidth=2)
 
-plt.xlim(-10, 5)
-plt.ylim(0, 0.8)
+plt.xlim(-5, 5)
+plt.ylim(0, 0.5)
 plt.title('Si Density of States')
 plt.xlabel('Energy (eV)')
 plt.ylabel('DOS (a.u.)')
