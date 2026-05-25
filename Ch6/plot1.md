@@ -330,18 +330,23 @@ plt.show()
 
 ---
 
-## **연습 문제 2 — 월별 평균 기온 그래프 (`temp2024.txt`)`**
+## **연습 문제 2 — 월별 평균 기온 그래프 (`temp2024.txt`)**
 
-파일 입출력 실습에서 다뤘던 `temp2024.txt`를 다시 활용합니다. 파일을 읽어 월별 평균 기온을 계산하고, 그래프로 시각화합니다.
+파일 입출력 실습에서 다뤘던 `temp2024.txt`를 다시 활용합니다. 파일을 읽어 월별 평균 기온을 계산하고, 그래프로 시각화합니다. 이번에는 **두 개의 함수**로 나누어 작성합니다.
 
 - [temp2024.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch6/data/temp2024.txt)
 
 ### **목표**
 
-- 파일을 읽으면서 월별 평균 기온을 계산하여 리스트에 담습니다.
-- 계산된 리스트를 `plt.plot()`으로 시각화합니다.
-- x축은 월(1~12), y축은 온도(°C)로 설정합니다.
-- 제목, 축 이름, 격자를 추가합니다.
+- 함수 1 `calc_monthly_avg(filename)` — 파일을 읽어 월별 평균 기온을 계산하고, 월 리스트와 평균 기온 리스트를 반환합니다.
+- 함수 2 `plot_monthly_avg(months, avgs)` — 함수 1에서 반환된 값을 받아 그래프를 그립니다.
+
+### **함수 설계**
+
+| 함수 | 입력 | 반환 |
+|---|---|---|
+| `calc_monthly_avg(filename)` | 파일명 | `months`, `avgs` (두 리스트) |
+| `plot_monthly_avg(months, avgs)` | 월 리스트, 평균 기온 리스트 | 없음 |
 
 ### **출력 예시**
 
@@ -360,48 +365,51 @@ plt.show()
 12월: -0.4C
 ```
 
-### **풀이 조건**
-
-- 함수 없이 스크립트로 작성합니다.
-- 월별 평균 기온과 월 번호를 각각 리스트에 담아 `plt.plot()`에 넘깁니다.
-- `plt.xticks(months)`로 x축 눈금을 1~12월로 설정합니다.
-
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-f = open('temp2024.txt', 'r', encoding='utf-8')
-f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
+def calc_monthly_avg(filename):
+    f = open(filename, 'r', encoding='utf-8')
+    f.readline(); f.readline(); f.readline()   # 헤더 3줄 건너뛰기
 
-months = []
-avgs   = []
+    months = []
+    avgs   = []
 
-for month in range(1, 13):
-    f.readline()                           # # N월 건너뛰기
-    temps = []
+    for month in range(1, 13):
+        f.readline()                           # # N월 건너뛰기
+        temps = []
 
-    while True:
-        line = f.readline()
-        if line.strip() == '':
-            break
-        temp =                             # 온도 파싱
-        temps.append(temp)
+        while True:
+            line = f.readline()
+            if line.strip() == '':
+                break
+            temp =                             # 온도 파싱
+            temps.append(temp)
 
-    avg =                                  # 평균 계산
-    months.append(month)
-    avgs.append(avg)
-    print(f'{month}월: {avg:.1f}C')
+        avg =                                  # 평균 계산
+        months.append(month)
+        avgs.append(avg)
+        print(f'{month}월: {avg:.1f}C')
 
-f.close()
+    f.close()
+    return months, avgs                        # 두 리스트 함께 반환
 
-# 그래프 그리기
-plt.plot(                                  )
-plt.title(     )
-plt.xlabel(    )
-plt.ylabel(    )
-plt.xticks(months)
-plt.grid()
-plt.show()
+
+def plot_monthly_avg(months, avgs):
+    plt.plot(                                  )
+    plt.title(     )
+    plt.xlabel(    )
+    plt.ylabel(    )
+    plt.xticks(months)
+    plt.grid()
+    plt.show()
+
+
+#### 실행 부분 ####
+
+months, avgs = calc_monthly_avg('temp2024.txt')
+plot_monthly_avg(months, avgs)
 ```
 
 <!--
@@ -412,38 +420,48 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 
-f = open('temp2024.txt', 'r', encoding='utf-8')
-f.readline(); f.readline(); f.readline()
+def calc_monthly_avg(filename):
+    f = open(filename, 'r', encoding='utf-8')
+    f.readline(); f.readline(); f.readline()
 
-months = []
-avgs   = []
+    months = []
+    avgs   = []
 
-for month in range(1, 13):
-    f.readline()
-    temps = []
+    for month in range(1, 13):
+        f.readline()
+        temps = []
 
-    while True:
-        line = f.readline()
-        if line.strip() == '':
-            break
-        temp = float(line.strip().split(':')[1][:-1])
-        temps.append(temp)
+        while True:
+            line = f.readline()
+            if line.strip() == '':
+                break
+            temp = float(line.strip().split(':')[1][:-1])
+            temps.append(temp)
 
-    avg = sum(temps) / len(temps)
-    months.append(month)
-    avgs.append(avg)
-    print(f'{month}월: {avg:.1f}C')
+        avg = sum(temps) / len(temps)
+        months.append(month)
+        avgs.append(avg)
+        print(f'{month}월: {avg:.1f}C')
 
-f.close()
+    f.close()
+    return months, avgs
 
-plt.figure(figsize=(10, 5))
-plt.plot(months, avgs, 'bo-', linewidth=2, markersize=8)
-plt.title('2024 Monthly Average Temperature - KHU International Campus')
-plt.xlabel('Month')
-plt.ylabel('Temperature (C)')
-plt.xticks(months)
-plt.grid()
-plt.show()
+
+def plot_monthly_avg(months, avgs):
+    plt.figure(figsize=(10, 5))
+    plt.plot(months, avgs, 'bo-', linewidth=2, markersize=8)
+    plt.title('2024 Monthly Average Temperature - KHU International Campus')
+    plt.xlabel('Month')
+    plt.ylabel('Temperature (C)')
+    plt.xticks(months)
+    plt.grid()
+    plt.show()
+
+
+#### 실행 부분 ####
+
+months, avgs = calc_monthly_avg('temp2024.txt')
+plot_monthly_avg(months, avgs)
 ```
 </details>
 -->
