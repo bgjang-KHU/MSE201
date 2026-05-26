@@ -128,22 +128,6 @@ plt.show()
 
 $z = x^2 + y^2$ 대신 $z = x^2 - y^2$ (안장면, saddle surface)를 정의하고 등고선을 그려보세요. `levels=0` 인 선이 어떻게 생겼는지 확인해보세요.
 
-```python
-x = np.linspace(-2, 2, 400)
-y = np.linspace(-2, 2, 400)
-X, Y = np.meshgrid(x, y)
-
-Z =                          # x^2 - y^2
-
-plt.figure(figsize=(6, 6))
-plt.contour(X, Y, Z, levels=[0], colors='black', linewidths=2)
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('$x^2 - y^2 = 0$')
-plt.grid(True)
-plt.show()
-```
-
 ---
 
 ## **🎨 `plt.contourf()` — 색상으로 채우기**
@@ -177,21 +161,6 @@ plt.show()
 
 $z = \sin(x) \cdot \cos(y)$ 함수를 `contourf()`로 그리고 `colorbar()`를 추가해보세요.
 
-```python
-x = np.linspace(-np.pi, np.pi, 300)
-y = np.linspace(-np.pi, np.pi, 300)
-X, Y = np.meshgrid(x, y)
-
-Z =                                     # sin(x) * cos(y)
-
-plt.figure(figsize=(6, 6))
-cs = plt.contourf(X, Y, Z,       )     # levels 적당히 설정
-plt.colorbar(cs)
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('$\sin(x)\cos(y)$')
-plt.show()
-```
 
 ---
 
@@ -207,58 +176,138 @@ plt.show()
 
 ---
 
-## **✍️ 연습 문제**
 
-### **타원 방정식 그리기**
+## **🎲 Monte Carlo 시뮬레이션 — 원의 넓이 구하기**
 
-다음 타원 방정식의 등고선을 그려보세요.
+### **아이디어**
 
-$$\frac{x^2}{4} + \frac{y^2}{9} = 1$$
+반지름 1인 원이 한 변의 길이가 2인 정사각형 안에 딱 맞게 들어있다고 생각해봅시다. 이 정사각형 안에 점을 **완전히 랜덤하게** 뿌리면, 원 안에 떨어지는 점의 비율은 넓이의 비율과 같을 것입니다.
 
-- `levels=[1]`을 사용하여 타원 하나만 그립니다.
-- x 범위: $-3 \sim 3$, y 범위: $-4 \sim 4$
-- 제목, 축 이름, 격자를 추가합니다.
+$$\frac{\text{원 안의 점 수}}{\text{전체 점 수}} \approx \frac{\text{원의 넓이}}{\text{정사각형의 넓이}} = \frac{\pi r^2}{(2r)^2} = \frac{\pi}{4}$$
+
+따라서 점을 많이 뿌릴수록 $\pi$를 점점 정확하게 추정할 수 있습니다.
+
+$$\pi \approx 4 \times \frac{\text{원 안의 점 수}}{\text{전체 점 수}}$$
+
+---
+
+### **① 점 하나 생성하고 판별하기**
+
+`random.uniform(a, b)`는 a와 b 사이의 임의의 실수를 반환합니다. x, y 좌표를 각각 $-1 \sim 1$ 사이에서 뽑고, 원 방정식 $x^2 + y^2 \leq 1$로 안/밖을 판별합니다.
 
 ```python
-import numpy as np
-import matplotlib.pyplot as plt
+import random
 
-x = np.linspace(-3, 3, 400)
-y = np.linspace(-4, 4, 400)
-X, Y = np.meshgrid(x, y)
+x = random.uniform(-1, 1)
+y = random.uniform(-1, 1)
 
-Z =                          # x^2/4 + y^2/9
-
-plt.figure(figsize=(5, 7))
-plt.contour(X, Y, Z,        )
-plt.xlabel(      )
-plt.ylabel(      )
-plt.title(       )
-plt.grid(True)
-plt.show()
+if x**2 + y**2 <= 1:
+    print(f'({x:.3f}, {y:.3f}) → 원 안')
+else:
+    print(f'({x:.3f}, {y:.3f}) → 원 밖')
 ```
 
-<!--
-<details markdown="1">
-<summary>예시 풀이</summary>
+### **🚀 TRY IT!**
+
+위 코드를 여러 번 실행해보세요. 실행할 때마다 다른 결과가 나오나요?
+
+---
+
+### **② n개의 점으로 확장하기**
+
+`for`문으로 n번 반복하면서, 원 안에 들어온 점과 밖의 점을 각각 리스트에 담습니다.
+
+```python
+import random
+
+n = 1000
+inx, iny   = [], []   # 원 안의 점
+outx, outy = [], []   # 원 밖의 점
+
+for i in range(n):
+    x = random.uniform(-1, 1)
+    y = random.uniform(-1, 1)
+
+    if x**2 + y**2 <= 1:
+        inx.append(x)
+        iny.append(y)
+    else:
+        outx.append(x)
+        outy.append(y)
+
+print(f'전체: {n}개  |  원 안: {len(inx)}개  |  원 밖: {len(outx)}개')
+```
+
+---
+
+### **③ 원의 넓이 계산하기**
+
+원 안의 점 수를 전체 점 수로 나누고 4를 곱하면 원의 넓이(≈ π)를 추정할 수 있습니다.
+
+```python
+area = len(inx) / n * 4
+
+print(f'추정 넓이: {area:.4f}')
+print(f'실제 π:   {3.14159265:.4f}')
+```
+
+### **🤔 Wait and Think!**
+
+n을 10, 100, 1000, 10000으로 바꿔가며 실행해보세요. n이 커질수록 추정값이 어떻게 변하나요?
+
+---
+
+### **④ 시각화하기**
+
+지난 시간에 배운 `contour()`로 원을 그리고, `plt.scatter()`로 점들을 색깔별로 표시합니다.
 
 ```python
 import numpy as np
+import random
 import matplotlib.pyplot as plt
 
-x = np.linspace(-3, 3, 400)
-y = np.linspace(-4, 4, 400)
+n = 1000
+inx, iny   = [], []
+outx, outy = [], []
+
+for i in range(n):
+    x = random.uniform(-1, 1)
+    y = random.uniform(-1, 1)
+    if x**2 + y**2 <= 1:
+        inx.append(x)
+        iny.append(y)
+    else:
+        outx.append(x)
+        outy.append(y)
+
+# 원 그리기 (contour)
+x = np.linspace(-1, 1, 400)
+y = np.linspace(-1, 1, 400)
 X, Y = np.meshgrid(x, y)
+Z = X**2 + Y**2
 
-Z = X**2 / 4 + Y**2 / 9
-
-plt.figure(figsize=(5, 7))
+plt.figure(figsize=(6, 6))
 plt.contour(X, Y, Z, levels=[1], colors='black', linewidths=2)
+
+# 점 그리기 (scatter)
+plt.scatter(outx, outy, c='b', s=2, label='Outside')
+plt.scatter(inx,  iny,  c='r', s=2, label='Inside')
+
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title('$\\frac{x^2}{4} + \\frac{y^2}{9} = 1$')
+plt.legend()
 plt.grid(True)
 plt.show()
+
+area = len(inx) / n * 4
+print(f'n = {n} | 추정 넓이 = {area:.4f}')
 ```
-</details>
--->
+
+> 💡 **TIP — `plt.scatter()`**
+>
+> `plt.scatter(x, y)`는 점들을 흩뿌려 표시합니다. `c`로 색상, `s`로 점 크기를 지정할 수 있습니다. 점이 많을수록 `s`를 작게 설정하는 것이 좋습니다.
+
+### **🚀 TRY IT!**
+
+n을 10000으로 바꿔보세요. 시각화가 어떻게 달라지나요? 추정값은 더 정확해지나요?
+
