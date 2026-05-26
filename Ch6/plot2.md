@@ -245,10 +245,14 @@ print(f'전체: {n}개  |  원 안: {len(inx)}개  |  원 밖: {len(outx)}개')
 원 안의 점 수를 전체 점 수로 나누고 4를 곱하면 원의 넓이(≈ π)를 추정할 수 있습니다.
 
 ```python
+import math
+
 area = len(inx) / n * 4
+error = (math.pi - area) / math.pi * 100
 
 print(f'추정 넓이: {area:.4f}')
-print(f'실제 π:   {3.14159265:.4f}')
+print(f'실제 π:   {math.pi:.4f}')
+print(f'오차율:   {error:.4f}%')
 ```
 
 ### **🤔 Wait and Think!**
@@ -259,9 +263,10 @@ n을 10, 100, 1000, 10000으로 바꿔가며 실행해보세요. n이 커질수�
 
 ### **④ 시각화하기**
 
-지난 시간에 배운 `contour()`로 원을 그리고, `plt.scatter()`로 점들을 색깔별로 표시합니다.
+앞에서 배운 `contour()`로 원을 그리고, `plt.scatter()`로 점들을 색깔별로 표시합니다.
 
 ```python
+import math
 import numpy as np
 import random
 import matplotlib.pyplot as plt
@@ -300,7 +305,9 @@ plt.grid(True)
 plt.show()
 
 area = len(inx) / n * 4
-print(f'n = {n} | 추정 넓이 = {area:.4f}')
+error = (math.pi - area) / math.pi * 100
+
+print(f'n = {n} | 추정 넓이 = {area:.4f} | 오차율 = {error:.4f}%')
 ```
 
 > 💡 **TIP — `plt.scatter()`**

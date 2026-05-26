@@ -189,6 +189,60 @@ plt.show()
 
 ---
 
+## **🔵 산점도 그리기 (`plt.scatter()`)**
+
+`plt.scatter(x, y)`는 데이터를 **점(dot)**으로 표시합니다. `plt.plot()`과 달리 점들을 선으로 연결하지 않아서, 개별 데이터의 분포를 볼 때 유용합니다.
+
+```python
+import random
+
+x = [random.uniform(-1, 1) for i in range(100)]
+y = [random.uniform(-1, 1) for i in range(100)]
+
+plt.scatter(x, y)
+plt.show()
+```
+
+{: .highlight }
+> 💡 **TIP**
+> `[random.uniform(-1, 1) for i in range(100)]`
+>
+> 이 코드는 `for`문을 한 줄로 압축한 **list comprehension**입니다. `range(100)`을 순회하면서 `random.uniform(-1, 1)`을 100번 호출해 결과를 리스트로 만듭니다. 풀어 쓰면 다음과 같습니다.
+> ```python
+> x = []
+> for i in range(100):
+>     x.append(random.uniform(-1, 1))
+> ```
+
+`c`로 색상, `s`로 점 크기를 지정할 수 있습니다.
+
+```python
+plt.scatter(x, y, c='red', s=10)   # 빨간색, 크기 10
+plt.show()
+```
+
+여러 그룹의 점을 다른 색으로 표시할 수도 있습니다.
+
+```python
+x1 = [random.uniform(-1, 0) for i in range(50)]
+y1 = [random.uniform(-1, 0) for i in range(50)]
+x2 = [random.uniform(0, 1) for i in range(50)]
+y2 = [random.uniform(0, 1) for i in range(50)]
+
+plt.scatter(x1, y1, c='blue', s=10, label='Group A')
+plt.scatter(x2, y2, c='red',  s=10, label='Group B')
+plt.legend()
+plt.show()
+```
+
+### **🚀 TRY IT!**
+
+`random.uniform(-2, 2)`로 x, y 좌표 200개를 만들고, $x^2 + y^2 \leq 1$ 인 점은 빨간색, 아닌 점은 파란색으로 scatter plot을 그려보세요.
+
+---
+
+---
+
 ## **💾 그래프 저장하기**
 
 `plt.savefig()`를 사용하면 그래프를 파일로 저장할 수 있습니다. `plt.show()` **전에** 호출해야 합니다.
