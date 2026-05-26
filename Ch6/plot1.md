@@ -239,7 +239,6 @@ plt.show()
 
 `random.uniform(-2, 2)`로 x, y 좌표 200개를 만들고, $x^2 + y^2 \leq 1$ 인 점은 빨간색, 아닌 점은 파란색으로 scatter plot을 그려보세요.
 
----
 
 ---
 

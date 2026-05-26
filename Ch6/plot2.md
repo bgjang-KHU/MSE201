@@ -318,3 +318,196 @@ print(f'n = {n} | 추정 넓이 = {area:.4f} | 오차율 = {error:.4f}%')
 
 n을 10000으로 바꿔보세요. 시각화가 어떻게 달라지나요? 추정값은 더 정확해지나요?
 
+
+---
+
+## **✍️ 연습 문제 — Monte Carlo 시뮬레이션 함수로 구현하기**
+
+본문에서 단계별로 작성했던 몬테카를로 원 넓이 구하기를 **4개의 함수**로 나누어 구현합니다.
+
+```python
+import numpy as np
+import math
+import random
+import matplotlib.pyplot as plt
+```
+
+---
+
+### **1. `calc_error(estimated_area)` — 오차율 계산**
+
+- **입력**: `estimated_area` — 추정된 원의 넓이 (float)
+- **반환**: 오차율 (float, 단위 %)
+- `math.pi`를 기준값으로 오차율을 계산하여 반환합니다.
+
+$$\text{오차율} = \frac{\pi - \text{추정값}}{\pi} \times 100$$
+
+```python
+def calc_error(estimated_area, reference=math.pi):
+
+    함수를 완성하세요.
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+def calc_error(estimated_area, reference=math.pi):
+    return (reference - estimated_area) / reference * 100
+```
+</details>
+-->
+
+---
+
+### **2. `MC(n)` — 몬테카를로 시뮬레이션**
+
+- **입력**: `n` — 생성할 점의 개수 (int)
+- **반환**: `inx, iny, outx, outy` — 원 안/밖의 x, y 좌표 리스트 4개
+- `random.uniform(-1, 1)`로 x, y 좌표를 생성하고, $x^2 + y^2 \leq 1$ 조건으로 원 안/밖을 판별합니다.
+- 추정 넓이와 오차율을 출력합니다. (`calc_error()` 활용)
+
+**출력 예시**
+```
+n = 1000 | Estimated area = 3.180000 | Error = -1.2225%
+```
+
+```python
+def MC(n):
+    inx, iny, outx, outy = [], [], [], []
+
+    함수를 완성하세요.
+
+    return inx, iny, outx, outy
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+def MC(n):
+    inx, iny, outx, outy = [], [], [], []
+
+    for i in range(n):
+        x = random.uniform(-1, 1)
+        y = random.uniform(-1, 1)
+        if x**2 + y**2 <= 1:
+            inx.append(x)
+            iny.append(y)
+        else:
+            outx.append(x)
+            outy.append(y)
+
+    area = len(inx) / n * 4
+    error = calc_error(area)
+    print(f'n = {n} | Estimated area = {area:.6f} | Error = {error:.4f}%')
+
+    return inx, iny, outx, outy
+```
+</details>
+-->
+
+---
+
+### **3. `figure(inx, iny, outx, outy)` — 시각화**
+
+- **입력**: `inx, iny, outx, outy` — `MC()`에서 반환된 4개의 리스트
+- **반환**: 없음
+- `meshgrid`와 `contour()`로 단위원을 그리고, `scatter()`로 원 안/밖의 점을 서로 다른 색으로 표시합니다.
+  - 원 안의 점: 빨간색 (`c='r'`)
+  - 원 밖의 점: 파란색 (`c='b'`)
+
+```python
+def figure(inx, iny, outx, outy):
+
+    함수를 완성하세요.
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+def figure(inx, iny, outx, outy):
+    x = np.linspace(-1, 1, 400)
+    y = np.linspace(-1, 1, 400)
+    X, Y = np.meshgrid(x, y)
+    Z = X**2 + Y**2
+
+    plt.figure(figsize=(8, 8))
+    plt.contour(X, Y, Z, levels=[1], colors='black', linewidths=2)
+    plt.scatter(outx, outy, c='b', s=2, label='Outside')
+    plt.scatter(inx,  iny,  c='r', s=2, label='Inside')
+    plt.xlabel('x', fontsize=12)
+    plt.ylabel('y', fontsize=12)
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+```
+</details>
+-->
+
+---
+
+### **4. `sampling(sample_list)` — 여러 n에 대한 결과 파일 저장**
+
+- **입력**: `sample_list` — 시뮬레이션할 n 값들의 리스트
+- **반환**: 없음
+- 리스트의 각 n에 대해 `MC()`를 호출하고, 추정 넓이와 오차율을 `sampling.txt`에 저장합니다.
+
+**저장 파일 형식 (`sampling.txt`)**
+
+```
+Samples	Estimated Area	Error (%)
+      10	         3.2000	   -1.8592
+     100	         2.9600	    5.7803
+    1000	         3.1640	   -0.7132
+   10000	         3.1296	    0.3817
+   20000	         3.1396	    0.0634
+   30000	         3.1423	   -0.0215
+   40000	         3.1414	    0.0061
+   50000	         3.1394	    0.0711
+```
+
+```python
+def sampling(sample_list):
+
+    함수를 완성하세요.
+```
+
+<!--
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+def sampling(sample_list):
+    f = open("sampling.txt", "w")
+    f.write("Samples\tEstimated Area\tError (%)\n")
+
+    for n in sample_list:
+        inx, iny, outx, outy = MC(n)
+        area = len(inx) / n * 4
+        error = calc_error(area)
+        f.write(f"{n:8d}\t{area:15.4f}\t{error:10.4f}\n")
+
+    f.close()
+```
+</details>
+-->
+
+---
+
+### **🚀 전체 실행**
+
+```python
+n = 10000
+inx, iny, outx, outy = MC(n)
+figure(inx, iny, outx, outy)
+
+list1 = [10, 100, 1000, 10000, 20000, 30000, 40000, 50000]
+sampling(list1)
+```
+
+> 🤔 **생각해보기**: `sampling.txt`를 열어보면 n이 커질수록 오차율이 어떻게 변하나요? n=50000일 때도 오차가 완전히 0이 되지 않는 이유는 무엇일까요?
