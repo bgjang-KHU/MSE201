@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 ---
 
-## **🔧 `curve_fit()` 기본 사용법**
+## **🛠️ `curve_fit()` 기본 사용법**
 
 
 ```python
@@ -46,9 +46,9 @@ def func(x, a, b):      # 첫 번째 인자: 독립변수, 나머지: 피팅할 
 
 ### **🔑 핵심 포인트: `popt`와 `pcov`**
 
-`popt`는 피팅으로 추정된 파라미터 값들입니다. 함수가 `func(x, a, b)`이면 `popt[0]`이 a, `popt[1]`이 b입니다.
+- `popt`는 피팅으로 추정된 파라미터 값들입니다. 함수가 `func(x, a, b)`이면 `popt[0]`이 a, `popt[1]`이 b입니다.
 
-`pcov`는 공분산 행렬로, 대각선 원소의 제곱근이 각 파라미터의 **표준편차(불확도)**입니다.
+- `pcov`는 공분산 행렬로, 대각선 원소의 제곱근이 각 파라미터의 **표준편차(불확도)**입니다.
 
 ```python
 perr = np.sqrt(np.diag(pcov))   # 각 파라미터의 표준편차
