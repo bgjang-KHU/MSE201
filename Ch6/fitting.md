@@ -26,6 +26,8 @@ import matplotlib.pyplot as plt
 popt, pcov = curve_fit(func, x, y)
 ```
 
+<br>
+
 | 인자/반환값 | 설명 |
 |---|---|
 | `func` | 피팅할 함수 — **첫 번째 인자가 독립변수(x)**, 나머지는 피팅할 파라미터 |
