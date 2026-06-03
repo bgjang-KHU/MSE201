@@ -398,7 +398,7 @@ $$P = \frac{nRT}{V - nb} - a\left(\frac{n}{V}\right)^2$$
 | 함수 | 입력 | 반환 | 역할 |
 |---|---|---|---|
 | `vdw(V, a, b)` | V 배열, 파라미터 a, b | P 배열 | van der Waals 방정식 |
-| `fit_gas(V, P, name, p0)` | V, P 배열, 기체명, 초기값 | `popt` | 피팅 수행 및 결과 출력 |
+| `fit_gas(V, P, name)` | V, P 배열, 기체명, 초기값 | `popt` | 피팅 수행 및 결과 출력 |
 | `plot_one(V, P, popt, name, color)` | V, P 배열, popt, 기체명, 색상 | 없음 | 데이터와 피팅 곡선 시각화 |
 
 ---
