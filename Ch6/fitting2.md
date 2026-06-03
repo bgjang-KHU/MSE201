@@ -11,6 +11,189 @@ nav_order: 4
 
 ---
 
+---
+
+## **연습 문제 2 — 포물선 운동 데이터 피팅 (`projectile.txt`)**
+
+초기 속도 $v_0$, 발사각 $\theta$로 던진 물체의 운동 데이터입니다. 공기 저항을 무시하면 x, y 방향 운동은 다음과 같습니다.
+
+$$x(t) = v_0 \cos\theta \cdot t$$
+
+$$y(t) = v_0 \sin\theta \cdot t - \frac{1}{2}g t^2$$
+
+t-y 데이터에 fitting을 적용하면 **초기 수직 속도** $v_0\sin\theta$와 **중력가속도** $g$를 추정할 수 있습니다.
+
+- [projectile.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch6/data/projectile.txt)
+
+파일은 다음 3개의 컬럼으로 구성되어 있습니다.
+
+```
+# Projectile motion data
+# v0 = 20 m/s, theta = 45 deg
+# t(s)    x(m)    y(m)
+0.00    0.0497    -0.0292
+0.10    1.4004    1.3050
+...
+```
+
+피팅에 사용할 모델 함수는 다음과 같습니다.
+
+```python
+def projectile(t, v0_sin, g):
+    return v0_sin * t - 0.5 * g * t**2
+```
+
+- `v0_sin`: $v_0\sin\theta$ — 초기 수직 속도 (m/s)
+- `g`: 중력가속도 (m/s²)
+
+피팅 결과를 실제 중력가속도 $g = 9.8$ m/s²와 비교해보세요.
+
+---
+
+### **함수 설계**
+
+| 함수 | 입력 | 반환 | 역할 |
+|---|---|---|---|
+| `plot_trajectory(x, y)` | x, y 배열 | 없음 | x-y 궤적 시각화 |
+| `fit_projectile(t, y)` | t, y 배열 | `popt` | t-y 피팅, $v_0\sin\theta$와 $g$ 추정 |
+| `plot_fitting(t, y, popt)` | t, y 배열, popt | 없음 | t-y 데이터 + 피팅 곡선 시각화 |
+
+---
+
+### **1. `plot_trajectory(x, y)` — 포물선 궤적 시각화**
+
+- **입력**: `x` — 수평 거리 배열, `y` — 높이 배열
+- **반환**: 없음
+- `scatter()`로 x-y 궤적을 그립니다. 피팅과는 무관하게 실제 물체의 궤적을 확인합니다.
+- x축: 수평 거리 (m), y축: 높이 (m)
+
+```python
+import numpy as np
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+
+def projectile(t, v0_sin, g):
+    return v0_sin * t - 0.5 * g * t**2
+
+def plot_trajectory(x, y):
+
+    함수를 완성하세요.
+```
+
+---
+
+### **2. `fit_projectile(t, y)` — 피팅 수행**
+
+- **입력**: `t` — 시간 배열, `y` — 높이 배열
+- **반환**: `popt` — 피팅된 파라미터 배열
+- `curve_fit()`으로 $v_0\sin\theta$와 $g$를 추정하고 결과를 출력합니다.
+- 초기값 `p0=[10, 9.0]`을 사용합니다.
+- `perr = np.sqrt(np.diag(pcov))`로 불확도를 함께 출력합니다.
+
+**출력 예시**
+
+```
+v0sinθ = 14.0847 ± 0.0420 m/s
+g      =  9.7534 ± 0.0380 m/s²
+```
+
+```python
+def fit_projectile(t, y):
+
+    함수를 완성하세요.
+
+    return popt
+```
+
+---
+
+### **3. `plot_fitting(t, y, popt)` — t-y 피팅 결과 시각화**
+
+- **입력**: `t` — 시간 배열, `y` — 높이 배열, `popt` — 피팅 파라미터
+- **반환**: 없음
+- `scatter()`로 데이터 점을, `plot()`으로 피팅 곡선을 겹쳐 그립니다.
+- x축: 시간 (s), y축: 높이 (m)
+
+```python
+def plot_fitting(t, y, popt):
+
+    함수를 완성하세요.
+```
+
+---
+
+### **🚀 전체 실행**
+
+```python
+data = np.loadtxt('projectile.txt', comments='#')
+t = data[:, 0]
+x = data[:, 1]
+y = data[:, 2]
+
+plot_trajectory(x, y)
+
+popt = fit_projectile(t, y)
+
+plot_fitting(t, y, popt)
+```
+
+
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+import numpy as np
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+
+def projectile(t, v0_sin, g):
+    return v0_sin * t - 0.5 * g * t**2
+
+def plot_trajectory(x, y):
+    plt.figure(figsize=(8, 5))
+    plt.scatter(x, y, c='blue', s=20, label='Data')
+    plt.xlabel('x (m)')
+    plt.ylabel('y (m)')
+    plt.title('Projectile Trajectory')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def fit_projectile(t, y):
+    popt, pcov = curve_fit(projectile, t, y, p0=[10, 9.0])
+    perr = np.sqrt(np.diag(pcov))
+    print(f'v0sinθ = {popt[0]:.4f} ± {perr[0]:.4f} m/s')
+    print(f'g      = {popt[1]:.4f} ± {perr[1]:.4f} m/s²')
+    return popt
+
+def plot_fitting(t, y, popt):
+    t_fine = np.linspace(t.min(), t.max(), 200)
+    plt.figure(figsize=(8, 5))
+    plt.scatter(t, y, c='blue', s=20, label='Data')
+    plt.plot(t_fine, projectile(t_fine, *popt), c='red', linewidth=2, label='Fitting')
+    plt.xlabel('t (s)')
+    plt.ylabel('y (m)')
+    plt.title('Projectile Motion: t-y Fitting')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+data = np.loadtxt('projectile.txt', comments='#')
+t = data[:, 0]
+x = data[:, 1]
+y = data[:, 2]
+
+plot_trajectory(x, y)
+
+popt = fit_projectile(t, y)
+
+plot_fitting(t, y, popt)
+```
+</details>
+
+--
+
 
 ## **✍️ 연습 문제1 — van der Waals 기체 상수 피팅**
 
