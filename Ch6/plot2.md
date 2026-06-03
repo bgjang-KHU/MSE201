@@ -348,7 +348,7 @@ def calc_error(estimated_area, reference=math.pi):
     함수를 완성하세요.
 ```
 
-<!--
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -357,7 +357,7 @@ def calc_error(estimated_area, reference=math.pi):
     return (reference - estimated_area) / reference * 100
 ```
 </details>
--->
+
 
 ---
 
@@ -382,7 +382,7 @@ def MC(n):
     return inx, iny, outx, outy
 ```
 
-<!--
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -407,7 +407,7 @@ def MC(n):
     return inx, iny, outx, outy
 ```
 </details>
--->
+
 
 ---
 
@@ -425,7 +425,7 @@ def figure(inx, iny, outx, outy):
     함수를 완성하세요.
 ```
 
-<!--
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -447,7 +447,7 @@ def figure(inx, iny, outx, outy):
     plt.show()
 ```
 </details>
--->
+
 
 ---
 
@@ -477,7 +477,7 @@ def sampling(sample_list):
     함수를 완성하세요.
 ```
 
-<!--
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -495,7 +495,7 @@ def sampling(sample_list):
     f.close()
 ```
 </details>
--->
+
 
 ---
 
