@@ -57,17 +57,17 @@ def decay(t, A0, lam):
 
 | 함수 | 입력 | 반환 | 역할 |
 |---|---|---|---|
-| `fit_decay(t, N)` | t, N 배열 | `popt` | 피팅으로 $N_0$, $\lambda$ 추정 및 반감기 출력 |
-| `plot_decay(t, N, popt)` | t, N 배열, popt | 없음 | 데이터 + 피팅 곡선 시각화 |
+| `fit_decay(t, A)` | t, A 배열 | `popt` | 피팅으로 $A_0$, $\lambda$ 추정 및 반감기 출력 |
+| `plot_decay(t, A, popt)` | t, A 배열, popt | 없음 | 데이터 + 피팅 곡선 시각화 |
 
 ---
 
-### **1. `fit_decay(t, N)` — 피팅 수행**
+### **1. `fit_decay(t, A)` — 피팅 수행**
 
-- **입력**: `t` — 시간 배열 (year), `N` — 원자 수 배열
+- **입력**: `t` — 시간 배열 (year), `A` — Activity 배열 (count/year)
 - **반환**: `popt` — 피팅된 파라미터 배열
-- `curve_fit()`으로 $N_0$와 $\lambda$를 추정합니다.
-- 초기값 `p0=[900, 1e-4]`를 사용합니다.
+- `curve_fit()`으로 $A_0$와 $\lambda$를 추정합니다.
+- 초기값 `p0=[400, 1e-4]`를 사용합니다.
 - 피팅 결과에서 반감기 $t_{1/2} = \ln 2 / \lambda$를 계산하여 출력합니다.
 
 {: .highlight }
@@ -89,10 +89,10 @@ import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-def decay(t, N0, lam):
-    return N0 * np.exp(-lam * t)
+def decay(t, A0, lam):
+    return A0 * np.exp(-lam * t)
 
-def fit_decay(t, N):
+def fit_decay(t, A):
 
     함수를 완성하세요.
 
@@ -101,15 +101,15 @@ def fit_decay(t, N):
 
 ---
 
-### **2. `plot_decay(t, N, popt)` — 시각화**
+### **2. `plot_decay(t, A, popt)` — 시각화**
 
-- **입력**: `t` — 시간 배열, `N` — 원자 수 배열, `popt` — 피팅 파라미터
+- **입력**: `t` — 시간 배열, `A` — Activity 배열 (count/year), `popt` — 피팅 파라미터
 - **반환**: 없음
 - `scatter()`로 데이터 점을, `plot()`으로 피팅 곡선을 겹쳐 그립니다.
-- x축: 시간 (year), y축: 원자 수 (count)
+- x축: 시간 (year), y축: Activity (count/year)
 
 ```python
-def plot_decay(t, N, popt):
+def plot_decay(t, A, popt):
 
     함수를 완성하세요.
 ```
@@ -121,11 +121,11 @@ def plot_decay(t, N, popt):
 ```python
 data = np.loadtxt('decay.txt', comments='#')
 t = data[:, 0]
-N = data[:, 1]
+A = data[:, 1]
 
-popt = fit_decay(t, N)
+popt = fit_decay(t, A)
 
-plot_decay(t, N, popt)
+plot_decay(t, A, popt)
 ```
 
 
@@ -137,25 +137,25 @@ import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-def decay(t, N0, lam):
-    return N0 * np.exp(-lam * t)
+def decay(t, A0, lam):
+    return A0 * np.exp(-lam * t)
 
-def fit_decay(t, N):
-    popt, pcov = curve_fit(decay, t, N, p0=[900, 1e-4])
+def fit_decay(t, A):
+    popt, pcov = curve_fit(decay, t, A, p0=[400, 1e-4])
     perr = np.sqrt(np.diag(pcov))
     t_half = np.log(2) / popt[1]
-    print(f'N0  = {popt[0]:.2f} ± {perr[0]:.2f}')
+    print(f'A0  = {popt[0]:.2f} ± {perr[0]:.2f} count/year')
     print(f'λ   = {popt[1]:.6f} ± {perr[1]:.6f} /year')
     print(f'반감기 = {t_half:.1f} year  (실제: 5730 year)')
     return popt
 
-def plot_decay(t, N, popt):
+def plot_decay(t, A, popt):
     t_fine = np.linspace(t.min(), t.max(), 200)
     plt.figure(figsize=(8, 5))
-    plt.scatter(t, N, c='blue', s=20, label='Data')
+    plt.scatter(t, A, c='blue', s=20, label='Data')
     plt.plot(t_fine, decay(t_fine, *popt), c='red', linewidth=2, label='Fitting')
     plt.xlabel('t (year)')
-    plt.ylabel('N (count)')
+    plt.ylabel('Activity (count/year)')
     plt.title('Radioactive Decay: C-14')
     plt.legend()
     plt.grid(True)
@@ -163,13 +163,14 @@ def plot_decay(t, N, popt):
 
 data = np.loadtxt('decay.txt', comments='#')
 t = data[:, 0]
-N = data[:, 1]
+A = data[:, 1]
 
-popt = fit_decay(t, N)
+popt = fit_decay(t, A)
 
-plot_decay(t, N, popt)
+plot_decay(t, A, popt)
 ```
 </details>
+
 
 
 
