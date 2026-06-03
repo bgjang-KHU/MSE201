@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Curve Fitting
+title: Fitting 실습 (1)
 parent: Ch6. 데이터 시각화 및 분석
-nav_order: 3
+nav_order: 4
 ---
 
 # **Curve Fitting 실습 (1)**
@@ -54,7 +54,7 @@ $$P = \frac{nRT}{V - nb} - a\left(\frac{n}{V}\right)^2$$
 |---|---|---|---|
 | `vdw(V, a, b)` | V 배열, 파라미터 a, b | P 배열 | van der Waals 방정식 |
 | `fit_gas(V, P, name, p0)` | V, P 배열, 기체명, 초기값 | `popt` | 피팅 수행 및 결과 출력 |
-| `plot_results(V, gases_data, popts, names)` | V, 압력 리스트, popt 리스트, 기체명 리스트 | 없음 | 데이터와 피팅 곡선 시각화 |
+| `plot_one(V, P, popt, name, color)` | V, P 배열, popt, 기체명, 색상 | 없음 | 데이터와 피팅 곡선 시각화 |
 
 ---
 
@@ -106,18 +106,18 @@ def fit_gas(V, P, name, p0):
 
 ---
 
-### **3. `plot_results(V, gases_data, popts, names)` — 시각화**
+### **3. `plot_one(V, P, popt, name, color)` — 시각화**
 
-- **입력**: `V` — 부피 배열, `gases_data` — 각 기체의 압력 리스트, `popts` — 각 기체의 `popt` 리스트, `names` — 기체명 리스트
+- **입력**: `V` — 부피 배열, `P` — 압력 배열, `popt` — 피팅 파라미터, `name` — 기체명, `color` — 색상
 - **반환**: 없음
-- `scatter()`로 데이터 점을 그리고, `plot()`으로 피팅 곡선을 겹쳐 그립니다.
-- 세 기체를 서로 다른 색으로 표시합니다.
+- `scatter()`로 데이터 점을, `plot()`으로 피팅 곡선을 겹쳐 그립니다.
+- 기체 하나에 대한 그래프를 그리는 함수입니다. 세 번 호출하여 한 그래프에 겹쳐 그립니다.
 
-```python
-def plot_results(V, gases_data, popts, names):
+````python
+def plot_one(V, P, popt, name, color):
 
     함수를 완성하세요.
-```
+````
 
 ---
 
@@ -134,10 +134,16 @@ popt_N2  = fit_gas(V, P_N2,  'N2',  [1.39, 0.039])
 popt_CO2 = fit_gas(V, P_CO2, 'CO2', [3.59, 0.043])
 popt_H2O = fit_gas(V, P_H2O, 'H2O', [5.46, 0.031])
 
-plot_results(V,
-             [P_N2, P_CO2, P_H2O],
-             [popt_N2, popt_CO2, popt_H2O],
-             ['N2', 'CO2', 'H2O'])
+plt.figure(figsize=(8, 6))
+plot_one(V, P_N2,  popt_N2,  'N2',  'blue')
+plot_one(V, P_CO2, popt_CO2, 'CO2', 'red')
+plot_one(V, P_H2O, popt_H2O, 'H2O', 'green')
+plt.xlabel('V (L/mol)')
+plt.ylabel('P (atm)')
+plt.title('van der Waals Gas: P-V Curve Fitting (T = 290 K)')
+plt.legend()
+plt.grid(True)
+plt.show()
 ```
 
 > 🤔 **생각해보기**: 피팅으로 얻은 a, b 값을 참고값과 비교해보세요. N₂의 a 값이 왜 가장 작을까요? H₂O의 a 값이 큰 이유는 무엇일까요?
@@ -164,19 +170,10 @@ def fit_gas(V, P, name, p0):
     print(f'{name}: a={popt[0]:.4f}±{perr[0]:.4f}, b={popt[1]:.4f}±{perr[1]:.4f}')
     return popt
 
-def plot_results(V, gases_data, popts, names):
-    colors = ['blue', 'red', 'green']
-    plt.figure(figsize=(8, 6))
-    for P, popt, name, color in zip(gases_data, popts, names, colors):
-        plt.scatter(V, P, c=color, s=10, alpha=0.5, label=f'{name} data')
-        V_fine = np.linspace(V.min(), V.max(), 200)
-        plt.plot(V_fine, vdw(V_fine, *popt), c=color, linewidth=2, label=f'{name} fit')
-    plt.xlabel('V (L/mol)')
-    plt.ylabel('P (atm)')
-    plt.title('van der Waals Gas: P-V Curve Fitting (T = 290 K)')
-    plt.legend(loc=1, fontsize=8)
-    plt.grid(True)
-    plt.show()
+def plot_one(V, P, popt, name, color):
+    plt.scatter(V, P, c=color, s=10, label=f'{name} data')
+    V_fine = np.linspace(V.min(), V.max(), 200)
+    plt.plot(V_fine, vdw(V_fine, *popt), c=color, linewidth=2, label=f'{name} fit')
 
 data  = np.loadtxt('vdW_data.txt', comments='#')
 V     = data[:, 0]
@@ -188,10 +185,16 @@ popt_N2  = fit_gas(V, P_N2,  'N2',  [1.39, 0.039])
 popt_CO2 = fit_gas(V, P_CO2, 'CO2', [3.59, 0.043])
 popt_H2O = fit_gas(V, P_H2O, 'H2O', [5.46, 0.031])
 
-plot_results(V,
-             [P_N2, P_CO2, P_H2O],
-             [popt_N2, popt_CO2, popt_H2O],
-             ['N2', 'CO2', 'H2O'])
+plt.figure(figsize=(8, 6))
+plot_one(V, P_N2,  popt_N2,  'N2',  'blue')
+plot_one(V, P_CO2, popt_CO2, 'CO2', 'red')
+plot_one(V, P_H2O, popt_H2O, 'H2O', 'green')
+plt.xlabel('V (L/mol)')
+plt.ylabel('P (atm)')
+plt.title('van der Waals Gas: P-V Curve Fitting (T = 290 K)')
+plt.legend()
+plt.grid(True)
+plt.show()
 ```
 </details>
 
