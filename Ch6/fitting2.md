@@ -11,10 +11,162 @@ nav_order: 4
 
 ---
 
+
+## **✍️ 방사성 붕괴 반감기 피팅**
+
+방사성 원소는 시간이 지남에 따라 일정한 비율로 붕괴합니다. 시간 $t$에서 남아있는 원자 수 $N(t)$는 다음과 같습니다.
+
+$$N(t) = N_0 \, e^{-\lambda t}$$
+
+- $N_0$: 초기 원자 수
+- $\lambda$: 붕괴 상수 (단위: 1/year)
+
+붕괴 상수 $\lambda$를 구하면 **반감기** $t_{1/2}$를 계산할 수 있습니다.
+
+$$t_{1/2} = \frac{\ln 2}{\lambda}$$
+
+이번 문제에서는 C-14의 붕괴 데이터를 피팅하여 반감기를 추정하고, 실제 반감기 **5730년**과 비교해봅니다.
+
+- [decay.txt 다운로드](https://bgjang-khu.github.io/MSE201/Ch6/data/decay.txt)
+
+파일은 다음 2개의 컬럼으로 구성되어 있습니다.
+
+```
+# Radioactive decay data: C-14
+# t(year)    N(count)
+0.00    1014.9014
+408.16    947.8763
+...
+```
+
+피팅에 사용할 모델 함수는 다음과 같습니다.
+
+```python
+def decay(t, N0, lam):
+    return N0 * np.exp(-lam * t)
+```
+
 ---
 
-## **연습 문제 2 — 포물선 운동 데이터 피팅 (`projectile.txt`)**
+### **함수 설계**
 
+| 함수 | 입력 | 반환 | 역할 |
+|---|---|---|---|
+| `fit_decay(t, N)` | t, N 배열 | `popt` | 피팅으로 $N_0$, $\lambda$ 추정 및 반감기 출력 |
+| `plot_decay(t, N, popt)` | t, N 배열, popt | 없음 | 데이터 + 피팅 곡선 시각화 |
+
+---
+
+### **1. `fit_decay(t, N)` — 피팅 수행**
+
+- **입력**: `t` — 시간 배열 (year), `N` — 원자 수 배열
+- **반환**: `popt` — 피팅된 파라미터 배열
+- `curve_fit()`으로 $N_0$와 $\lambda$를 추정합니다.
+- 초기값 `p0=[900, 1e-4]`를 사용합니다.
+- 피팅 결과에서 반감기 $t_{1/2} = \ln 2 / \lambda$를 계산하여 출력합니다.
+
+**출력 예시**
+
+```
+N0  = 1012.67 ± 5.04
+λ   = 0.000124 ± 0.000001 /year
+반감기 = 5607.4 year  (실제: 5730 year)
+```
+
+```python
+import numpy as np
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+
+def decay(t, N0, lam):
+    return N0 * np.exp(-lam * t)
+
+def fit_decay(t, N):
+
+    함수를 완성하세요.
+
+    return popt
+```
+
+---
+
+### **2. `plot_decay(t, N, popt)` — 시각화**
+
+- **입력**: `t` — 시간 배열, `N` — 원자 수 배열, `popt` — 피팅 파라미터
+- **반환**: 없음
+- `scatter()`로 데이터 점을, `plot()`으로 피팅 곡선을 겹쳐 그립니다.
+- x축: 시간 (year), y축: 원자 수 (count)
+
+```python
+def plot_decay(t, N, popt):
+
+    함수를 완성하세요.
+```
+
+---
+
+### **🚀 전체 실행**
+
+```python
+data = np.loadtxt('decay.txt', comments='#')
+t = data[:, 0]
+N = data[:, 1]
+
+popt = fit_decay(t, N)
+
+plot_decay(t, N, popt)
+```
+
+> 🤔 **생각해보기**: 피팅으로 얻은 반감기와 실제 C-14 반감기(5730년)가 차이나는 이유는 무엇일까요? 측정 데이터 수를 늘리면 더 정확해질까요?
+
+
+<details markdown="1">
+<summary>예시 풀이</summary>
+
+```python
+import numpy as np
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+
+def decay(t, N0, lam):
+    return N0 * np.exp(-lam * t)
+
+def fit_decay(t, N):
+    popt, pcov = curve_fit(decay, t, N, p0=[900, 1e-4])
+    perr = np.sqrt(np.diag(pcov))
+    t_half = np.log(2) / popt[1]
+    print(f'N0  = {popt[0]:.2f} ± {perr[0]:.2f}')
+    print(f'λ   = {popt[1]:.6f} ± {perr[1]:.6f} /year')
+    print(f'반감기 = {t_half:.1f} year  (실제: 5730 year)')
+    return popt
+
+def plot_decay(t, N, popt):
+    t_fine = np.linspace(t.min(), t.max(), 200)
+    plt.figure(figsize=(8, 5))
+    plt.scatter(t, N, c='blue', s=20, label='Data')
+    plt.plot(t_fine, decay(t_fine, *popt), c='red', linewidth=2, label='Fitting')
+    plt.xlabel('t (year)')
+    plt.ylabel('N (count)')
+    plt.title('Radioactive Decay: C-14')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+data = np.loadtxt('decay.txt', comments='#')
+t = data[:, 0]
+N = data[:, 1]
+
+popt = fit_decay(t, N)
+
+plot_decay(t, N, popt)
+```
+</details>
+
+
+
+---
+
+## **✍️ 포물선 운동 데이터 피팅**
 초기 속도 $v_0$, 발사각 $\theta$로 던진 물체의 운동 데이터입니다. 공기 저항을 무시하면 x, y 방향 운동은 다음과 같습니다.
 
 $$x(t) = v_0 \cos\theta \cdot t$$
@@ -192,10 +344,10 @@ plot_fitting(t, y, popt)
 ```
 </details>
 
---
+---
 
 
-## **✍️ 연습 문제1 — van der Waals 기체 상수 피팅**
+## **✍️ van der Waals 기체 상수 피팅**
 
 실제 기체는 이상기체 방정식 $PV = nRT$를 따르지 않습니다. **van der Waals 방정식**은 분자 간 인력과 분자 자체의 부피를 보정하여 실제 기체의 거동을 더 정확하게 설명합니다.
 
