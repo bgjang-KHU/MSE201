@@ -425,9 +425,9 @@ def vdw(V, a, b):
 
 ---
 
-### **2. `fit_gas(V, P, name, p0)` — 피팅 수행**
+### **2. `fit_gas(V, P, name)` — 피팅 수행**
 
-- **입력**: `V` — 부피 배열, `P` — 압력 배열, `name` — 기체명 (문자열), `p0` — 초기값 리스트
+- **입력**: `V` — 부피 배열, `P` — 압력 배열, `name` — 기체명 (문자열)
 - **반환**: `popt` — 피팅된 파라미터 배열
 - `curve_fit()`으로 a, b를 추정하고 결과를 출력합니다.
 - `bounds=([0, 0.001], [10, 0.2])`로 파라미터 범위를 제한합니다.
@@ -442,7 +442,7 @@ H2O: a = 5.5863 ± 0.0993,  b = 0.0342 ± 0.0031
 ```
 
 ```python
-def fit_gas(V, P, name, p0):
+def fit_gas(V, P, name):
 
     함수를 완성하세요.
 
@@ -509,8 +509,8 @@ n = 1
 def vdw(V, a, b):
     return n * R * T / (V - n * b) - a * (n / V)**2
 
-def fit_gas(V, P, name, p0):
-    popt, pcov = curve_fit(vdw, V, P, p0=p0, bounds=([0, 0.001], [10, 0.2]))
+def fit_gas(V, P, name):
+    popt, pcov = curve_fit(vdw, V, P, bounds=([0, 0.001], [10, 0.2]))
     perr = np.sqrt(np.diag(pcov))
     print(f'{name}: a={popt[0]:.4f}±{perr[0]:.4f}, b={popt[1]:.4f}±{perr[1]:.4f}')
     return popt
@@ -526,9 +526,9 @@ P_N2  = data[:, 1]
 P_CO2 = data[:, 2]
 P_H2O = data[:, 3]
 
-popt_N2  = fit_gas(V, P_N2,  'N2',  [1.39, 0.039])
-popt_CO2 = fit_gas(V, P_CO2, 'CO2', [3.59, 0.043])
-popt_H2O = fit_gas(V, P_H2O, 'H2O', [5.46, 0.031])
+popt_N2  = fit_gas(V, P_N2,  'N2')
+popt_CO2 = fit_gas(V, P_CO2, 'CO2')
+popt_H2O = fit_gas(V, P_H2O, 'H2O')
 
 plt.figure(figsize=(8, 6))
 plot_one(V, P_N2,  popt_N2,  'N2',  'blue')
