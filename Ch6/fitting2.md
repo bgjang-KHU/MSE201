@@ -21,9 +21,11 @@ $$N(t) = N_0 \, e^{-\lambda t}$$
 - $N_0$: 초기 원자 수
 - $\lambda$: 붕괴 상수 (단위: 1/year)
 
-붕괴 상수 $\lambda$를 구하면 **반감기** $t_{1/2}$를 계산할 수 있습니다.
+실험에서는 원자 수를 직접 셀 수 없기 때문에, 단위 시간당 붕괴 횟수인 **방사능(Activity)** $A(t)$를 측정합니다.
 
-$$t_{1/2} = \frac{\ln 2}{\lambda}$$
+$$A(t) = \lambda N_0 \, e^{-\lambda t} = A_0 \, e^{-\lambda t}$$
+
+$A(t)$도 $N(t)$와 같은 지수 감소 형태이므로, Activity 데이터를 피팅하면 동일하게 $\lambda$를 구할 수 있습니다.
 
 이번 문제에서는 C-14의 붕괴 데이터를 피팅하여 반감기를 추정하고, 실제 반감기 **5730년**과 비교해봅니다.
 
@@ -33,18 +35,21 @@ $$t_{1/2} = \frac{\ln 2}{\lambda}$$
 
 ```
 # Radioactive decay data: C-14
-# t(year)    N(count)
-0.00    1014.9014
-408.16    947.8763
+# Activity: measured decay counts per year
+# t(year)    Activity(count/year)
+0.00    492
+408.16    491
 ...
 ```
 
 피팅에 사용할 모델 함수는 다음과 같습니다.
 
 ```python
-def decay(t, N0, lam):
-    return N0 * np.exp(-lam * t)
+def decay(t, A0, lam):
+    return A0 * np.exp(-lam * t)
 ```
+- `A0`: 초기 방사능 (count/year)
+- `lam`: 붕괴 상수 $\lambda$ (1/year)
 
 ---
 
@@ -65,12 +70,18 @@ def decay(t, N0, lam):
 - 초기값 `p0=[900, 1e-4]`를 사용합니다.
 - 피팅 결과에서 반감기 $t_{1/2} = \ln 2 / \lambda$를 계산하여 출력합니다.
 
+{: .highlight }
+> 💡 **TIP — `np.log()`는 자연로그**
+>
+> `np.log(x)`는 밑이 $e$인 자연로그 $\ln x$입니다. 밑이 10인 상용로그는 `np.log10(x)`, 밑이 2인 로그는 `np.log2(x)`를 사용합니다.
+>
+
 **출력 예시**
 
 ```
-N0  = 1012.67 ± 5.04
-λ   = 0.000124 ± 0.000001 /year
-반감기 = 5607.4 year  (실제: 5730 year)
+A0  = 494.79 ± 5.10 count/year
+λ   = 0.000121 ± 0.000002 /year
+반감기 = 5729.2 year  (실제: 5730 year)
 ```
 
 ```python
@@ -116,8 +127,6 @@ popt = fit_decay(t, N)
 
 plot_decay(t, N, popt)
 ```
-
-> 🤔 **생각해보기**: 피팅으로 얻은 반감기와 실제 C-14 반감기(5730년)가 차이나는 이유는 무엇일까요? 측정 데이터 수를 늘리면 더 정확해질까요?
 
 
 <details markdown="1">
