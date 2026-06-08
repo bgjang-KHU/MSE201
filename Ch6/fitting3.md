@@ -29,7 +29,7 @@ $$E(V) = E_0 + \frac{9V_0B_0}{16}\left\{\left[\left(\frac{V_0}{V}\right)^{2/3}-1
 |---|---|---|
 | $E_0$ | 평형 부피에서의 내부 에너지 | eV |
 | $V_0$ | 평형 부피 (equilibrium volume) | Å³ |
-| $B_0$ | 벌크 모듈러스 (bulk modulus) — 재료의 압축 저항성 | eV/Å³ |
+| $B_0$ | 체적탄성계수 (bulk modulus) — 재료의 압축 저항성 | eV/Å³ |
 | $B_p$ | 압력에 대한 bulk modulus의 미분값 | 무차원 |
 
 $B_0$가 클수록 압축하기 어려운 단단한 재료입니다. 단위 변환: $1 \text{ eV/Å}^3 = 160.2176 \text{ GPa}$
