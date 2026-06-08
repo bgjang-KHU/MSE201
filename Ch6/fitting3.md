@@ -160,7 +160,7 @@ def quadratic(x, a, b, c):
     return a * (x - b)**2 + c
 
 def guess_fit(Vol, Ene):
-    popt1, _ = curve_fit(quadratic, Vol, Ene)
+    popt1, pcov1 = curve_fit(quadratic, Vol, Ene)
     V0_guess = popt1[1]
     E0_guess = popt1[2]
     print(f'초기 추정값: V0 = {V0_guess:.3f} Å³,  E0 = {E0_guess:.3f} eV')
@@ -182,7 +182,7 @@ def BM_fit(Vol, Ene, popt1):
     V0_guess = popt1[1]
     E0_guess = popt1[2]
 
-    popt2, _ = curve_fit(BM_EV, Vol, Ene, p0=[E0_guess, V0_guess, 0.5, 4.0])
+    popt2, pcov2 = curve_fit(BM_EV, Vol, Ene, p0=[E0_guess, V0_guess, 0.5, 4.0])
     E0, V0, B0, Bp = popt2
 
     print(f'E0 = {E0:.6f} eV')
