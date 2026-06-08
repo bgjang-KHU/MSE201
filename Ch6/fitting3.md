@@ -19,6 +19,8 @@ nav_order: 5
 
 ## **📐 Birch-Murnaghan 상태방정식**
 
+![EOS](https://bgjang-khu.github.io/MSE201/Ch6/data/EOS.png)
+
 고체 재료에 압력을 가하면 부피가 변합니다. **Birch-Murnaghan EOS**는 부피 $V$에 따른 내부 에너지 $E(V)$를 기술하는 방정식으로, 재료의 탄성 물성을 나타내는 핵심 파라미터를 포함합니다.
 
 $$E(V) = E_0 + \frac{9V_0B_0}{16}\left\{\left[\left(\frac{V_0}{V}\right)^{2/3}-1\right]^3 B_p + \left[\left(\frac{V_0}{V}\right)^{2/3}-1\right]^2\left[6-4\left(\frac{V_0}{V}\right)^{2/3}\right]\right\}$$
