@@ -319,7 +319,6 @@ print_monthly_avg('temp2024.txt')
 ```
 
 
-<!-- 
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -350,7 +349,7 @@ def print_monthly_avg(filename):
 print_monthly_avg('temp2024.txt')
 ```
 </details>
--->
+
 
 ---
 
@@ -388,7 +387,7 @@ def save_hot_days(filename, outfilename='hot_days.txt'):
 save_hot_days('temp2024.txt')
 ```
 
-<!-- 
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -429,7 +428,7 @@ def save_hot_days(filename, outfilename='hot_days.txt'):
 save_hot_days('temp2024.txt')
 ```
 </details>
- --> 
+
 
 
  ---
@@ -502,7 +501,7 @@ def print_errors(filename):
 print_errors('sputter_log.txt')
 ```
 
-<!--
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -545,7 +544,7 @@ def print_errors(filename):
 print_errors('sputter_log.txt')
 ```
 </details>
--->
+
 
 ---
 
@@ -588,7 +587,7 @@ def save_run_summary(filename, outfilename='sputter_summary.txt'):
 save_run_summary('sputter_log.txt')
 ```
 
-<!--
+
 <details markdown="1">
 <summary>예시 풀이</summary>
 
@@ -631,4 +630,4 @@ def save_run_summary(filename, outfilename='sputter_summary.txt'):
 save_run_summary('sputter_log.txt')
 ```
 </details>
--->
+
